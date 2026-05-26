@@ -15,9 +15,9 @@
             box-sizing: border-box;
         }
 
-        /* 整个页面背景色更新为 E8DDD1 */
+        /* 整个页面背景色更新为 EDE5DB */
         body {
-            background-color: #E8DDD1;
+            background-color: #EDE5DB;
             color: #3C2C19;
             -webkit-font-smoothing: antialiased;
             font-family: 'Lato', sans-serif;
@@ -35,11 +35,11 @@
             background-color: #ffffff; 
             position: relative;
             z-index: 1001;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.01);
         }
 
         .hamburger-container {
-            position: relative; /* 为半宽下拉菜单提供定位基准 */
+            position: relative; 
         }
 
         /* 汉堡菜单按钮 */
@@ -60,15 +60,17 @@
             background-color: #3C2C19;
         }
 
-        /* 严格控制为 Banner 的一半宽度 (50% 宽度的左侧局部菜单) */
+        /* 3 bar 半宽下拉框调为高级半透明质感 */
         .local-menu {
             position: absolute;
-            top: 53px; /* 紧贴 Banner 底部 */
-            left: -16px; /* 抵消 header 的 padding，使其靠最左边展出 */
-            width: 50vw; /* 严格等于屏幕宽度的一半 */
-            background-color: #ffffff;
-            box-shadow: 4px 8px 20px rgba(0,0,0,0.08);
-            border: 1px solid #e2ded7;
+            top: 53px; 
+            left: -16px; 
+            width: 50vw; 
+            background-color: rgba(255, 255, 255, 0.88); /* 半透明纯白 */
+            backdrop-filter: blur(8px); /* 磨砂玻璃特效 */
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: 4px 8px 20px rgba(0,0,0,0.05);
+            border: 1px solid rgba(226, 222, 231, 0.5);
             border-left: none;
             border-radius: 0 0 4px 0;
             max-height: 0;
@@ -148,10 +150,10 @@
             align-items: center;
         }
 
-        /* 常驻搜索框区域（在 Logo 下方，第一个格子上方，大小适中易点击） */
+        /* 搜索框区域完美对齐参考图：纯白底色、细微浅灰色底边线风格 */
         .search-block-wrapper {
-            width: 280px; /* 与下方的格子完全同宽对齐，视觉极度舒适 */
-            margin-bottom: 25px; /* 与下方格子的间距 */
+            width: 280px; 
+            margin-bottom: 25px; 
         }
 
         .inline-search-container {
@@ -163,29 +165,30 @@
 
         .inline-search-input {
             width: 100%;
-            height: 38px; /* 极佳的可点击高度 */
-            padding: 0 15px 0 38px; /* 给左侧的放大镜留出空间 */
-            border: 1px solid rgba(60, 44, 25, 0.15);
-            border-radius: 4px; /* 轻微圆角，呼应方正高级感 */
-            font-size: 13px;
+            height: 40px; 
+            padding: 0 40px 0 0; /* 留空给右侧放大镜 */
+            border: none;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08); /* 极细底边线 */
+            font-size: 14px;
             outline: none;
-            background-color: #ffffff;
+            background-color: #ffffff; /* 保持纯白底色 */
             color: #3C2C19;
             font-family: 'Lato', sans-serif;
+            letter-spacing: 0.3px;
         }
 
         .inline-search-input::placeholder {
-            color: #a6998a;
+            color: #b0a496;
         }
 
-        /* 搜索框内嵌的放大镜图标 */
+        /* 放大镜置于输入框最右侧，紧贴底线 */
         .search-inside-icon {
             position: absolute;
-            left: 12px;
-            width: 16px;
-            height: 16px;
-            stroke: #7a6e61;
-            stroke-width: 1.5;
+            right: 4px;
+            width: 18px;
+            height: 18px;
+            stroke: #3C2C19;
+            stroke-width: 1.2;
             fill: none;
             pointer-events: none;
         }
@@ -260,7 +263,7 @@
             text-align: left;
             border-top: 1px solid rgba(111, 55, 28, 0.15);
             padding-top: 35px;
-            width: 280px; /* 宽度保持与格子、搜索框对齐 */
+            width: 280px; 
         }
 
         .about-section h2 {
@@ -324,11 +327,11 @@
         
         <div class="search-block-wrapper">
             <div class="inline-search-container">
+                <input type="text" class="inline-search-input" placeholder="Product Search">
                 <svg class="search-inside-icon" viewBox="0 0 24 24">
                     <circle cx="11" cy="11" r="8"></circle>
                     <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                 </svg>
-                <input type="text" class="inline-search-input" placeholder="Search jewelry...">
             </div>
         </div>
         
@@ -368,7 +371,7 @@
     </div>
 
     <script>
-        // 控制 3 bars 50% 宽度的局部菜单显示
+        // 控制 3 bars 50% 宽度的半透明局部菜单显示
         function toggleLocalMenu(e) {
             e.stopPropagation();
             const menu = document.getElementById('localMenu');
