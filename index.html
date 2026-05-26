@@ -15,9 +15,9 @@
             box-sizing: border-box;
         }
 
-        /* 整个页面背景色 FDF9F2 */
+        /* 整个页面背景色更新为 E8DDD1 */
         body {
-            background-color: #FDF9F2;
+            background-color: #E8DDD1;
             color: #3C2C19;
             -webkit-font-smoothing: antialiased;
             font-family: 'Lato', sans-serif;
@@ -25,7 +25,7 @@
             overflow-x: hidden;
         }
 
-        /* 精致白色 Banner */
+        /* 精致白色顶栏 Banner */
         header {
             display: flex;
             justify-content: space-between;
@@ -39,7 +39,7 @@
         }
 
         .hamburger-container {
-            position: static; 
+            position: relative; /* 为半宽下拉菜单提供定位基准 */
         }
 
         /* 汉堡菜单按钮 */
@@ -60,15 +60,17 @@
             background-color: #3C2C19;
         }
 
-        /* 连体局部下拉菜单 (紧贴 header 底部) */
+        /* 严格控制为 Banner 的一半宽度 (50% 宽度的左侧局部菜单) */
         .local-menu {
             position: absolute;
-            top: 85px; 
-            left: 0;
-            width: 100%; 
+            top: 53px; /* 紧贴 Banner 底部 */
+            left: -16px; /* 抵消 header 的 padding，使其靠最左边展出 */
+            width: 50vw; /* 严格等于屏幕宽度的一半 */
             background-color: #ffffff;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
-            border-top: 1px solid #f7f4ee;
+            box-shadow: 4px 8px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e2ded7;
+            border-left: none;
+            border-radius: 0 0 4px 0;
             max-height: 0;
             overflow: hidden;
             visibility: hidden;
@@ -82,7 +84,7 @@
         }
 
         .local-menu-inner {
-            padding: 20px 25px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             gap: 16px;
@@ -109,7 +111,7 @@
             letter-spacing: -0.5px;
         }
 
-        /* 右侧图标控制区域 (精确排序：Search -> User -> Cart) */
+        /* 右侧图标控制区域 (User -> Cart) */
         .nav-icons {
             display: flex;
             gap: 12px; 
@@ -136,45 +138,56 @@
             stroke-linejoin: round;
         }
 
-        /* 搜索框连体下拉栏 */
-        .search-dropdown {
-            position: absolute;
-            top: 85px;
-            left: 0;
-            width: 100%;
-            background-color: #ffffff;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-            border-top: 1px solid #f7f4ee;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-in-out;
-            z-index: 999;
-        }
-
-        .search-dropdown.show {
-            max-height: 65px;
-        }
-
-        .search-container {
-            padding: 12px 20px;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 6px 14px;
-            border: 1px solid #e2ded7;
-            border-radius: 20px;
-            font-size: 13px;
-            outline: none;
-            background-color: #fcfbfa;
-            font-family: 'Lato', sans-serif;
-        }
-
         /* 主体内容容器 */
         .container {
             width: 100%;
-            padding: 35px 20px; 
+            padding: 25px 20px; 
             margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* 常驻搜索框区域（在 Logo 下方，第一个格子上方，大小适中易点击） */
+        .search-block-wrapper {
+            width: 280px; /* 与下方的格子完全同宽对齐，视觉极度舒适 */
+            margin-bottom: 25px; /* 与下方格子的间距 */
+        }
+
+        .inline-search-container {
+            position: relative;
+            width: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .inline-search-input {
+            width: 100%;
+            height: 38px; /* 极佳的可点击高度 */
+            padding: 0 15px 0 38px; /* 给左侧的放大镜留出空间 */
+            border: 1px solid rgba(60, 44, 25, 0.15);
+            border-radius: 4px; /* 轻微圆角，呼应方正高级感 */
+            font-size: 13px;
+            outline: none;
+            background-color: #ffffff;
+            color: #3C2C19;
+            font-family: 'Lato', sans-serif;
+        }
+
+        .inline-search-input::placeholder {
+            color: #a6998a;
+        }
+
+        /* 搜索框内嵌的放大镜图标 */
+        .search-inside-icon {
+            position: absolute;
+            left: 12px;
+            width: 16px;
+            height: 16px;
+            stroke: #7a6e61;
+            stroke-width: 1.5;
+            fill: none;
+            pointer-events: none;
         }
 
         /* 单列纵向往下排 4 格的网格控制 */
@@ -182,25 +195,25 @@
             display: flex;
             justify-content: center;
             width: 100%;
-            margin-bottom: 45px;
+            margin-bottom: 40px;
         }
 
         .grid-container {
             display: flex;
-            flex-direction: column; /* 改为纵向单列排布 */
-            gap: 20px; /* 格子与格子之间的上下间距 */
+            flex-direction: column; 
+            gap: 20px; 
             align-items: center;
             width: 100%;
         }
 
-        /* 极致调校：280x135 尺寸，既保证两侧留空优雅，又绝不过空 */
+        /* 280x135 经典高级尺寸 */
         .grid-item {
             display: flex;
             flex-direction: column;
             text-decoration: none;
             position: relative;
-            width: 280px;  /* 宽度 */
-            height: 135px; /* 高度 */
+            width: 280px;  
+            height: 135px; 
             overflow: hidden;
             border-radius: 3px;
         }
@@ -224,14 +237,14 @@
             pointer-events: none;
         }
 
-        /* 文字在图片正中间 (Alphabet 风格，纯白加粗，14号字) */
+        /* 文字在图片正中间 (14号字) */
         .grid-item span {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             color: #ffffff; 
-            font-size: 14px; /* 严格保持 14 号字 */
+            font-size: 14px; 
             font-weight: 600;
             letter-spacing: 2px;
             text-transform: uppercase;
@@ -245,11 +258,9 @@
         .about-section {
             margin-top: 10px;
             text-align: left;
-            border-top: 1px solid rgba(111, 55, 28, 0.1);
+            border-top: 1px solid rgba(111, 55, 28, 0.15);
             padding-top: 35px;
-            max-width: 280px; /* 宽度与格子保持同宽对齐，视觉上极度舒适 */
-            margin-left: auto;
-            margin-right: auto;
+            width: 280px; /* 宽度保持与格子、搜索框对齐 */
         }
 
         .about-section h2 {
@@ -293,12 +304,6 @@
         <a href="index.html" class="logo">Le Trèfle</a>
         
         <div class="nav-icons">
-            <button class="icon-btn" onclick="toggleSearchDropdown(event)" aria-label="Search">
-                <svg class="icon-svg" viewBox="0 0 24 24">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                </svg>
-            </button>
             <a href="signup.html" class="icon-btn" aria-label="Profile">
                 <svg class="icon-svg" viewBox="0 0 24 24">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
@@ -315,13 +320,17 @@
         </div>
     </header>
 
-    <div class="search-dropdown" id="searchDropdown">
-        <div class="search-container">
-            <input type="text" class="search-input" placeholder="Search product...">
-        </div>
-    </div>
-
     <div class="container">
+        
+        <div class="search-block-wrapper">
+            <div class="inline-search-container">
+                <svg class="search-inside-icon" viewBox="0 0 24 24">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input type="text" class="inline-search-input" placeholder="Search jewelry...">
+            </div>
+        </div>
         
         <div class="grid-wrapper">
             <div class="grid-container">
@@ -359,31 +368,18 @@
     </div>
 
     <script>
+        // 控制 3 bars 50% 宽度的局部菜单显示
         function toggleLocalMenu(e) {
             e.stopPropagation();
             const menu = document.getElementById('localMenu');
-            const search = document.getElementById('searchDropdown');
             menu.classList.toggle('show');
-            search.classList.remove('show'); 
         }
 
-        function toggleSearchDropdown(e) {
-            e.stopPropagation();
-            const search = document.getElementById('searchDropdown');
-            const menu = document.getElementById('localMenu');
-            search.classList.toggle('show');
-            menu.classList.remove('show'); 
-        }
-
+        // 点击其他地方关闭下拉菜单
         window.onclick = function(event) {
             const menu = document.getElementById('localMenu');
-            const search = document.getElementById('searchDropdown');
-            
             if (!event.target.closest('.hamburger-container')) {
                 menu.classList.remove('show');
-            }
-            if (!event.target.closest('.icon-btn') && !event.target.closest('.search-dropdown')) {
-                search.classList.remove('show');
             }
         }
     </script>
