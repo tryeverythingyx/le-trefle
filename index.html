@@ -15,7 +15,7 @@
             box-sizing: border-box;
         }
 
-        /* 网页整体背景色使用你指定的 EDE5DB */
+        /* 网页整体背景色使用 EDE5DB */
         body {
             background-color: #EDE5DB;
             color: #3C2C19;
@@ -53,6 +53,7 @@
             padding: 8px 5px;
         }
 
+        /* 三道杠线条颜色更改为巧克力色 3C2C19 */
         .hamburger span {
             display: block;
             width: 22px;
@@ -60,17 +61,17 @@
             background-color: #3C2C19;
         }
 
-        /* 极致进化：锁定 80% 高透明度的半宽拉下菜单 */
+        /* 80%高透明度的半宽拉下菜单 */
         .local-menu {
             position: absolute;
             top: 53px; 
             left: -16px; 
             width: 50vw; 
-            background-color: rgba(255, 255, 255, 0.2); /* 80% 纯白透明，仅留 20% 白底 */
-            backdrop-filter: blur(12px); /* 略微提升模糊感，保证字体的清晰度 */
+            background-color: rgba(255, 255, 255, 0.2); 
+            backdrop-filter: blur(12px); 
             -webkit-backdrop-filter: blur(12px);
             box-shadow: 4px 8px 20px rgba(0,0,0,0.03);
-            border: 1px solid rgba(255, 255, 255, 0.15); /* 边框也相应淡化 */
+            border: 1px solid rgba(255, 255, 255, 0.15); 
             border-left: none;
             border-radius: 0 0 4px 0;
             max-height: 0;
@@ -92,11 +93,12 @@
             gap: 16px;
         }
 
+        /* 下拉菜单内的链接颜色严格锁定为巧克力色 3C2C19 */
         .local-menu a {
             font-size: 14px;
             color: #3C2C19;
             text-decoration: none;
-            font-weight: 700; /* 加粗一点点以便在超高透明度下更容易阅读 */
+            font-weight: 700; 
             letter-spacing: 0.5px;
         }
 
@@ -140,7 +142,7 @@
             stroke-linejoin: round;
         }
 
-        /* anotherkynd 风格的独立通栏纯白搜索 Banner 区域 */
+        /* 独立的通栏纯白搜索 Banner 区域 */
         .search-banner {
             width: 100%;
             background-color: #ffffff; 
@@ -152,7 +154,7 @@
         }
 
         .search-block-wrapper {
-            width: 280px; /* 精准对齐主体内容宽度 */
+            width: 280px; 
         }
 
         .inline-search-container {
@@ -167,7 +169,7 @@
             height: 35px; 
             padding: 0 35px 0 0; 
             border: none;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.08); /* 极细底边线 */
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08); 
             font-size: 14px;
             outline: none;
             background-color: transparent; 
@@ -180,7 +182,7 @@
             color: #b0a496;
         }
 
-        /* 放大镜置于右侧底线上 */
+        /* 放大镜置于右侧底线上，同样使用巧克力色 */
         .search-inside-icon {
             position: absolute;
             right: 2px;
