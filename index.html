@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <style>
         /* ==========================================================================
-           1. 全局基础样式与变量（双端通用）
+           1. 全局基础样式（强效锁定底色）
            ========================================================================== */
         * {
             margin: 0;
@@ -17,8 +17,9 @@
             box-sizing: border-box;
         }
 
+        /* 使用 !important 强行冲刷掉一切白底缓存，锁定你的高级 #EDE5DB */
         body {
-            background-color: #EDE5DB; /* 网页整体背景色 */
+            background-color: #EDE5DB !important; 
             color: #3C2C19;
             -webkit-font-smoothing: antialiased;
             font-family: 'Lato', sans-serif;
@@ -27,10 +28,10 @@
         }
 
         /* ==========================================================================
-           2. 手机端（Mobile）默认样式 - 100% 锁定你之前的所有天才 Idea
+           2. 手机端（Mobile）默认样式布局
            ========================================================================== */
         
-        /* 手机顶栏 */
+        /* 手机顶栏白色 Banner */
         header {
             display: flex;
             justify-content: space-between;
@@ -40,12 +41,14 @@
             background-color: #ffffff; 
             position: relative;
             z-index: 1001;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.01);
         }
 
         .hamburger-container {
             position: relative; 
         }
 
+        /* 汉堡菜单按钮 */
         .hamburger {
             background: none;
             border: none;
@@ -56,6 +59,7 @@
             padding: 8px 5px;
         }
 
+        /* 三道杠线条颜色为巧克力色 3C2C19 */
         .hamburger span {
             display: block;
             width: 22px;
@@ -63,13 +67,13 @@
             background-color: #3C2C19;
         }
 
-        /* 手机端 80%高透明 巧克力文字 半宽下拉菜单 */
+        /* 80%高透明度半宽拉下菜单，完美融入 EDE5DB 底色 */
         .local-menu {
             position: absolute;
             top: 53px; 
             left: -16px; 
             width: 50vw; 
-            background-color: rgba(255, 255, 255, 0.2); 
+            background-color: rgba(255, 255, 255, 0.2); /* 极致高透明 */
             backdrop-filter: blur(12px); 
             -webkit-backdrop-filter: blur(12px);
             box-shadow: 4px 8px 20px rgba(0,0,0,0.03);
@@ -95,6 +99,7 @@
             gap: 16px;
         }
 
+        /* 下拉菜单内的文字：严格锁定巧克力色 */
         .local-menu a {
             font-size: 14px;
             color: #3C2C19;
@@ -103,7 +108,7 @@
             letter-spacing: 0.5px;
         }
 
-        /* 手机端电脑端通用的标准导航（在手机端先隐藏） */
+        /* 电脑端导航条（在手机端先隐身） */
         .desktop-nav {
             display: none;
         }
@@ -121,6 +126,7 @@
             letter-spacing: -0.5px;
         }
 
+        /* 右侧图标控制区域 */
         .nav-icons {
             display: flex;
             gap: 12px; 
@@ -143,20 +149,23 @@
             fill: none;
             stroke: #3C2C19;
             stroke-width: 1.3;
+            stroke-linecap: round;
+            stroke-linejoin: round;
         }
 
-        /* 手机端独立纯白搜索通栏 */
+        /* anotherkynd 风格的独立通栏纯白搜索 Banner 区域 */
         .search-banner {
             width: 100%;
             background-color: #ffffff; 
             padding: 12px 0;
             display: flex;
             justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
             border-bottom: 1px solid rgba(0, 0, 0, 0.03);
         }
 
         .search-block-wrapper {
-            width: 280px; 
+            width: 280px; /* 精准对齐主体内容宽度 */
         }
 
         .inline-search-container {
@@ -171,321 +180,14 @@
             height: 35px; 
             padding: 0 35px 0 0; 
             border: none;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.08); 
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08); /* 极细底边线 */
             font-size: 14px;
             outline: none;
             background-color: transparent; 
             color: #3C2C19;
+            font-family: 'Lato', sans-serif;
+            letter-spacing: 0.3px;
         }
 
         .inline-search-input::placeholder {
-            color: #b0a496;
-        }
-
-        .search-inside-icon {
-            position: absolute;
-            right: 2px;
-            width: 18px;
-            height: 18px;
-            stroke: #3C2C19;
-            stroke-width: 1.2;
-            fill: none;
-        }
-
-        /* 手机端内容容器 */
-        .container {
-            width: 100%;
-            padding: 25px 20px; 
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        /* 手机端纵向单列容器 */
-        .grid-container {
-            display: flex;
-            flex-direction: column; 
-            gap: 20px; 
-            align-items: center;
-            width: 100%;
-        }
-
-        /* 手机端 280x135 完美尺寸 */
-        .grid-item {
-            display: flex;
-            flex-direction: column;
-            text-decoration: none;
-            position: relative;
-            width: 280px;  
-            height: 135px; 
-            overflow: hidden;
-            border-radius: 3px;
-        }
-
-        .grid-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .grid-item::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.16); 
-        }
-
-        .grid-item span {
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            color: #ffffff; 
-            font-size: 14px; 
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            z-index: 2;
-            text-align: center;
-        }
-
-        .about-section {
-            margin-top: 10px;
-            border-top: 1px solid rgba(111, 55, 28, 0.15);
-            padding-top: 35px;
-            width: 280px; 
-        }
-
-        .about-section h2 {
-            font-family: 'Fraunces', serif;
-            font-size: 22px;
-            color: #6F371C; 
-            margin-bottom: 18px;
-        }
-
-        .about-section p {
-            font-size: 14px;
-            line-height: 1.7;
-            margin-bottom: 16px;
-            text-align: justify;
-        }
-
-
-        /* ==========================================================================
-           3. 电脑端（Laptop/Desktop）魔法切换样式 💻
-              当浏览器屏幕宽度大于 768px 时，下面的规则会自动覆盖上面的规则！
-           ========================================================================== */
-        @media screen and (min-width: 768px) {
-            
-            /* 电脑端顶栏：加高，显得更加大牌宽敞 */
-            header {
-                height: 100px;
-                padding: 0 40px;
-            }
-
-            /* 隐藏手机端的汉堡按钮 */
-            .hamburger-container {
-                display: none;
-            }
-
-            /* 展开电脑端的高级横向导航条 */
-            .desktop-nav {
-                display: flex;
-                gap: 30px;
-            }
-
-            .desktop-nav a {
-                font-size: 13px;
-                color: #3C2C19;
-                text-decoration: none;
-                font-weight: 700;
-                letter-spacing: 1.5px;
-                text-transform: uppercase;
-                transition: color 0.2s;
-            }
-
-            .desktop-nav a:hover {
-                color: #8C4726; /* 鼠标悬停变大牌红棕色 */
-            }
-
-            /* 电脑端 Logo 放大，视觉更震撼 */
-            .logo {
-                font-size: 42px;
-            }
-
-            /* 电脑端右侧图标间距加大 */
-            .nav-icons {
-                gap: 24px;
-            }
-
-            /* 电脑端搜索栏：不再孤零零，而是变宽（例如 600px），置于白色横条中间，极为舒展 */
-            .search-banner {
-                padding: 20px 0;
-            }
-
-            .search-block-wrapper {
-                width: 600px; 
-            }
-
-            .inline-search-input {
-                font-size: 16px;
-                height: 40px;
-            }
-
-            /* 电脑端主体容器：放宽，以便平铺内容 */
-            .container {
-                max-width: 1200px;
-                padding: 50px 40px;
-            }
-
-            /* 核心蜕变：网格从【单列纵向】直接升级为【大气的 2x2 矩阵排列】！ */
-            .grid-container {
-                flex-direction: row;
-                flex-wrap: wrap; /* 允许换行 */
-                justify-content: center;
-                gap: 30px; /* 电脑端格子的间距拓宽 */
-            }
-
-            /* 核心蜕变：格子尺寸从小巧的 280x135 自动放大到宽屏大图 480x260！ */
-            .grid-item {
-                width: 480px;
-                height: 260px;
-                border-radius: 4px;
-                transition: transform 0.3s ease;
-            }
-
-            /* 电脑端专享的高级鼠标悬停微动特效 */
-            .grid-item:hover {
-                transform: translateY(-4px);
-            }
-
-            .grid-item span {
-                font-size: 18px; /* 电脑端文字放大，更有视觉张力 */
-                letter-spacing: 4px;
-            }
-
-            /* About Us 在电脑端拓宽，与大图矩阵完美对齐 */
-            .about-section {
-                width: 990px; /* 刚好对应两张 480px 大图加上 30px 间距的总宽 */
-                margin-top: 30px;
-                padding-top: 50px;
-            }
-
-            .about-section h2 {
-                font-size: 28px;
-                text-align: center; /* 电脑端标题居中更优雅 */
-                margin-bottom: 25px;
-            }
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <div class="hamburger-container">
-            <button class="hamburger" onclick="toggleLocalMenu(event)" aria-label="Toggle Menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <div class="local-menu" id="localMenu">
-                <div class="local-menu-inner">
-                    <a href="index.html">HOME</a>
-                    <a href="new-product.html">New Product</a>
-                    <a href="shop-signature.html">Shop Signature</a>
-                    <a href="#about-us" onclick="toggleLocalMenu(event)">About Us</a>
-                </div>
-            </div>
-        </div>
-
-        <nav class="desktop-nav">
-            <a href="index.html">HOME</a>
-            <a href="new-product.html">NEW PRODUCT</a>
-            <a href="shop-signature.html">SIGNATURE</a>
-            <a href="#about-us">ABOUT US</a>
-        </nav>
-        
-        <a href="index.html" class="logo">Le Trèfle</a>
-        
-        <div class="nav-icons">
-            <a href="signup.html" class="icon-btn" aria-label="Profile">
-                <svg class="icon-svg" viewBox="0 0 24 24">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="12" cy="7" r="4"></circle>
-                </svg>
-            </a>
-            <a href="cart.html" class="icon-btn" aria-label="Cart">
-                <svg class="icon-svg" viewBox="0 0 24 24">
-                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-                    <line x1="3" y1="6" x2="21" y2="6"></line>
-                    <path d="M16 10a4 4 0 0 1-8 0"></path>
-                </svg>
-            </a>
-        </div>
-    </header>
-
-    <div class="search-banner">
-        <div class="search-block-wrapper">
-            <div class="inline-search-container">
-                <input type="text" class="inline-search-input" placeholder="Product Search">
-                <svg class="search-inside-icon" viewBox="0 0 24 24">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                </svg>
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-        
-        <div class="grid-container">
-            
-            <a href="customize.html" class="grid-item">
-                <img src="https://images.unsplash.com/photo-1541123437800-1bb1317badc2?q=80&w=600&auto=format&fit=crop" alt="Customize">
-                <span>CUSTOMIZE</span>
-            </a>
-            
-            <a href="bracelets.html" class="grid-item">
-                <img src="https://images.unsplash.com/photo-1541123437800-1bb1317badc2?q=80&w=600&auto=format&fit=crop" alt="Bracelets">
-                <span>BRACELET</span>
-            </a>
-            
-            <a href="necklaces.html" class="grid-item">
-                <img src="https://images.unsplash.com/photo-1541123437800-1bb1317badc2?q=80&w=600&auto=format&fit=crop" alt="Necklaces">
-                <span>NECKLACE</span>
-            </a>
-            
-            <a href="pendants.html" class="grid-item">
-                <img src="https://images.unsplash.com/photo-1541123437800-1bb1317badc2?q=80&w=600&auto=format&fit=crop" alt="Pendants">
-                <span>PENDANT</span>
-            </a>
-            
-        </div>
-
-        <div class="about-section" id="about-us">
-            <h2>ABOUT US</h2>
-            <p>At Le Trèfle , we believe jewelry is more than an accessory — it is a way to express individuality, confidence and personal style.</p>
-            <p>Inspired by the symbolism of three clover, which symbolizes faith, hope, and love, we carefully curate timeless pieces designed to complement everyday life and special moments alike.</p>
-            <p>Thank you for being part of our journey. We are proud to share our passion for jewelry and help you create moments that shine.</p>
-        </div>
-
-    </div>
-
-    <script>
-        function toggleLocalMenu(e) {
-            e.stopPropagation();
-            const menu = document.getElementById('localMenu');
-            menu.classList.toggle('show');
-        }
-
-        window.onclick = function(event) {
-            const menu = document.getElementById('localMenu');
-            if (!event.target.closest('.hamburger-container')) {
-                menu.classList.remove('show');
-            }
-        }
-    </script>
-
-</body>
-</html>
+            color: #b
