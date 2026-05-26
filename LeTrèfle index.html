@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Trèfle</title>
+    <style>
+        /* Base Resets & Fonts */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Playfair Display', 'Didot', 'Georgia', serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header Navigation */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            border-bottom: 1px solid #f0f0f0;
+            position: relative;
+            background: #fff;
+        }
+
+        .hamburger {
+            font-size: 24px;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #8C6239; /* Elegant brown tone from your design */
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .nav-icons a {
+            color: #000;
+            text-decoration: none;
+            font-size: 20px;
+        }
+
+        /* Mobile Dropdown Overlay (Second Screenshot) */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: #ffffff;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .mobile-menu.active {
+            transform: translateY(0);
+        }
+
+        .close-menu {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 35px;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .mobile-menu a {
+            font-size: 22px;
+            color: #000;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            padding-bottom: 5px;
+        }
+
+        .mobile-menu a:hover {
+            border-bottom: 1px solid #000;
+        }
+
+        .mobile-menu .profile-icon {
+            font-size: 24px;
+            margin-top: 10px;
+        }
+
+        /* Main Content Container */
+        .container {
+            max-width: 600px; /* Constrained like mobile view */
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Category Grid */
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        /* Makes the first item span full width if desired, or keep 2x2 */
+        .grid-item.featured {
+            grid-column: span 2;
+        }
+
+        .grid-item {
+            position: relative;
+            aspect-ratio: 4 / 3;
+            overflow: hidden;
+            border-radius: 2px;
+            text-decoration: none;
+        }
+
+        .grid-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: brightness(0.85); /* Darkens slightly to make text pop */
+            transition: transform 0.3s ease;
+        }
+
+        .grid-item:hover img {
+            transform: scale(1.03);
+        }
+
+        .grid-item span {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            white-space: nowrap;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+        }
+
+        .grid-item span::after {
+            content: ' >';
+            font-weight: normal;
+        }
+
+        /* About Us Section */
+        .about-section {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .about-section h2 {
+            font-size: 24px;
+            color: #8C6239;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .about-section p {
+            font-size: 13px;
+            color: #555;
+            margin-bottom: 15px;
+            line-height: 1.7;
+            text-align: justify;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <button class="hamburger" onclick="toggleMenu()">☰</button>
+        <a href="#" class="logo">Le Trèfle</a>
+        <div class="nav-icons">
+            <a href="#">👤</a>
+            <a href="#">🛒</a>
+        </div>
+    </header>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="close-menu" onclick="toggleMenu()">×</button>
+        <a href="#" onclick="toggleMenu()">HOME</a>
+        <a href="#" onclick="toggleMenu()">New Product</a>
+        <a href="#" onclick="toggleMenu()">Shop Signature</a>
+        <a href="#" onclick="toggleMenu()">About Us</a>
+        <div class="profile-icon">👤</div>
+    </div>
+
+    <div class="container">
+        
+        <div class="grid-container">
+            <a href="#" class="grid-item featured">
+                <img src="https://via.placeholder.com/600x400/D2B48C/FFFFFF?text=Wood+Texture" alt="New Collection">
+            </a>
+            
+            <a href="#" class="grid-item">
+                <img src="https://via.placeholder.com/400x300/D2B48C/FFFFFF?text=Wood+Texture" alt="Bracelets">
+                <span>BRACELETS</span>
+            </a>
+            <a href="#" class="grid-item">
+                <img src="https://via.placeholder.com/400x300/D2B48C/FFFFFF?text=Wood+Texture" alt="Necklaces">
+                <span>NECKLACES</span>
+            </a>
+            <a href="#" class="grid-item">
+                <img src="https://via.placeholder.com/400x300/D2B48C/FFFFFF?text=Wood+Texture" alt="Pendants">
+                <span>PENDANTS</span>
+            </a>
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid #eee; margin-bottom: 30px;">
+
+        <div class="about-section">
+            <h2>ABOUT US</h2>
+            <p>At Le Trèfle, we believe jewelry is more than an accessory — it is a way to express individuality, confidence and personal style.</p>
+            <p>Inspired by the symbolism of three clovers, which symbolizes faith, hope, and love, we carefully curate timeless pieces designed to complement everyday life and special moments alike.</p>
+            <p>Our mission is to offer high quality jewelry that is both beautiful and accessible. Whether you're celebrating a milestone, gifting a loved one or treating yourself, we want every piece from Le Trèfle to feel meaningful and special.</p>
+            <p>Thank you for being part of our journey. We are proud to share our passion for jewelry and help you create moments that shine.</p>
+        </div>
+
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
+    </script>
+
+</body>
+</html>
