@@ -15,7 +15,7 @@
             box-sizing: border-box;
         }
 
-        /* 整个页面背景色更新为 EDE5DB */
+        /* 网页整体背景色使用你指定的 EDE5DB */
         body {
             background-color: #EDE5DB;
             color: #3C2C19;
@@ -25,17 +25,26 @@
             overflow-x: hidden;
         }
 
-        /* 精致白色顶栏 Banner */
+        /* 白色顶栏一体化 Header，容纳 Logo 层和底部的搜索层 */
         header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 85px; 
-            padding: 0 16px;
             background-color: #ffffff; 
+            padding: 15px 16px 12px 16px;
             position: relative;
             z-index: 1001;
             box-shadow: 0 2px 10px rgba(0,0,0,0.01);
+            display: flex;
+            flex-direction: column;
+            gap: 15px; 
+        }
+
+        /* Header 第一层：按钮、Logo、图标 */
+        .header-top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            position: relative;
+            height: 40px;
         }
 
         .hamburger-container {
@@ -60,17 +69,17 @@
             background-color: #3C2C19;
         }
 
-        /* 3 bar 半宽下拉框调为高级半透明质感 */
+        /* 你指定的 3 bar 半宽、半透明毛玻璃菜单 */
         .local-menu {
             position: absolute;
-            top: 53px; 
+            top: 67px; 
             left: -16px; 
             width: 50vw; 
-            background-color: rgba(255, 255, 255, 0.88); /* 半透明纯白 */
-            backdrop-filter: blur(8px); /* 磨砂玻璃特效 */
-            -webkit-backdrop-filter: blur(8px);
-            box-shadow: 4px 8px 20px rgba(0,0,0,0.05);
-            border: 1px solid rgba(226, 222, 231, 0.5);
+            background-color: rgba(255, 255, 255, 0.85); 
+            backdrop-filter: blur(10px); 
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 4px 8px 20px rgba(0,0,0,0.06);
+            border: 1px solid rgba(0, 0, 0, 0.05);
             border-left: none;
             border-radius: 0 0 4px 0;
             max-height: 0;
@@ -103,7 +112,7 @@
         /* 大 Logo */
         .logo {
             font-family: 'Fraunces', serif;
-            font-size: 38px; 
+            font-size: 36px; 
             font-weight: 600; 
             color: #8C4726; 
             text-decoration: none;
@@ -140,20 +149,15 @@
             stroke-linejoin: round;
         }
 
-        /* 主体内容容器 */
-        .container {
+        /* Header 第二层：你设计的常驻极简白底单横线搜索框 */
+        .header-search-row {
             width: 100%;
-            padding: 25px 20px; 
-            margin: 0 auto;
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            justify-content: center;
         }
 
-        /* 搜索框区域完美对齐参考图：纯白底色、细微浅灰色底边线风格 */
         .search-block-wrapper {
             width: 280px; 
-            margin-bottom: 25px; 
         }
 
         .inline-search-container {
@@ -165,13 +169,13 @@
 
         .inline-search-input {
             width: 100%;
-            height: 40px; 
-            padding: 0 40px 0 0; /* 留空给右侧放大镜 */
+            height: 35px; 
+            padding: 0 35px 0 0; 
             border: none;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.08); /* 极细底边线 */
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08); 
             font-size: 14px;
             outline: none;
-            background-color: #ffffff; /* 保持纯白底色 */
+            background-color: #ffffff; 
             color: #3C2C19;
             font-family: 'Lato', sans-serif;
             letter-spacing: 0.3px;
@@ -181,16 +185,26 @@
             color: #b0a496;
         }
 
-        /* 放大镜置于输入框最右侧，紧贴底线 */
+        /* 放大镜置于右侧底线上 */
         .search-inside-icon {
             position: absolute;
-            right: 4px;
+            right: 2px;
             width: 18px;
             height: 18px;
             stroke: #3C2C19;
             stroke-width: 1.2;
             fill: none;
             pointer-events: none;
+        }
+
+        /* 主体内容容器 */
+        .container {
+            width: 100%;
+            padding: 25px 20px; 
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         /* 单列纵向往下排 4 格的网格控制 */
@@ -209,7 +223,7 @@
             width: 100%;
         }
 
-        /* 280x135 经典高级尺寸 */
+        /* 280x135 你选出来的完美留空尺寸 */
         .grid-item {
             display: flex;
             flex-direction: column;
@@ -240,7 +254,7 @@
             pointer-events: none;
         }
 
-        /* 文字在图片正中间 (14号字) */
+        /* 文字在图片正中间 */
         .grid-item span {
             position: absolute;
             top: 50%;
@@ -288,52 +302,56 @@
 <body>
 
     <header>
-        <div class="hamburger-container">
-            <button class="hamburger" onclick="toggleLocalMenu(event)" aria-label="Toggle Menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <div class="local-menu" id="localMenu">
-                <div class="local-menu-inner">
-                    <a href="index.html">HOME</a>
-                    <a href="new-product.html">New Product</a>
-                    <a href="shop-signature.html">Shop Signature</a>
-                    <a href="#about-us" onclick="toggleLocalMenu(event)">About Us</a>
+        <div class="header-top-row">
+            <div class="hamburger-container">
+                <button class="hamburger" onclick="toggleLocalMenu(event)" aria-label="Toggle Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="local-menu" id="localMenu">
+                    <div class="local-menu-inner">
+                        <a href="index.html">HOME</a>
+                        <a href="new-product.html">New Product</a>
+                        <a href="shop-signature.html">Shop Signature</a>
+                        <a href="#about-us" onclick="toggleLocalMenu(event)">About Us</a>
+                    </div>
                 </div>
             </div>
+            
+            <a href="index.html" class="logo">Le Trèfle</a>
+            
+            <div class="nav-icons">
+                <a href="signup.html" class="icon-btn" aria-label="Profile">
+                    <svg class="icon-svg" viewBox="0 0 24 24">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </a>
+                <a href="cart.html" class="icon-btn" aria-label="Cart">
+                    <svg class="icon-svg" viewBox="0 0 24 24">
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <path d="M16 10a4 4 0 0 1-8 0"></path>
+                    </svg>
+                </a>
+            </div>
         </div>
-        
-        <a href="index.html" class="logo">Le Trèfle</a>
-        
-        <div class="nav-icons">
-            <a href="signup.html" class="icon-btn" aria-label="Profile">
-                <svg class="icon-svg" viewBox="0 0 24 24">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="12" cy="7" r="4"></circle>
-                </svg>
-            </a>
-            <a href="cart.html" class="icon-btn" aria-label="Cart">
-                <svg class="icon-svg" viewBox="0 0 24 24">
-                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-                    <line x1="3" y1="6" x2="21" y2="6"></line>
-                    <path d="M16 10a4 4 0 0 1-8 0"></path>
-                </svg>
-            </a>
+
+        <div class="header-search-row">
+            <div class="search-block-wrapper">
+                <div class="inline-search-container">
+                    <input type="text" class="inline-search-input" placeholder="Product Search">
+                    <svg class="search-inside-icon" viewBox="0 0 24 24">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </div>
+            </div>
         </div>
     </header>
 
     <div class="container">
-        
-        <div class="search-block-wrapper">
-            <div class="inline-search-container">
-                <input type="text" class="inline-search-input" placeholder="Product Search">
-                <svg class="search-inside-icon" viewBox="0 0 24 24">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                </svg>
-            </div>
-        </div>
         
         <div class="grid-wrapper">
             <div class="grid-container">
@@ -371,14 +389,12 @@
     </div>
 
     <script>
-        // 控制 3 bars 50% 宽度的半透明局部菜单显示
         function toggleLocalMenu(e) {
             e.stopPropagation();
             const menu = document.getElementById('localMenu');
             menu.classList.toggle('show');
         }
 
-        // 点击其他地方关闭下拉菜单
         window.onclick = function(event) {
             const menu = document.getElementById('localMenu');
             if (!event.target.closest('.hamburger-container')) {
