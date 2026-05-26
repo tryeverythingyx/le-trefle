@@ -4,73 +4,102 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Le Trèfle</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&display=swap" rel="stylesheet">
     <style>
-        /* Base Resets & Fonts */
+        /* 全局基础重置 */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Playfair Display', 'Didot', 'Georgia', serif;
         }
 
+        /* 页面背景色 #FDF9F2 */
         body {
-            background-color: #ffffff;
-            color: #333;
-            line-height: 1.6;
+            background-color: #FDF9F2;
+            color: #000000;
+            -webkit-font-smoothing: antialiased;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
-        /* Header Navigation */
+        /* 顶部导航栏 Banner：纯白色 */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 20px;
-            border-bottom: 1px solid #f0f0f0;
+            padding: 18px 20px;
+            background-color: #ffffff; 
             position: relative;
-            background: #fff;
+            border-bottom: 1px solid rgba(0,0,0,0.03);
         }
 
+        /* 极简汉堡菜单图标 */
         .hamburger {
-            font-size: 24px;
-            cursor: pointer;
             background: none;
             border: none;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            padding: 5px;
         }
 
+        .hamburger span {
+            display: block;
+            width: 20px;
+            height: 1.5px;
+            background-color: #333333;
+        }
+
+        /* Logo：36px, Fraunces Semi Bold (600) */
         .logo {
-            font-size: 28px;
-            font-weight: bold;
-            color: #8C6239; /* Elegant brown tone from your design */
+            font-family: 'Fraunces', serif;
+            font-size: 36px;
+            font-weight: 600; 
+            color: #8C6239; 
             text-decoration: none;
-            letter-spacing: 1px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
+        /* 顶栏右侧 SVG 线条图标 */
         .nav-icons {
             display: flex;
-            gap: 15px;
+            gap: 18px;
             align-items: center;
         }
 
         .nav-icons a {
-            color: #000;
-            text-decoration: none;
-            font-size: 20px;
+            color: #000000;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* Mobile Dropdown Overlay (Second Screenshot) */
+        .icon-svg {
+            width: 20px;
+            height: 20px;
+            fill: none;
+            stroke: #000000;
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* 汉堡下拉菜单：背景色 #FDF9F2 */
         .mobile-menu {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100vh;
-            background-color: #ffffff;
+            background-color: #FDF9F2; 
             z-index: 1000;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 25px;
+            padding: 25px 30px;
             transform: translateY(-100%);
             transition: transform 0.3s ease-in-out;
         }
@@ -80,114 +109,105 @@
         }
 
         .close-menu {
-            position: absolute;
-            top: 20px;
-            right: 25px;
-            font-size: 35px;
-            cursor: pointer;
+            align-self: flex-end;
             background: none;
             border: none;
+            cursor: pointer;
+            padding: 10px;
+            margin-bottom: 30px;
+        }
+
+        .close-menu .icon-svg {
+            width: 22px;
+            height: 22px;
         }
 
         .mobile-menu a {
-            font-size: 22px;
-            color: #000;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 500;
-            border-bottom: 1px solid transparent;
-            padding-bottom: 5px;
+            font-size: 18px;
+            color: #000000;
+            text-decoration: underline;
+            text-underline-offset: 5px;
+            margin-bottom: 22px;
+            letter-spacing: 0.5px;
+            display: block;
+            width: fit-content;
         }
 
-        .mobile-menu a:hover {
-            border-bottom: 1px solid #000;
-        }
-
-        .mobile-menu .profile-icon {
-            font-size: 24px;
+        .mobile-menu .menu-profile-btn {
             margin-top: 10px;
         }
 
-        /* Main Content Container */
+        /* 主体布局容器 */
         .container {
-            max-width: 600px; /* Constrained like mobile view */
+            max-width: 450px; 
             margin: 0 auto;
-            padding: 20px;
+            padding: 20px 15px 40px 15px;
         }
 
-        /* Category Grid */
+        /* 4个代表不同 Categories 的格子（完全对称均分） */
         .grid-container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1fr; 
             gap: 15px;
-            margin-bottom: 40px;
-        }
-
-        /* Makes the first item span full width if desired, or keep 2x2 */
-        .grid-item.featured {
-            grid-column: span 2;
+            margin-bottom: 35px;
         }
 
         .grid-item {
-            position: relative;
-            aspect-ratio: 4 / 3;
-            overflow: hidden;
-            border-radius: 2px;
+            display: flex;
+            flex-direction: column;
             text-decoration: none;
         }
 
+        /* 统一的 4:3 比例木板占位图 */
         .grid-item img {
             width: 100%;
-            height: 100%;
+            aspect-ratio: 4 / 3;
             object-fit: cover;
             display: block;
-            filter: brightness(0.85); /* Darkens slightly to make text pop */
-            transition: transform 0.3s ease;
+            margin-bottom: 8px;
         }
 
-        .grid-item:hover img {
-            transform: scale(1.03);
-        }
-
+        /* 分类标签：13px, 优雅下划线对齐 */
         .grid-item span {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #ffffff;
-            font-size: 16px;
-            font-weight: bold;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            white-space: nowrap;
-            text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+            color: #000000;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-decoration: underline; 
+            text-underline-offset: 3px;
+            display: inline-flex;
+            align-items: center;
+            width: fit-content;
         }
 
         .grid-item span::after {
             content: ' >';
-            font-weight: normal;
+            text-decoration: none;
+            display: inline-block;
+            margin-left: 4px;
+            font-weight: 300;
         }
 
-        /* About Us Section */
+        /* About Us 区域样式 */
         .about-section {
-            margin-top: 20px;
+            margin-top: 35px;
             text-align: left;
         }
 
         .about-section h2 {
-            font-size: 24px;
+            font-size: 22px;
+            font-weight: 600;
             color: #8C6239;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
+            letter-spacing: 1px;
+            margin-bottom: 18px;
         }
 
         .about-section p {
             font-size: 13px;
-            color: #555;
+            color: #444444;
             margin-bottom: 15px;
-            line-height: 1.7;
+            line-height: 1.65;
             text-align: justify;
         }
     </style>
@@ -195,62 +215,47 @@
 <body>
 
     <header>
-        <button class="hamburger" onclick="toggleMenu()">☰</button>
-        <a href="#" class="logo">Le Trèfle</a>
+        <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        
+        <a href="index.html" class="logo">Le Trèfle</a>
+        
         <div class="nav-icons">
-            <a href="#">👤</a>
-            <a href="#">🛒</a>
+            <a href="signup.html" aria-label="Profile">
+                <svg class="icon-svg" viewBox="0 0 24 24">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+            </a>
+            <a href="cart.html" aria-label="Cart">
+                <svg class="icon-svg" viewBox="0 0 24 24">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <path d="M16 10a4 4 0 0 1-8 0"></path>
+                </svg>
+            </a>
         </div>
     </header>
 
     <div class="mobile-menu" id="mobileMenu">
-        <button class="close-menu" onclick="toggleMenu()">×</button>
-        <a href="#" onclick="toggleMenu()">HOME</a>
-        <a href="#" onclick="toggleMenu()">New Product</a>
-        <a href="#" onclick="toggleMenu()">Shop Signature</a>
-        <a href="#" onclick="toggleMenu()">About Us</a>
-        <div class="profile-icon">👤</div>
-    </div>
-
-    <div class="container">
+        <button class="close-menu" onclick="toggleMenu()" aria-label="Close Menu">
+            <svg class="icon-svg" viewBox="0 0 24 24">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+        <a href="index.html">HOME</a>
+        <a href="new-product.html">New Product</a>
+        <a href="shop-signature.html">Shop Signature</a>
+        <a href="#about-us" onclick="toggleMenu()">About Us</a>
         
-        <div class="grid-container">
-            <a href="#" class="grid-item featured">
-                <img src="https://via.placeholder.com/600x400/D2B48C/FFFFFF?text=Wood+Texture" alt="New Collection">
-            </a>
-            
-            <a href="#" class="grid-item">
-                <img src="https://via.placeholder.com/400x300/D2B48C/FFFFFF?text=Wood+Texture" alt="Bracelets">
-                <span>BRACELETS</span>
-            </a>
-            <a href="#" class="grid-item">
-                <img src="https://via.placeholder.com/400x300/D2B48C/FFFFFF?text=Wood+Texture" alt="Necklaces">
-                <span>NECKLACES</span>
-            </a>
-            <a href="#" class="grid-item">
-                <img src="https://via.placeholder.com/400x300/D2B48C/FFFFFF?text=Wood+Texture" alt="Pendants">
-                <span>PENDANTS</span>
-            </a>
-        </div>
-
-        <hr style="border: 0; border-top: 1px solid #eee; margin-bottom: 30px;">
-
-        <div class="about-section">
-            <h2>ABOUT US</h2>
-            <p>At Le Trèfle, we believe jewelry is more than an accessory — it is a way to express individuality, confidence and personal style.</p>
-            <p>Inspired by the symbolism of three clovers, which symbolizes faith, hope, and love, we carefully curate timeless pieces designed to complement everyday life and special moments alike.</p>
-            <p>Our mission is to offer high quality jewelry that is both beautiful and accessible. Whether you're celebrating a milestone, gifting a loved one or treating yourself, we want every piece from Le Trèfle to feel meaningful and special.</p>
-            <p>Thank you for being part of our journey. We are proud to share our passion for jewelry and help you create moments that shine.</p>
-        </div>
-
-    </div>
-
-    <script>
-        function toggleMenu() {
-            const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('active');
-        }
-    </script>
-
-</body>
-</html>
+        <a href="signup.html" class="menu-profile-btn" style="text-decoration:none;">
+            <svg class="icon-svg" viewBox="0 0 24 24" style="width:24px; height:24px;">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+        </a>
+    </div>           
