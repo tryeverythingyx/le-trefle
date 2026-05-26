@@ -6,7 +6,7 @@
     <title>Le Trèfle</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2 family=Fraunces:opsz,wght@9..144,600&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <style>
         /* ==========================================================================
            1. 全局基础样式（强效锁定底色）
@@ -17,7 +17,7 @@
             box-sizing: border-box;
         }
 
-        /* 使用 !important 强行冲刷掉一切白底缓存，锁定你的高级 #EDE5DB */
+        /* 强行锁定你的高级底色 #EDE5DB，冲刷掉一切白底缓存 */
         body {
             background-color: #EDE5DB !important; 
             color: #3C2C19;
@@ -28,7 +28,7 @@
         }
 
         /* ==========================================================================
-           2. 手机端（Mobile）默认样式布局
+           2. 手机端（Mobile）默认排版样式
            ========================================================================== */
         
         /* 手机顶栏白色 Banner */
@@ -67,13 +67,13 @@
             background-color: #3C2C19;
         }
 
-        /* 80%高透明度半宽拉下菜单，完美融入 EDE5DB 底色 */
+        /* 80%高透明度半宽下拉菜单，完美融入 EDE5DB 底色 */
         .local-menu {
             position: absolute;
             top: 53px; 
             left: -16px; 
             width: 50vw; 
-            background-color: rgba(255, 255, 255, 0.2); /* 极致高透明 */
+            background-color: rgba(255, 255, 255, 0.2); 
             backdrop-filter: blur(12px); 
             -webkit-backdrop-filter: blur(12px);
             box-shadow: 4px 8px 20px rgba(0,0,0,0.03);
@@ -108,7 +108,7 @@
             letter-spacing: 0.5px;
         }
 
-        /* 电脑端导航条（在手机端先隐身） */
+        /* 电脑端导航条（在手机端默认隐藏） */
         .desktop-nav {
             display: none;
         }
@@ -165,7 +165,7 @@
         }
 
         .search-block-wrapper {
-            width: 280px; /* 精准对齐主体内容宽度 */
+            width: 280px; 
         }
 
         .inline-search-container {
@@ -180,14 +180,4 @@
             height: 35px; 
             padding: 0 35px 0 0; 
             border: none;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.08); /* 极细底边线 */
-            font-size: 14px;
-            outline: none;
-            background-color: transparent; 
-            color: #3C2C19;
-            font-family: 'Lato', sans-serif;
-            letter-spacing: 0.3px;
-        }
-
-        .inline-search-input::placeholder {
-            color: #b
+            border-bottom: 1px solid rgba(
