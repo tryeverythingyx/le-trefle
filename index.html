@@ -25,26 +25,17 @@
             overflow-x: hidden;
         }
 
-        /* 白色顶栏一体化 Header，容纳 Logo 层和底部的搜索层 */
+        /* 白色顶栏 Banner */
         header {
-            background-color: #ffffff; 
-            padding: 15px 16px 12px 16px;
-            position: relative;
-            z-index: 1001;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.01);
-            display: flex;
-            flex-direction: column;
-            gap: 15px; 
-        }
-
-        /* Header 第一层：按钮、Logo、图标 */
-        .header-top-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            width: 100%;
+            height: 85px; 
+            padding: 0 16px;
+            background-color: #ffffff; 
             position: relative;
-            height: 40px;
+            z-index: 1001;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.01);
         }
 
         .hamburger-container {
@@ -69,17 +60,17 @@
             background-color: #3C2C19;
         }
 
-        /* 你指定的 3 bar 半宽、半透明毛玻璃菜单 */
+        /* 极致进化：锁定 80% 高透明度的半宽拉下菜单 */
         .local-menu {
             position: absolute;
-            top: 67px; 
+            top: 53px; 
             left: -16px; 
             width: 50vw; 
-            background-color: rgba(255, 255, 255, 0.85); 
-            backdrop-filter: blur(10px); 
-            -webkit-backdrop-filter: blur(10px);
-            box-shadow: 4px 8px 20px rgba(0,0,0,0.06);
-            border: 1px solid rgba(0, 0, 0, 0.05);
+            background-color: rgba(255, 255, 255, 0.2); /* 80% 纯白透明，仅留 20% 白底 */
+            backdrop-filter: blur(12px); /* 略微提升模糊感，保证字体的清晰度 */
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 4px 8px 20px rgba(0,0,0,0.03);
+            border: 1px solid rgba(255, 255, 255, 0.15); /* 边框也相应淡化 */
             border-left: none;
             border-radius: 0 0 4px 0;
             max-height: 0;
@@ -105,7 +96,7 @@
             font-size: 14px;
             color: #3C2C19;
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 700; /* 加粗一点点以便在超高透明度下更容易阅读 */
             letter-spacing: 0.5px;
         }
 
@@ -145,263 +136,4 @@
             fill: none;
             stroke: #3C2C19;
             stroke-width: 1.3;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-
-        /* Header 第二层：你设计的常驻极简白底单横线搜索框 */
-        .header-search-row {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-        }
-
-        .search-block-wrapper {
-            width: 280px; 
-        }
-
-        .inline-search-container {
-            position: relative;
-            width: 100%;
-            display: flex;
-            align-items: center;
-        }
-
-        .inline-search-input {
-            width: 100%;
-            height: 35px; 
-            padding: 0 35px 0 0; 
-            border: none;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.08); 
-            font-size: 14px;
-            outline: none;
-            background-color: #ffffff; 
-            color: #3C2C19;
-            font-family: 'Lato', sans-serif;
-            letter-spacing: 0.3px;
-        }
-
-        .inline-search-input::placeholder {
-            color: #b0a496;
-        }
-
-        /* 放大镜置于右侧底线上 */
-        .search-inside-icon {
-            position: absolute;
-            right: 2px;
-            width: 18px;
-            height: 18px;
-            stroke: #3C2C19;
-            stroke-width: 1.2;
-            fill: none;
-            pointer-events: none;
-        }
-
-        /* 主体内容容器 */
-        .container {
-            width: 100%;
-            padding: 25px 20px; 
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        /* 单列纵向往下排 4 格的网格控制 */
-        .grid-wrapper {
-            display: flex;
-            justify-content: center;
-            width: 100%;
-            margin-bottom: 40px;
-        }
-
-        .grid-container {
-            display: flex;
-            flex-direction: column; 
-            gap: 20px; 
-            align-items: center;
-            width: 100%;
-        }
-
-        /* 280x135 你选出来的完美留空尺寸 */
-        .grid-item {
-            display: flex;
-            flex-direction: column;
-            text-decoration: none;
-            position: relative;
-            width: 280px;  
-            height: 135px; 
-            overflow: hidden;
-            border-radius: 3px;
-        }
-
-        .grid-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        /* 图片上半透明遮罩层 */
-        .grid-item::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.16); 
-            pointer-events: none;
-        }
-
-        /* 文字在图片正中间 */
-        .grid-item span {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #ffffff; 
-            font-size: 14px; 
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            z-index: 2;
-            text-align: center;
-            width: 90%;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
-
-        /* About Us 区域样式 */
-        .about-section {
-            margin-top: 10px;
-            text-align: left;
-            border-top: 1px solid rgba(111, 55, 28, 0.15);
-            padding-top: 35px;
-            width: 280px; 
-        }
-
-        .about-section h2 {
-            font-family: 'Fraunces', serif;
-            font-size: 22px;
-            color: #6F371C; 
-            margin-bottom: 18px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .about-section p {
-            font-size: 14px;
-            line-height: 1.7;
-            color: #3C2C19; 
-            margin-bottom: 16px;
-            text-align: justify;
-        }
-
-    </style>
-</head>
-<body>
-
-    <header>
-        <div class="header-top-row">
-            <div class="hamburger-container">
-                <button class="hamburger" onclick="toggleLocalMenu(event)" aria-label="Toggle Menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <div class="local-menu" id="localMenu">
-                    <div class="local-menu-inner">
-                        <a href="index.html">HOME</a>
-                        <a href="new-product.html">New Product</a>
-                        <a href="shop-signature.html">Shop Signature</a>
-                        <a href="#about-us" onclick="toggleLocalMenu(event)">About Us</a>
-                    </div>
-                </div>
-            </div>
-            
-            <a href="index.html" class="logo">Le Trèfle</a>
-            
-            <div class="nav-icons">
-                <a href="signup.html" class="icon-btn" aria-label="Profile">
-                    <svg class="icon-svg" viewBox="0 0 24 24">
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="12" cy="7" r="4"></circle>
-                    </svg>
-                </a>
-                <a href="cart.html" class="icon-btn" aria-label="Cart">
-                    <svg class="icon-svg" viewBox="0 0 24 24">
-                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-                        <line x1="3" y1="6" x2="21" y2="6"></line>
-                        <path d="M16 10a4 4 0 0 1-8 0"></path>
-                    </svg>
-                </a>
-            </div>
-        </div>
-
-        <div class="header-search-row">
-            <div class="search-block-wrapper">
-                <div class="inline-search-container">
-                    <input type="text" class="inline-search-input" placeholder="Product Search">
-                    <svg class="search-inside-icon" viewBox="0 0 24 24">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                    </svg>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <div class="container">
-        
-        <div class="grid-wrapper">
-            <div class="grid-container">
-                
-                <a href="customize.html" class="grid-item">
-                    <img src="https://images.unsplash.com/photo-1541123437800-1bb1317badc2?q=80&w=600&auto=format&fit=crop" alt="Customize">
-                    <span>CUSTOMIZE</span>
-                </a>
-                
-                <a href="bracelets.html" class="grid-item">
-                    <img src="https://images.unsplash.com/photo-1541123437800-1bb1317badc2?q=80&w=600&auto=format&fit=crop" alt="Bracelets">
-                    <span>BRACELET</span>
-                </a>
-                
-                <a href="necklaces.html" class="grid-item">
-                    <img src="https://images.unsplash.com/photo-1541123437800-1bb1317badc2?q=80&w=600&auto=format&fit=crop" alt="Necklaces">
-                    <span>NECKLACE</span>
-                </a>
-                
-                <a href="pendants.html" class="grid-item">
-                    <img src="https://images.unsplash.com/photo-1541123437800-1bb1317badc2?q=80&w=600&auto=format&fit=crop" alt="Pendants">
-                    <span>PENDANT</span>
-                </a>
-                
-            </div>
-        </div>
-
-        <div class="about-section" id="about-us">
-            <h2>ABOUT US</h2>
-            <p>At Le Trèfle , we believe jewelry is more than an accessory — it is a way to express individuality, confidence and personal style.</p>
-            <p>Inspired by the symbolism of three clover, which symbolizes faith, hope, and love, we carefully curate timeless pieces designed to complement everyday life and special moments alike.</p>
-            <p>Thank you for being part of our journey. We are proud to share our passion for jewelry and help you create moments that shine.</p>
-        </div>
-
-    </div>
-
-    <script>
-        function toggleLocalMenu(e) {
-            e.stopPropagation();
-            const menu = document.getElementById('localMenu');
-            menu.classList.toggle('show');
-        }
-
-        window.onclick = function(event) {
-            const menu = document.getElementById('localMenu');
-            if (!event.target.closest('.hamburger-container')) {
-                menu.classList.remove('show');
-            }
-        }
-    </script>
-
-</body>
-</html>
+            stroke
