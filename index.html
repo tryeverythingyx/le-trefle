@@ -15,22 +15,23 @@
             box-sizing: border-box;
         }
 
-        /* 整个页面背景色 FDF9F2 */
+        /* 网页整体背景色 FDF9F2 */
         body {
             background-color: #FDF9F2;
             color: #3C2C19;
             -webkit-font-smoothing: antialiased;
             font-family: 'Lato', sans-serif;
             position: relative;
+            min-height: 100vh;
         }
 
-        /* 1. 缩小后的精致白色 Banner */
+        /* 1. 精致白色 Banner */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 90px; /* 缩窄高度 */
-            padding: 0 25px;
+            height: 90px;
+            padding: 0 40px;
             background-color: #ffffff; 
             position: relative;
             z-index: 1001;
@@ -38,6 +39,10 @@
         }
 
         /* 汉堡菜单按钮 */
+        .hamburger-container {
+            position: relative; /* 为局部下拉菜单做准备 */
+        }
+
         .hamburger {
             background: none;
             border: none;
@@ -45,7 +50,7 @@
             display: flex;
             flex-direction: column;
             gap: 5px;
-            padding: 5px;
+            padding: 10px;
         }
 
         .hamburger span {
@@ -53,15 +58,56 @@
             width: 22px;
             height: 1.5px;
             background-color: #3C2C19;
-            transition: 0.3s;
         }
 
-        /* 2. 再放大的 Logo (48px, 颜色 #8C4726) */
+        /* 5. 汉堡菜单局部 Dropdown (完美还原参考图，不再撑满整个白色Banner) */
+        .local-menu {
+            position: absolute;
+            top: 65px;
+            left: 10px;
+            width: 200px;
+            background-color: #ffffff;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            border: 1px solid #e2ded7;
+            border-radius: 4px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1002;
+        }
+
+        .local-menu.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .local-menu-inner {
+            padding: 15px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .local-menu a {
+            font-size: 14px;
+            color: #3C2C19;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .local-menu a:hover {
+            color: #8C4726;
+        }
+
+        /* 2. 大 Logo (48px, 颜色 #8C4726) */
         .logo {
             font-family: 'Fraunces', serif;
-            font-size: 48px; /* 再次放大 */
+            font-size: 48px;
             font-weight: 600; 
-            color: #8C4726; /* 巧克力棕色 */
+            color: #8C4726; 
             text-decoration: none;
             position: absolute;
             left: 50%;
@@ -69,92 +115,113 @@
             letter-spacing: -0.5px;
         }
 
-        /* 右侧 SVG 线条图标 */
+        /* 右侧导航图标区域 */
         .nav-icons {
             display: flex;
-            gap: 20px;
+            gap: 22px;
             align-items: center;
         }
 
+        .icon-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
         .icon-svg {
-            width: 24px;
-            height: 24px;
+            width: 22px;
+            height: 22px;
             fill: none;
             stroke: #3C2C19;
-            stroke-width: 1.3;
+            stroke-width: 1.4;
             stroke-linecap: round;
             stroke-linejoin: round;
         }
 
-        /* 5. 真正的 Dropdown 下拉菜单 (原地展开，不转页) */
-        .dropdown-menu {
+        /* 4. 搜索框 Dropdown 如下拉栏 */
+        .search-dropdown {
             position: absolute;
-            top: 90px; /* 刚好在 header 下方 */
+            top: 90px;
             left: 0;
             width: 100%;
-            background-color: #ffffff; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            background-color: #ffffff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.3s ease-in-out;
-            z-index: 1000;
+            z-index: 999;
             border-bottom: 0 solid #e2ded7;
         }
 
-        .dropdown-menu.show {
-            max-height: 300px; /* 允许展开的高度 */
+        .search-dropdown.show {
+            max-height: 70px;
             border-bottom: 1px solid #e2ded7;
         }
 
-        .dropdown-menu-inner {
-            padding: 20px 25px;
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 15px 20px;
             display: flex;
-            flex-direction: column;
-            gap: 18px;
+            align-items: center;
         }
 
-        .dropdown-menu a {
-            font-size: 16px;
-            color: #3C2C19;
-            text-decoration: none;
-            font-weight: 500;
-            letter-spacing: 0.5px;
+        .search-input {
+            width: 100%;
+            padding: 8px 15px;
+            border: 1px solid #e2ded7;
+            border-radius: 20px;
+            font-size: 14px;
+            outline: none;
+            font-family: 'Lato', sans-serif;
+        }
+
+        /* 主体内容容器 */
+        .main-container {
+            max-width: 1100px; /* 电脑大屏自适应宽度 */
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        /* 1. 四宫格网格（精准 171x118 尺寸） */
+        .grid-wrapper {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin-bottom: 60px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(4, 171px); /* 4列并排，每列精准171px */
+            gap: 20px;
+            justify-content: center;
             width: fit-content;
         }
 
-        /* 主体布局容器 */
-        .container {
-            max-width: 500px; 
-            margin: 0 auto;
-            padding: 30px 20px;
-        }
-
-        /* 4. 四宫格对称布局 */
-        .grid-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr; 
-            gap: 15px;
-            margin-bottom: 40px;
-        }
-
-        /* 每个格子变为相对定位，方便文字居中 */
         .grid-item {
             display: flex;
             flex-direction: column;
             text-decoration: none;
             position: relative;
-            width: 100%;
+            width: 171px;
+            height: 118px; /* 精准118px高 */
+            overflow: hidden;
+            border-radius: 3px;
         }
 
         .grid-item img {
             width: 100%;
-            aspect-ratio: 1 / 1; 
+            height: 100%;
             object-fit: cover;
             display: block;
-            border-radius: 2px;
         }
 
-        /* 图片上加一层淡淡的暗色滤镜，确保白色字能看清 */
+        /* 图片半透明黑色遮罩，衬托白色文字 */
         .grid-item::after {
             content: '';
             position: absolute;
@@ -162,21 +229,20 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.15); /* 15% 的暗度，给白字衬托 */
-            border-radius: 2px;
+            background-color: rgba(0, 0, 0, 0.2); 
             pointer-events: none;
         }
 
-        /* 文字在图片正中间 (Alphabet 风格无衬线，白色) */
+        /* 图片正中间的 Alphabet 风格白字（14号字） */
         .grid-item span {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             color: #ffffff; /* 纯白字 */
-            font-size: 13px; /* 13号字 */
-            font-weight: 600;
-            letter-spacing: 1.5px;
+            font-size: 14px; /* 精确 14 号字 */
+            font-weight: 700; /* 加粗 */
+            letter-spacing: 1px;
             text-transform: uppercase;
             z-index: 2;
             text-align: center;
@@ -186,119 +252,155 @@
 
         /* 3. About Us 区域样式 */
         .about-section {
-            margin-top: 10px;
-            text-align: left;
+            max-width: 760px;
+            margin: 0 auto;
+            text-align: center; /* 居中对齐更有独立站的高级感 */
             border-top: 1px solid rgba(111, 55, 28, 0.1);
-            padding-top: 35px;
+            padding-top: 45px;
         }
 
         /* 大标题颜色 #6F371C */
         .about-section h2 {
             font-family: 'Fraunces', serif;
-            font-size: 24px;
+            font-size: 26px;
             color: #6F371C; 
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
         }
 
         /* 正文颜色 #3C2C19 */
         .about-section p {
             font-size: 14px;
-            line-height: 1.75;
+            line-height: 1.8;
             color: #3C2C19; 
-            margin-bottom: 18px;
-            text-align: justify;
+            margin-bottom: 22px;
+            text-align: center;
         }
 
+        /* 针对手机屏幕的自适应适配 */
+        @media (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: repeat(2, 171px); /* 手机端自动变成 2x2 舒展布局 */
+            }
+            .logo {
+                font-size: 36px; /* 移动端自动缩小Logo防止溢出 */
+            }
+            header {
+                padding: 0 15px;
+            }
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <button class="hamburger" onclick="toggleDropdown()" aria-label="Toggle Menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
+        <div class="hamburger-container">
+            <button class="hamburger" onclick="toggleLocalMenu(event)" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="local-menu" id="localMenu">
+                <div class="local-menu-inner">
+                    <a href="index.html">HOME</a>
+                    <a href="new-product.html">New Product</a>
+                    <a href="shop-signature.html">Shop Signature</a>
+                    <a href="#about-us" onclick="toggleLocalMenu(event)">About Us</a>
+                </div>
+            </div>
+        </div>
         
         <a href="index.html" class="logo">Le Trèfle</a>
         
         <div class="nav-icons">
-            <a href="signup.html">
+            <button class="icon-btn" onclick="toggleSearchDropdown(event)" aria-label="Search">
+                <svg class="icon-svg" viewBox="0 0 24 24">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </button>
+            <a href="signup.html" class="icon-btn" aria-label="Profile">
                 <svg class="icon-svg" viewBox="0 0 24 24">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                     <circle cx="12" cy="7" r="4"></circle>
                 </svg>
             </a>
-            <a href="cart.html">
-                <svg class="icon-svg" viewBox="0 0 24 24">
-                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-                    <line x1="3" y1="6" x2="21" y2="6"></line>
-                    <path d="M16 10a4 4 0 0 1-8 0"></path>
-                </svg>
-            </a>
         </div>
     </header>
 
-    <div class="dropdown-menu" id="dropdownMenu">
-        <div class="dropdown-menu-inner">
-            <a href="index.html">HOME</a>
-            <a href="new-product.html">New Product</a>
-            <a href="shop-signature.html">Shop Signature</a>
-            <a href="#about-us" onclick="toggleDropdown()">About Us</a>
+    <div class="search-dropdown" id="searchDropdown">
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Search products...">
         </div>
     </div>
 
-    <div class="container">
+    <div class="main-container">
         
-        <div class="grid-container">
-            
-            <a href="customize.html" class="grid-item">
-                <img src="https://images.unsplash.com/photo-1541123437800-1bb1317badc2?q=80&w=600&auto=format&fit=crop" alt="Customize">
-                <span>CUSTOMIZE</span>
-            </a>
-            
-            <a href="bracelets.html" class="grid-item">
-                <img src="https://images.unsplash.com/photo-1541123437800-1bb1317badc2?q=80&w=600&auto=format&fit=crop" alt="Bracelets">
-                <span>BRACELET</span>
-            </a>
-            
-            <a href="necklaces.html" class="grid-item">
-                <img src="https://images.unsplash.com/photo-1541123437800-1bb1317badc2?q=80&w=600&auto=format&fit=crop" alt="Necklaces">
-                <span>NECKLACE</span>
-            </a>
-            
-            <a href="pendants.html" class="grid-item">
-                <img src="https://images.unsplash.com/photo-1541123437800-1bb1317badc2?q=80&w=600&auto=format&fit=crop" alt="Pendants">
-                <span>PENDANT</span>
-            </a>
-            
+        <div class="grid-wrapper">
+            <div class="grid-container">
+                
+                <a href="customize.html" class="grid-item">
+                    <img src="https://images.unsplash.com/photo-1541123437800-1bb1317badc2?q=80&w=600&auto=format&fit=crop" alt="Customize">
+                    <span>CUSTOMIZE</span>
+                </a>
+                
+                <a href="bracelets.html" class="grid-item">
+                    <img src="https://images.unsplash.com/photo-1541123437800-1bb1317badc2?q=80&w=600&auto=format&fit=crop" alt="Bracelets">
+                    <span>BRACELET</span>
+                </a>
+                
+                <a href="necklaces.html" class="grid-item">
+                    <img src="https://images.unsplash.com/photo-1541123437800-1bb1317badc2?q=80&w=600&auto=format&fit=crop" alt="Necklaces">
+                    <span>NECKLACE</span>
+                </a>
+                
+                <a href="pendants.html" class="grid-item">
+                    <img src="https://images.unsplash.com/photo-1541123437800-1bb1317badc2?q=80&w=600&auto=format&fit=crop" alt="Pendants">
+                    <span>PENDANT</span>
+                </a>
+                
+            </div>
         </div>
 
         <div class="about-section" id="about-us">
             <h2>ABOUT US</h2>
             <p>At Le Trèfle , we believe jewelry is more than an accessory — it is a way to express individuality, confidence and personal style.</p>
-            <p>Inspired by the symbolism of three clover, which  symbolizes faith, hope, and love, we carefully curate timeless pieces designed to complement everyday life and special moments alike.</p>
-            <p>Our mission is to offer high quality jewelry that is both beautiful and accessible. Whether you're celebrating a milestone, gifting a loved one or treating yourself, we want every piece from Le Trèfle to feel meaningful and special.</p>
+            <p>Inspired by the symbolism of three clover, which symbolizes faith, hope, and love, we carefully curate timeless pieces designed to complement everyday life and special moments alike.</p>
             <p>Thank you for being part of our journey. We are proud to share our passion for jewelry and help you create moments that shine.</p>
         </div>
 
     </div>
 
     <script>
-        function toggleDropdown() {
-            const menu = document.getElementById('dropdownMenu');
+        // 控制 3 bars 局部独立菜单
+        function toggleLocalMenu(e) {
+            e.stopPropagation();
+            const menu = document.getElementById('localMenu');
+            const search = document.getElementById('searchDropdown');
             menu.classList.toggle('show');
+            search.classList.remove('show'); // 互相排斥
         }
 
-        // 点击页面其他空白地方时，自动收起下拉菜单
+        // 控制搜索下拉框
+        function toggleSearchDropdown(e) {
+            e.stopPropagation();
+            const search = document.getElementById('searchDropdown');
+            const menu = document.getElementById('localMenu');
+            search.classList.toggle('show');
+            menu.classList.remove('show'); // 互相排斥
+        }
+
+        // 点击页面其余任何地方时，自动关闭已打开的局部下拉窗
         window.onclick = function(event) {
-            if (!event.target.matches('.hamburger') && !event.target.matches('.hamburger span')) {
-                const menu = document.getElementById('dropdownMenu');
-                if (menu.classList.contains('show')) {
-                    menu.classList.remove('show');
-                }
+            const menu = document.getElementById('localMenu');
+            const search = document.getElementById('searchDropdown');
+            
+            if (!event.target.closest('.hamburger-container')) {
+                menu.classList.remove('show');
+            }
+            if (!event.target.closest('.icon-btn') && !event.target.closest('.search-dropdown')) {
+                search.classList.remove('show');
             }
         }
     </script>
