@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Le Trèfle</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,24 +22,24 @@
             -webkit-font-smoothing: antialiased;
             font-family: 'Lato', sans-serif;
             position: relative;
+            overflow-x: hidden;
         }
 
-        /* 1. 缩小后的精致白色 Banner */
+        /* 精致白色 Banner */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 90px; /* 缩窄高度 */
-            padding: 0 40px;
+            height: 85px; 
+            padding: 0 16px;
             background-color: #ffffff; 
             position: relative;
             z-index: 1001;
             box-shadow: 0 2px 10px rgba(0,0,0,0.02);
         }
 
-        /* 汉堡菜单外部包裹容器 */
         .hamburger-container {
-            position: relative;
+            position: static; 
         }
 
         /* 汉堡菜单按钮 */
@@ -50,7 +50,7 @@
             display: flex;
             flex-direction: column;
             gap: 5px;
-            padding: 5px;
+            padding: 8px 5px;
         }
 
         .hamburger span {
@@ -60,34 +60,32 @@
             background-color: #3C2C19;
         }
 
-        /* 5. 完美的局部下拉菜单 (参照 a-kynd. 参考图，只在左侧局部悬浮) */
+        /* 连体局部下拉菜单 (紧贴 header 底部) */
         .local-menu {
             position: absolute;
-            top: 55px; /* 刚好在按钮下方 */
+            top: 85px; 
             left: 0;
-            width: 200px;
+            width: 100%; 
             background-color: #ffffff;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-            border: 1px solid #e2ded7;
-            border-radius: 4px;
-            opacity: 0;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+            border-top: 1px solid #f7f4ee;
+            max-height: 0;
+            overflow: hidden;
             visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 1002;
         }
 
         .local-menu.show {
-            opacity: 1;
+            max-height: 220px;
             visibility: visible;
-            transform: translateY(0);
         }
 
         .local-menu-inner {
-            padding: 15px 20px;
+            padding: 20px 25px;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 16px;
         }
 
         .local-menu a {
@@ -95,12 +93,13 @@
             color: #3C2C19;
             text-decoration: none;
             font-weight: 500;
+            letter-spacing: 0.5px;
         }
 
-        /* 2. 再放大的 Logo (48px, 颜色 #8C4726) */
+        /* 大 Logo */
         .logo {
             font-family: 'Fraunces', serif;
-            font-size: 48px; 
+            font-size: 38px; 
             font-weight: 600; 
             color: #8C4726; 
             text-decoration: none;
@@ -110,10 +109,10 @@
             letter-spacing: -0.5px;
         }
 
-        /* 右侧图标控制区域 */
+        /* 右侧图标控制区域 (精确排序：Search -> User -> Cart) */
         .nav-icons {
             display: flex;
-            gap: 22px;
+            gap: 12px; 
             align-items: center;
         }
 
@@ -121,15 +120,15 @@
             background: none;
             border: none;
             cursor: pointer;
-            padding: 5px;
+            padding: 4px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
         }
 
         .icon-svg {
-            width: 24px;
-            height: 24px;
+            width: 22px;
+            height: 22px;
             fill: none;
             stroke: #3C2C19;
             stroke-width: 1.3;
@@ -137,73 +136,73 @@
             stroke-linejoin: round;
         }
 
-        /* 搜索框控制栏 Dropdown */
+        /* 搜索框连体下拉栏 */
         .search-dropdown {
             position: absolute;
-            top: 90px;
+            top: 85px;
             left: 0;
             width: 100%;
             background-color: #ffffff;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            border-top: 1px solid #f7f4ee;
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.3s ease-in-out;
             z-index: 999;
-            border-bottom: 0 solid #e2ded7;
         }
 
         .search-dropdown.show {
-            max-height: 70px;
-            border-bottom: 1px solid #e2ded7;
+            max-height: 65px;
         }
 
         .search-container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 15px 20px;
+            padding: 12px 20px;
         }
 
         .search-input {
             width: 100%;
-            padding: 8px 15px;
+            padding: 6px 14px;
             border: 1px solid #e2ded7;
             border-radius: 20px;
-            font-size: 14px;
+            font-size: 13px;
             outline: none;
+            background-color: #fcfbfa;
             font-family: 'Lato', sans-serif;
         }
 
-        /* 主体布局容器 */
+        /* 主体内容容器 */
         .container {
-            max-width: 800px; 
+            width: 100%;
+            padding: 35px 20px; 
             margin: 0 auto;
-            padding: 40px 20px;
         }
 
-        /* 4. 精确 171x118 的网格对齐 */
+        /* 单列纵向往下排 4 格的网格控制 */
         .grid-wrapper {
             display: flex;
             justify-content: center;
             width: 100%;
-            margin-bottom: 50px;
+            margin-bottom: 45px;
         }
 
         .grid-container {
-            display: grid;
-            grid-template-columns: repeat(2, 171px); /* 完美对称两列 */
-            gap: 20px;
+            display: flex;
+            flex-direction: column; /* 改为纵向单列排布 */
+            gap: 20px; /* 格子与格子之间的上下间距 */
+            align-items: center;
+            width: 100%;
         }
 
-        /* 精确控制每个格子的尺寸为 171x118 */
+        /* 极致调校：280x135 尺寸，既保证两侧留空优雅，又绝不过空 */
         .grid-item {
             display: flex;
             flex-direction: column;
             text-decoration: none;
             position: relative;
-            width: 171px;
-            height: 118px; 
+            width: 280px;  /* 宽度 */
+            height: 135px; /* 高度 */
             overflow: hidden;
-            border-radius: 2px;
+            border-radius: 3px;
         }
 
         .grid-item img {
@@ -213,7 +212,7 @@
             display: block;
         }
 
-        /* 图片半透明暗色层 */
+        /* 图片上半透明遮罩层 */
         .grid-item::after {
             content: '';
             position: absolute;
@@ -221,20 +220,20 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.18); 
+            background-color: rgba(0, 0, 0, 0.16); 
             pointer-events: none;
         }
 
-        /* 文字在图片正中间 (Alphabet 风格无衬线，白色，14号字) */
+        /* 文字在图片正中间 (Alphabet 风格，纯白加粗，14号字) */
         .grid-item span {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             color: #ffffff; 
-            font-size: 14px; /* 指定 14 号字 */
+            font-size: 14px; /* 严格保持 14 号字 */
             font-weight: 600;
-            letter-spacing: 1.5px;
+            letter-spacing: 2px;
             text-transform: uppercase;
             z-index: 2;
             text-align: center;
@@ -248,27 +247,25 @@
             text-align: left;
             border-top: 1px solid rgba(111, 55, 28, 0.1);
             padding-top: 35px;
-            max-width: 600px;
+            max-width: 280px; /* 宽度与格子保持同宽对齐，视觉上极度舒适 */
             margin-left: auto;
             margin-right: auto;
         }
 
-        /* 大标题颜色 #6F371C */
         .about-section h2 {
             font-family: 'Fraunces', serif;
-            font-size: 24px;
+            font-size: 22px;
             color: #6F371C; 
-            margin-bottom: 20px;
+            margin-bottom: 18px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
-        /* 正文颜色 #3C2C19 */
         .about-section p {
             font-size: 14px;
-            line-height: 1.75;
+            line-height: 1.7;
             color: #3C2C19; 
-            margin-bottom: 18px;
+            margin-bottom: 16px;
             text-align: justify;
         }
 
@@ -302,10 +299,17 @@
                     <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                 </svg>
             </button>
-            <a href="signup.html" class="icon-btn">
+            <a href="signup.html" class="icon-btn" aria-label="Profile">
                 <svg class="icon-svg" viewBox="0 0 24 24">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                     <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+            </a>
+            <a href="cart.html" class="icon-btn" aria-label="Cart">
+                <svg class="icon-svg" viewBox="0 0 24 24">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <path d="M16 10a4 4 0 0 1-8 0"></path>
                 </svg>
             </a>
         </div>
@@ -348,32 +352,29 @@
         <div class="about-section" id="about-us">
             <h2>ABOUT US</h2>
             <p>At Le Trèfle , we believe jewelry is more than an accessory — it is a way to express individuality, confidence and personal style.</p>
-            <p>Inspired by the symbolism of three-leaf clover, which symbolizes faith, hope and love, we carefully curate timeless pieces designed to complement everyday life and special moments alike.</p>
+            <p>Inspired by the symbolism of three clover, which symbolizes faith, hope, and love, we carefully curate timeless pieces designed to complement everyday life and special moments alike.</p>
             <p>Thank you for being part of our journey. We are proud to share our passion for jewelry and help you create moments that shine.</p>
         </div>
 
     </div>
 
     <script>
-        // 控制 3 bars 左侧局部悬浮菜单
         function toggleLocalMenu(e) {
             e.stopPropagation();
             const menu = document.getElementById('localMenu');
             const search = document.getElementById('searchDropdown');
             menu.classList.toggle('show');
-            search.classList.remove('show'); // 打开菜单时关闭搜索
+            search.classList.remove('show'); 
         }
 
-        // 控制搜索框 Dropdown 下拉
         function toggleSearchDropdown(e) {
             e.stopPropagation();
             const search = document.getElementById('searchDropdown');
             const menu = document.getElementById('localMenu');
             search.classList.toggle('show');
-            menu.classList.remove('show'); // 打开搜索时关闭菜单
+            menu.classList.remove('show'); 
         }
 
-        // 点击页面其余任何空白区域，自动关闭下拉或悬浮窗
         window.onclick = function(event) {
             const menu = document.getElementById('localMenu');
             const search = document.getElementById('searchDropdown');
