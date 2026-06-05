@@ -12,6 +12,13 @@
         .input-field { width: 100%; padding: 12px; margin: 10px 0; border: none; border-bottom: 1px solid rgba(0, 0, 0, 0.1); font-size: 14px; outline: none; background-color: transparent; color: #3C2C19; }
         .input-field::placeholder { color: #b0a496; }
         .input-field:focus { border-bottom: 1px solid #8C4726; }
+        
+        /* 电话号码和国家选择布局 */
+        .phone-container { display: flex; align-items: flex-end; gap: 8px; margin: 10px 0; }
+        .country-select { padding: 12px 0; border: none; border-bottom: 1px solid rgba(0, 0, 0, 0.1); font-size: 14px; outline: none; background-color: transparent; color: #3C2C19; cursor: pointer; width: 95px; }
+        .country-select:focus { border-bottom: 1px solid #8C4726; }
+        .phone-input { flex: 1; margin: 0; }
+
         .submit-btn { width: 100%; padding: 12px; background-color: #3C2C19; color: white; border: none; border-radius: 2px; cursor: pointer; font-size: 14px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-top: 15px; transition: background-color 0.2s; }
         .submit-btn:hover { background-color: #8C4726; }
         .back-home { display: block; text-align: center; margin-top: 20px; font-size: 12px; color: #b0a496; text-decoration: none; }
@@ -27,7 +34,12 @@
         <input type="text" id="firstName" placeholder="First Name" required class="input-field">
         <input type="text" id="lastName" placeholder="Last Name" required class="input-field">
         <input type="email" id="email" placeholder="Email Address" required class="input-field">
-        <input type="tel" id="phone" placeholder="Phone Number" required class="input-field">
+        
+        <div class="phone-container">
+            <select id="countryCode" class="country-select"></select>
+            <input type="tel" id="phone" placeholder="Phone Number" required class="input-field phone-input">
+        </div>
+
         <button type="submit" class="submit-btn">Sign Up / In</button>
     </form>
 
@@ -35,19 +47,71 @@
 </div>
 
 <script>
+    // 1. 全世界主要国家和地区的区号数据表（按常用和英文字母排序）
+    const countries = [
+        { code: "+60", flag: "🇲🇾", name: "Malaysia" },
+        { code: "+65", flag: "🇸🇬", name: "Singapore" },
+        { code: "+86", flag: "🇨🇳", name: "China" },
+        { code: "+1", flag: "🇺🇸", name: "USA/Canada" },
+        { code: "+44", flag: "🇬🇧", name: "UK" },
+        { code: "+61", flag: "🇦🇺", name: "Australia" },
+        { code: "+852", flag: "🇭🇰", name: "Hong Kong" },
+        { code: "+886", flag: "🇹🇼", name: "Taiwan" },
+        { code: "+81", flag: "🇯🇵", name: "Japan" },
+        { code: "+82", flag: "🇰🇷", name: "South Korea" },
+        { code: "+33", flag: "🇫🇷", name: "France" },
+        { code: "+49", flag: "🇩🇪", name: "Germany" },
+        { code: "+64", flag: "🇳🇿", name: "New Zealand" },
+        { code: "+62", flag: "🇮🇩", name: "Indonesia" },
+        { code: "+66", flag: "🇹🇭", name: "Thailand" },
+        { code: "+63", flag: "🇵🇭", name: "Philippines" },
+        { code: "+84", flag: "🇻🇳", name: "Vietnam" },
+        { code: "+91", flag: "🇮🇳", name: "India" },
+        { code: "+31", flag: "🇳🇱", name: "Netherlands" },
+        { code: "+39", flag: "🇮🇹", name: "Italy" },
+        { code: "+34", flag: "🇪🇸", name: "Spain" },
+        { code: "+41", flag: "🇨🇭", name: "Switzerland" },
+        { code: "+7", flag: "🇷🇺", name: "Russia" },
+        { code: "+971", flag: "🇦🇪", name: "UAE" },
+        { code: "+966", flag: "🇸🇦", name: "Saudi Arabia" },
+        { code: "+27", flag: "🇿🇦", name: "South Africa" },
+        { code: "+55", flag: "🇧🇷", name: "Brazil" },
+        { code: "+52", flag: "🇲🇽", name: "Mexico" },
+        { code: "+353", flag: "🇮🇪", name: "Ireland" },
+        { code: "+46", flag: "🇸🇪", name: "Sweden" },
+        { code: "+47", flag: "🇳🇴", name: "Norway" },
+        { code: "+45", flag: "🇩🇰", name: "Denmark" },
+        { code: "+32", flag: "🇧🇪", name: "Belgium" },
+        { code: "+43", flag: "🇦🇹", name: "Austria" },
+        { code: "+351", flag: "🇵🇹", name: "Portugal" },
+        { code: "+90", flag: "🇹🇷", name: "Turkey" }
+    ];
+
+    // 2. 自动把这些国家塞进下拉菜单里
+    const selectEl = document.getElementById('countryCode');
+    countries.forEach(c => {
+        const option = document.createElement('option');
+        option.value = c.code;
+        option.textContent = `${c.flag} ${c.code}`;
+        option.title = c.name; // 鼠标放上去能看到国家名字
+        selectEl.appendChild(option);
+    });
+
+    // 3. 表单提交到 Google Sheet
     document.getElementById('registrationForm').addEventListener('submit', function(e) {
         e.preventDefault(); 
+
+        const fullPhone = selectEl.value + " " + document.getElementById('phone').value;
 
         const data = {
             data: [{
                 firstName: document.getElementById('firstName').value,
                 lastName: document.getElementById('lastName').value,
                 email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value
+                phone: fullPhone 
             }]
         };
 
-        // 这里已经连接了你的 SheetDB
         const sheetDBUrl = "https://sheetdb.io/api/v1/xghmswz8jh8yg";
 
         fetch(sheetDBUrl, {
@@ -60,8 +124,8 @@
         .then(response => response.json())
         .then(result => {
             alert('Sign Up Successful! 登录成功！');
-            document.getElementById('registrationForm').reset(); // 清空输入框
-            window.location.href = "index.html"; // 成功后自动跳回主页
+            document.getElementById('registrationForm').reset(); 
+            window.location.href = "index.html"; 
         })
         .catch(error => {
             alert('发生错误，请稍后再试');
