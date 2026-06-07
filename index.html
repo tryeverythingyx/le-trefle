@@ -201,6 +201,98 @@
             align-items: center;
         }
 
+        /* 🆕 横式轮播图高定制样式区域 */
+        .carousel-wrapper {
+            width: 280px; /* 与下方手机格子的宽度 280px 保持完美一致 */
+            height: 150px; /* 适中比例的横图高度 */
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 25px; /* 与下方格子的间距 */
+            border-radius: 4px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+        }
+
+        .carousel-track {
+            display: flex;
+            width: 300%; /* 3张图，所以是 300% */
+            height: 100%;
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            cursor: grab;
+        }
+
+        .carousel-track:active {
+            cursor: grabbing;
+        }
+
+        .carousel-slide {
+            width: 33.3333%; /* 每一张占总宽度的三分之一 */
+            height: 100%;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* 左右切换箭头按钮 */
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            color: #3C2C19;
+            font-weight: bold;
+            font-size: 14px;
+            transition: background 0.2s;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .carousel-btn:hover {
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .carousel-btn.prev { left: 8px; }
+        .carousel-btn.next { right: 8px; }
+
+        /* 轮播图底部小圆点指示器 */
+        .carousel-dots {
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 6px;
+            z-index: 10;
+        }
+
+        .carousel-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .carousel-dot.active {
+            background: #ffffff;
+            transform: scale(1.2);
+        }
+
         /* 手机端纵向格子容器 */
         .grid-container {
             display: flex;
@@ -334,6 +426,22 @@
                 max-width: 1200px;
                 padding: 50px 40px;
             }
+
+            /* 🆕 电脑端轮播图尺寸自适应放大，与2x2布局的格子总宽（990px）完美呼应 */
+            .carousel-wrapper {
+                width: 990px;
+                height: 400px; /* 宽屏大气的横式高度 */
+                margin-bottom: 40px;
+            }
+
+            .carousel-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+            
+            .carousel-btn.prev { left: 20px; }
+            .carousel-btn.next { right: 20px; }
 
             /* 格子在电脑端变为 2x2 排列 */
             .grid-container {
@@ -566,6 +674,30 @@
     </div>
 
     <div class="container">
+        
+        <div class="carousel-wrapper">
+            <button class="carousel-btn prev" id="prevBtn" aria-label="Previous Slide">&#10094;</button>
+            <button class="carousel-btn next" id="nextBtn" aria-label="Next Slide">&#10095;</button>
+            
+            <div class="carousel-track" id="carouselTrack">
+                <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=1200&auto=format&fit=crop" alt="Banner 1">
+                </div>
+                <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=1200&auto=format&fit=crop" alt="Banner 2">
+                </div>
+                <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?q=80&w=1200&auto=format&fit=crop" alt="Banner 3">
+                </div>
+            </div>
+            
+            <div class="carousel-dots" id="carouselDots">
+                <div class="carousel-dot active" data-index="0"></div>
+                <div class="carousel-dot" data-index="1"></div>
+                <div class="carousel-dot" data-index="2"></div>
+            </div>
+        </div>
+
         <div class="grid-container">
             <a href="customize.html" class="grid-item">
                 <img src="https://images.unsplash.com/photo-1541123437800-1bb1317badc2?q=80&w=600&auto=format&fit=crop" alt="Customize">
@@ -580,75 +712,4 @@
                 <span>NECKLACE &gt;</span>
             </a>
             <a href="pendants.html" class="grid-item">
-                <img src="https://images.unsplash.com/photo-1541123437800-1bb1317badc2?q=80&w=600&auto=format&fit=crop" alt="Pendants">
-                <span>PENDANT &gt;</span>
-            </a>
-        </div>
-
-        <div class="about-section" id="about-us">
-            <h2>ABOUT US</h2>
-            <p>At Le Trèfle , we believe jewelry is more than an accessory — it is a way to express individuality, confidence and personal style.</p>
-            <p>Inspired by the symbolism of three clover, which symbolizes faith, hope, and love, we carefully curate timeless pieces designed to complement everyday life and special moments alike.</p>
-            <p>Thank you for being part of our journey. We are proud to share our passion for jewelry and help you create moments that shine.</p>
-        </div>
-    </div>
-
-    <script>
-        function toggleLocalMenu(e) {
-            e.stopPropagation();
-            const menu = document.getElementById('localMenu');
-            menu.classList.toggle('show');
-        }
-
-        const modal = document.getElementById('formModal');
-        const openBtn = document.getElementById('openFormBtn');
-        const closeBtn = document.getElementById('closeFormBtn');
-
-        openBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            modal.style.display = 'flex'; 
-        });
-
-        closeBtn.addEventListener('click', () => { modal.style.display = 'none'; });
-
-        window.onclick = function(event) {
-            const menu = document.getElementById('localMenu');
-            if (!event.target.closest('.hamburger-container')) {
-                menu.classList.remove('show');
-            }
-            if (event.target === modal) {
-                modal.style.display = 'none';
-            }
-        }
-
-        // 核心数据发送代码
-        document.getElementById('signupForm').addEventListener('submit', function(e) {
-            e.preventDefault(); 
-            
-            const scriptUrl = "https://script.google.com/macros/s/AKfycbzD1UnQiPCE4MWHlHWmo6z2vPwnZUIGkx9DI_H6pzapKkFIUxANnaUVoaGjD5lu0DyF/exec"; 
-            
-            const name = document.getElementById('username').value;
-            const email = document.getElementById('useremail').value;
-            
-            // 💡 核心改动：自动把国家代码（如+60）和电话号码（如123456）拼接成一个整体发送给 "phone"
-            const countryCode = document.getElementById('countrycode').value;
-            const rawPhone = document.getElementById('userphone').value;
-            const fullPhone = `${countryCode} ${rawPhone}`; 
-
-            // 保持原本参数名不变：依然是 name, email, phone，完美适配你的原有表格列名
-            const finalUrl = `${scriptUrl}?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&phone=${encodeURIComponent(fullPhone)}`;
-
-            fetch(finalUrl, { method: 'POST' })
-            .then(response => {
-                alert('Success!');
-                document.getElementById('signupForm').reset();
-                modal.style.display = 'none'; 
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Failed, please try again.');
-            });
-        });
-    </script>
-</body>
-</html>
+                <img src="https://images.unsplash.com/photo-1541123437800
