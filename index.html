@@ -62,7 +62,7 @@
             background-color: #3C2C19;
         }
 
-        /* 下拉菜单：80% 高透明度 */
+        /* 下拉菜单 */
         .local-menu {
             position: absolute;
             top: 53px; 
@@ -201,7 +201,7 @@
             align-items: center;
         }
 
-        /* 精致横式两端无限轮播容器 */
+        /* 横式两端无限轮播容器 (Mobile stays 280px width) */
         .carousel-wrapper {
             width: 280px; 
             height: 125px; 
@@ -343,7 +343,7 @@
             width: 90%;
         }
 
-        /* About Us 样式 - 扩展更长、更丰富的内容叙述 */
+        /* About Us 样式 */
         .about-section {
             margin-top: 10px;
             text-align: left;
@@ -414,7 +414,7 @@
             }
 
             .search-block-wrapper {
-                width: 600px; 
+                width: 990px; /* Aligned with grid total width */
             }
 
             .inline-search-input {
@@ -427,9 +427,9 @@
                 padding: 50px 40px;
             }
 
-            /* 电脑端精确调整的小尺寸轮播图 */
+            /* 电脑端长幅轮播图样式 - Width matches total grid width (480*2 + 30 = 990px) */
             .carousel-wrapper {
-                width: 800px;  
+                width: 990px;  
                 height: 300px; 
                 margin-bottom: 40px;
             }
@@ -443,16 +443,17 @@
             .carousel-btn.prev { left: 15px; }
             .carousel-btn.next { right: 15px; }
 
-            /* 格子布局在电脑端 */
+            /* 格子布局在电脑端 - 2 Boxes per row configuration */
             .grid-container {
                 flex-direction: row;
                 flex-wrap: wrap; 
                 justify-content: center;
                 gap: 30px; 
+                width: 990px;
             }
 
             .grid-item {
-                width: 480px;
+                width: 480px; /* Two items + gap equals 990px total width */
                 height: 260px;
                 border-radius: 4px;
             }
@@ -462,7 +463,7 @@
                 letter-spacing: 4px;
             }
 
-            /* 电脑端长文本 About Us */
+            /* 电脑端 About Us */
             .about-section {
                 width: 990px; 
                 margin-top: 30px;
@@ -761,7 +762,6 @@
         const nextBtn = document.getElementById('nextBtn');
         const dots = document.querySelectorAll('.carousel-dot');
         
-        // 获取原始子节点并克隆首尾建立无限循环环路结构
         const originalSlides = Array.from(track.children);
         const totalRealSlides = originalSlides.length;
         
@@ -771,16 +771,14 @@
         track.appendChild(firstClone);
         track.insertBefore(lastClone, originalSlides[0]);
         
-        let currentIndex = 1; // 由于头部插入了克隆项，初始指向索引1(真实第一张)
+        let currentIndex = 1; 
         let isTransitioning = false;
 
-        // 设置初始容器状态与渲染宽度
         track.style.width = `${(totalRealSlides + 2) * 100}%`;
         Array.from(track.children).forEach(slide => {
             slide.style.flex = `0 0 ${100 / (totalRealSlides + 2)}%`;
         });
         
-        // 瞬间定位至初始第一张位置
         track.style.transform = `translateX(-${currentIndex * (100 / (totalRealSlides + 2))}%);`;
         
         function moveCarousel(index, hasAnimation = true) {
@@ -793,7 +791,6 @@
             track.style.transition = hasAnimation ? 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)' : 'none';
             track.style.transform = `translateX(-${percentage}%)`;
             
-            // 计算更新圆点高亮状态
             let dotIndex = currentIndex - 1;
             if (currentIndex === 0) dotIndex = totalRealSlides - 1;
             if (currentIndex === totalRealSlides + 1) dotIndex = 0;
@@ -802,7 +799,6 @@
             if (dots[dotIndex]) dots[dotIndex].classList.add('active');
         }
 
-        // 监听过渡结束，处理无缝环路切换边界
         track.addEventListener('transitionend', () => {
             isTransitioning = false;
             if (currentIndex === 0) {
@@ -828,7 +824,7 @@
             });
         });
 
-        // 智能轻量触屏滑动与拖拽
+        // 触屏滑动与拖拽
         let startX = 0;
         let deltaX = 0;
         let isDragging = false;
@@ -874,7 +870,6 @@
         window.addEventListener('mousemove', (e) => handleDragMove(e.clientX));
         window.addEventListener('mouseup', handleDragEnd);
 
-        // 设置一进页面的初始偏移校正
         setTimeout(() => { moveCarousel(1, false); }, 50);
 
         // ==========================================================================
