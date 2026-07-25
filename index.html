@@ -57,7 +57,7 @@
             background-color: #3C2C19;
         }
 
-        /* Dropdown Menu (Mobile & Desktop Home Dropdown) */
+        /* Mobile Dropdown Menu */
         .local-menu {
             position: absolute;
             top: 53px; 
@@ -104,12 +104,14 @@
         /* Desktop Top Bar Navigation */
         .desktop-nav {
             display: none;
+            align-items: center;
+            gap: 24px;
         }
 
-        /* Desktop Home Button with Hover Dropdown */
         .nav-item-dropdown {
             position: relative;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
         }
 
         .desktop-nav a {
@@ -121,6 +123,8 @@
             text-transform: uppercase;
             padding: 10px 0;
             transition: color 0.2s;
+            display: inline-block;
+            line-height: 1;
         }
 
         .desktop-nav a:hover {
@@ -241,13 +245,13 @@
             fill: none;
         }
 
-        /* FULL-WIDTH FULL-BLEED CAROUSEL */
+        /* NARROWER BANNER CAROUSEL */
         .carousel-wrapper {
             width: 100vw; 
-            height: 220px; /* Increased Mobile Banner Height */
+            height: 140px; /* Reduced for a narrower banner */
             position: relative;
             overflow: hidden;
-            margin-bottom: 30px; 
+            margin-bottom: 25px; 
             margin-left: calc(-50vw + 50%);
         }
 
@@ -283,8 +287,8 @@
             backdrop-filter: blur(4px);
             -webkit-backdrop-filter: blur(4px);
             border: none;
-            width: 32px;
-            height: 32px;
+            width: 28px;
+            height: 28px;
             border-radius: 50%;
             cursor: pointer;
             display: flex;
@@ -293,7 +297,7 @@
             z-index: 10;
             color: #3C2C19;
             font-weight: bold;
-            font-size: 14px;
+            font-size: 12px;
             transition: background 0.2s;
             user-select: none;
             -webkit-user-select: none;
@@ -308,11 +312,11 @@
 
         .carousel-dots {
             position: absolute;
-            bottom: 12px;
+            bottom: 8px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 8px;
+            gap: 6px;
             z-index: 10;
         }
 
@@ -330,7 +334,7 @@
             transform: scale(1.3);
         }
 
-        /* Page Content Area */
+        /* Container */
         .container {
             width: 100%;
             padding: 0 0 35px 0; 
@@ -340,11 +344,12 @@
             align-items: center;
         }
 
-        /* Grid Items */
+        /* SMALLER SQUARE CATEGORY ITEMS */
         .grid-container {
-            display: flex;
-            flex-direction: column; 
-            gap: 20px; 
+            display: grid;
+            grid-template-columns: repeat(2, 140px); /* Small squares on mobile */
+            gap: 15px; 
+            justify-content: center;
             align-items: center;
             width: 100%;
             max-width: 990px;
@@ -356,11 +361,10 @@
             flex-direction: column;
             text-decoration: none;
             position: relative;
-            width: 100%; 
-            max-width: 380px;
-            height: 150px; 
+            width: 140px; 
+            height: 140px; /* Square shape */
             overflow: hidden;
-            border-radius: 4px;
+            border-radius: 6px;
         }
 
         .grid-item img {
@@ -374,7 +378,7 @@
             content: '';
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.2); 
+            background-color: rgba(0, 0, 0, 0.25); 
             pointer-events: none;
         }
 
@@ -383,43 +387,16 @@
             top: 50%; left: 50%;
             transform: translate(-50%, -50%);
             color: #ffffff; 
-            font-size: 15px; 
-            font-weight: 600;
-            letter-spacing: 2px;
+            font-size: 12px; 
+            font-weight: 700;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
             z-index: 2;
             text-align: center;
             width: 90%;
         }
 
-        /* About Section */
-        .about-section {
-            margin-top: 25px;
-            text-align: left;
-            border-top: 1px solid rgba(111, 55, 28, 0.15);
-            padding-top: 35px;
-            width: 90%; 
-            max-width: 990px;
-        }
-
-        .about-section h2 {
-            font-family: 'Fraunces', serif;
-            font-size: 22px;
-            color: #6F371C; 
-            margin-bottom: 18px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .about-section p {
-            font-size: 14px;
-            line-height: 1.7;
-            color: #3C2C19; 
-            margin-bottom: 18px;
-            text-align: justify;
-        }
-
-        /* Laptop / Desktop Responsive Styles */
+        /* Responsive Styles */
         @media screen and (min-width: 768px) {
             header {
                 height: 100px;
@@ -432,7 +409,6 @@
 
             .desktop-nav {
                 display: flex;
-                gap: 30px;
             }
 
             .logo {
@@ -452,48 +428,36 @@
                 height: 40px;
             }
 
-            /* Extended Full-Width Banner for Desktop */
+            /* Narrow Banner Desktop */
             .carousel-wrapper {
-                height: 480px; 
-                margin-bottom: 50px;
+                height: 260px; 
+                margin-bottom: 40px;
             }
 
             .carousel-btn {
-                width: 44px;
-                height: 44px;
-                font-size: 18px;
+                width: 36px;
+                height: 36px;
+                font-size: 16px;
             }
             
             .carousel-btn.prev { left: 25px; }
             .carousel-btn.next { right: 25px; }
 
+            /* Desktop Category Square Grid */
             .grid-container {
-                flex-direction: row;
-                flex-wrap: wrap; 
-                justify-content: center;
-                gap: 30px; 
+                grid-template-columns: repeat(4, 180px);
+                gap: 25px; 
                 padding: 0;
             }
 
             .grid-item {
-                width: 480px; 
-                max-width: none;
-                height: 260px;
+                width: 180px; 
+                height: 180px;
             }
 
             .grid-item span {
-                font-size: 18px; 
-                letter-spacing: 4px;
-            }
-
-            .about-section {
-                margin-top: 40px;
-                padding-top: 50px;
-            }
-
-            .about-section h2 {
-                font-size: 28px;
-                margin-bottom: 25px;
+                font-size: 14px; 
+                letter-spacing: 2px;
             }
         }
 
@@ -617,7 +581,7 @@
                     <a href="bracelets.html">Bracelet</a>
                     <a href="necklaces.html">Necklace</a>
                     <a href="pendants.html">Pendant</a>
-                    <a href="#about-us" onclick="toggleLocalMenu(event)">About Us</a>
+                    <a href="about.html">About Us</a>
                 </div>
             </div>
         </div>
@@ -626,14 +590,14 @@
             <div class="nav-item-dropdown">
                 <a href="index.html">HOME ▾</a>
                 <div class="desktop-dropdown">
-                    <a href="new-product.html">New Product</a>
                     <a href="customize.html">Customize</a>
                     <a href="bracelets.html">Bracelet</a>
                     <a href="necklaces.html">Necklace</a>
                     <a href="pendants.html">Pendant</a>
                 </div>
             </div>
-            <a href="#about-us">ABOUT US</a>
+            <a href="new-product.html">NEW PRODUCT</a>
+            <a href="about.html">ABOUT US</a>
         </nav>
         
         <a href="index.html" class="logo">Le Trèfle</a>
@@ -742,13 +706,6 @@
                 <img src="https://images.unsplash.com/photo-1541123437800-1bb1317badc2?q=80&w=600&auto=format&fit=crop" alt="Pendants">
                 <span>PENDANT &gt;</span>
             </a>
-        </div>
-
-        <div class="about-section" id="about-us">
-            <h2>ABOUT US</h2>
-            <p>Deeply rooted in the classic lore and organic symbolism of the rare three-leaf clover, our name carries a timeless philosophy. Each leaf represents an essential element of a meaningful journey: the unwavering strength of Faith, the boundless horizon of Hope, and the transformative power of genuine Love. We infuse these ideals into every curve, link, and gemstone we display.</p>
-            <p>We work passionately to source and design exceptional fine jewelry that blends effortlessly into the texture of your daily routine while adding brilliant illumination to your most unforgettable milestones. From the sleek minimalist lines preferred in contemporary metropolitan life to the rich ornate heritage details that anchor your formal gatherings, our collection is meticulously built to withstand changing trends.</p>
-            <p>Thank you sincerely for making our story a small part of your own. We are profoundly honored to share our deep love for authentic craftsmanship, and we remain dedicated to helping you discover beautiful treasures that frame your rarest moments and help your true presence shine.</p>
         </div>
     </div>
 
