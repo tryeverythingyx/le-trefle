@@ -27,7 +27,7 @@
             min-height: 100vh;
         }
 
-        /* Header Banner */
+        /* 1. White Top Banner Header from Main Page */
         header {
             display: flex;
             justify-content: space-between;
@@ -61,7 +61,7 @@
             font-family: 'Fraunces', serif;
             font-size: 36px; 
             font-weight: 600; 
-            color: #8C4726; /* Logo Color */
+            color: #8C4726; /* Banner logo color */
             text-decoration: none;
             position: absolute;
             left: 50%;
@@ -83,7 +83,7 @@
             stroke-width: 1.3;
         }
 
-        /* Search Banner */
+        /* Search Banner from Main Page */
         .search-banner {
             width: 100%;
             background-color: #ffffff; 
@@ -118,7 +118,7 @@
             flex: 1;
         }
 
-        /* Main Header: Shipping and Delivery (#8C4726 color match) */
+        /* Main Header: Shipping and Delivery (Matches #8C4726 logo color) */
         .page-title {
             font-family: 'Fraunces', serif;
             font-size: 48px;
@@ -128,7 +128,7 @@
             letter-spacing: -0.5px;
         }
 
-        /* Section Titles */
+        /* Section Subtitles */
         .section-title {
             font-family: 'Fraunces', serif;
             font-size: 26px;
@@ -146,7 +146,7 @@
             max-width: 1000px;
         }
 
-        /* Bold text inside content uses content color */
+        /* Bold text inside content */
         .content-bold {
             font-weight: 700;
             color: #937A62; 
@@ -162,8 +162,9 @@
             margin-right: auto;
         }
 
+        /* Exact same size (17px) and color (#937A62) as main content */
         .footer-email {
-            font-size: 15px; 
+            font-size: 17px; 
             color: #937A62; 
             font-weight: 400;
             text-align: left;
@@ -171,19 +172,17 @@
 
         .footer-email a {
             color: #937A62; 
-            font-size: 18px; 
+            font-size: 17px; 
             font-weight: 700; 
             text-decoration: underline;
         }
 
-        /* Responsive Breakpoints */
+        /* Responsive Desktop Breakpoints */
         @media screen and (min-width: 768px) {
             header { height: 110px; padding: 0 50px; }
             .logo { font-size: 42px; }
             .page-title { font-size: 60px; }
             .section-title { font-size: 32px; }
-            .footer-email { font-size: 16px; }
-            .footer-email a { font-size: 19px; }
         }
     </style>
 </head>
