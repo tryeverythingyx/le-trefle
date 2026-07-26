@@ -23,7 +23,7 @@
             overflow-x: hidden;
         }
 
-        /* Header Layout (Enlarged slightly) */
+        /* Header Layout */
         header {
             display: flex;
             justify-content: space-between;
@@ -108,7 +108,7 @@
             margin: 4px 0;
         }
 
-        /* Desktop Top Bar Navigation */
+        /* Desktop Navigation */
         .desktop-nav {
             display: none;
             align-items: center;
@@ -121,8 +121,8 @@
             align-items: center;
         }
 
-        .desktop-nav a {
-            font-size: 13px;
+        .desktop-nav a, .desktop-shipping-link {
+            font-size: 13px; /* Matched to HOME size */
             color: #3C2C19;
             text-decoration: none;
             font-weight: 700;
@@ -134,7 +134,7 @@
             line-height: 1;
         }
 
-        .desktop-nav a:hover {
+        .desktop-nav a:hover, .desktop-shipping-link:hover {
             color: #8C4726; 
         }
 
@@ -181,23 +181,12 @@
 
         .nav-icons {
             display: flex;
-            gap: 16px; 
+            gap: 20px; 
             align-items: center;
         }
 
         .desktop-shipping-link {
             display: none;
-            font-size: 12px;
-            color: #3C2C19;
-            text-decoration: none;
-            font-weight: 700;
-            letter-spacing: 0.8px;
-            text-transform: uppercase;
-            transition: color 0.2s;
-        }
-
-        .desktop-shipping-link:hover {
-            color: #8C4726;
         }
 
         .icon-btn {
@@ -218,7 +207,7 @@
             stroke-width: 1.3;
         }
 
-        /* Search Banner (Enlarged slightly) */
+        /* Search Banner */
         .search-banner {
             width: 100%;
             background-color: #ffffff; 
@@ -366,7 +355,7 @@
             align-items: center;
         }
 
-        /* Square Category Items */
+        /* Category Grid */
         .grid-container {
             display: grid;
             grid-template-columns: repeat(2, 160px);
@@ -442,7 +431,7 @@
             }
 
             .nav-icons {
-                gap: 20px;
+                gap: 24px;
             }
 
             .search-banner {
