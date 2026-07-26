@@ -61,7 +61,7 @@
             font-family: 'Fraunces', serif;
             font-size: 36px; 
             font-weight: 600; 
-            color: #8C4726; 
+            color: #8C4726; /* Logo Color */
             text-decoration: none;
             position: absolute;
             left: 50%;
@@ -118,12 +118,12 @@
             flex: 1;
         }
 
-        /* Main Header: Shipping and Delivery */
+        /* Main Header: Shipping and Delivery (Same color #8C4726 as logo in white banner) */
         .page-title {
             font-family: 'Fraunces', serif;
             font-size: 48px;
             font-weight: 700;
-            color: #3C2C19; /* Dark bold title color */
+            color: #8C4726; 
             margin-bottom: 30px;
             letter-spacing: -0.5px;
         }
@@ -133,7 +133,7 @@
             font-family: 'Fraunces', serif;
             font-size: 26px;
             font-weight: 700;
-            color: #3C2C19; /* Dark bold title color */
+            color: #3C2C19; 
             margin-top: 35px;
             margin-bottom: 15px;
         }
@@ -146,7 +146,7 @@
             max-width: 1000px;
         }
 
-        /* All bolds inside content stay the same color as regular content */
+        /* Bold text inside content uses content color */
         .content-bold {
             font-weight: 700;
             color: #937A62; 
@@ -162,17 +162,18 @@
             margin-right: auto;
         }
 
+        /* Email line uses exact same wording & color (#937A62) as main body text */
         .footer-email {
             font-size: 15px; 
-            color: #3C2C19; /* Matched to dark title color */
-            font-weight: 700;
+            color: #937A62; 
+            font-weight: 400;
             text-align: left;
         }
 
         .footer-email a {
-            color: #937A62; /* Matched to content color */
-            font-size: 18px; /* Slightly bigger email size */
-            font-weight: 700; /* Only email is bolded */
+            color: #937A62; 
+            font-size: 18px; 
+            font-weight: 700; 
             text-decoration: underline;
         }
 
