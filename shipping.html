@@ -47,6 +47,11 @@
             gap: 32px;
         }
 
+        .nav-item {
+            position: relative;
+            display: inline-block;
+        }
+
         .nav-link {
             font-size: 13px;
             font-weight: 700;
@@ -57,7 +62,9 @@
             display: flex;
             align-items: center;
             gap: 4px;
+            padding: 10px 0;
             transition: opacity 0.2s ease;
+            cursor: pointer;
         }
 
         .nav-link:hover {
@@ -67,6 +74,46 @@
         .dropdown-arrow {
             font-size: 10px;
             margin-left: 2px;
+            transition: transform 0.2s ease;
+        }
+
+        /* Dropdown Menu (Desktop) */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #ffffff;
+            min-width: 180px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0,0,0,0.05);
+            padding: 10px 0;
+            z-index: 1002;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 10px 20px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #3C2C19;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: background 0.2s ease;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #FDF9F2;
+        }
+
+        /* Hover trigger for Desktop Dropdowns */
+        .nav-item:hover .dropdown-menu {
+            display: block;
+        }
+
+        .nav-item:hover .dropdown-arrow {
+            transform: rotate(180deg);
         }
 
         /* Center Logo */
@@ -128,13 +175,13 @@
             background-color: #3C2C19;
         }
 
-        /* Mobile Dropdown Menu */
+        /* Mobile Dropdown Navigation */
         .mobile-menu {
             display: none;
             flex-direction: column;
             background-color: #ffffff;
             width: 100%;
-            padding: 20px 24px;
+            padding: 10px 24px 20px 24px;
             border-bottom: 1px solid rgba(0, 0, 0, 0.08);
             box-shadow: 0 4px 10px rgba(0,0,0,0.03);
         }
@@ -147,10 +194,26 @@
             padding: 12px 0;
             border-bottom: 1px solid rgba(0, 0, 0, 0.04);
             font-size: 14px;
+            justify-content: space-between;
         }
 
-        .mobile-menu .nav-link:last-child {
-            border-bottom: none;
+        .mobile-sub-menu {
+            display: none;
+            flex-direction: column;
+            background-color: #FDF9F2;
+            padding: 5px 15px;
+        }
+
+        .mobile-sub-menu.open {
+            display: flex;
+        }
+
+        .mobile-sub-menu a {
+            padding: 10px 0;
+            font-size: 13px;
+            color: #3C2C19;
+            text-decoration: none;
+            font-weight: 700;
         }
 
         /* 2. Search Banner */
@@ -159,15 +222,14 @@
             background-color: #ffffff; 
             padding: 20px 0 30px 0;
             display: flex;
-            justify-content: flex-start;
+            justify-content: center;
             box-shadow: 0 4px 10px rgba(0,0,0,0.015);
             border-bottom: 1px solid rgba(0, 0, 0, 0.03);
         }
 
         .search-block-wrapper {
-            width: 100%; 
-            max-width: 100%;
-            padding: 0 50px;
+            width: 80%; 
+            max-width: 850px;
             position: relative;
             display: flex;
             align-items: center;
@@ -192,7 +254,7 @@
 
         .search-icon-btn {
             position: absolute;
-            right: 50px;
+            right: 0;
             background: none;
             border: none;
             cursor: pointer;
@@ -209,41 +271,42 @@
             stroke-width: 1.5;
         }
 
-        /* 3. Main Content Layout (Left Most Alignment & Slightly Larger Words) */
+        /* 3. Main Content Layout (Titles Enlarged & Shifted to Middle) */
         .shipping-container {
-            width: 100%; 
-            max-width: 100%; 
-            margin: 50px 0 40px 0;
-            padding: 0 50px;
+            width: 90%; 
+            max-width: 1000px; 
+            margin: 60px auto 40px auto;
+            padding: 0 20px;
             flex: 1;
-            text-align: left;
         }
 
+        /* Enlarged and Centered Page Title */
         .page-title {
             font-family: 'Fraunces', serif;
-            font-size: 40px; /* Slightly larger heading */
+            font-size: 52px; /* Enlarged title size */
             font-weight: 700;
             color: #8C4726; 
-            margin-bottom: 30px;
+            margin-bottom: 40px;
             letter-spacing: -0.5px;
-            text-align: left;
+            text-align: center; /* Shifted/centered to middle */
         }
 
+        /* Enlarged and Centered Section Subtitles */
         .section-title {
             font-family: 'Fraunces', serif;
-            font-size: 28px; /* Slightly larger sub-heading */
+            font-size: 34px; /* Enlarged sub-heading size */
             font-weight: 700;
             color: #3C2C19; 
-            margin-top: 35px;
-            margin-bottom: 15px;
-            text-align: left;
+            margin-top: 45px;
+            margin-bottom: 20px;
+            text-align: center; /* Shifted/centered to middle */
         }
 
+        /* Body Paragraph Content Size (Remains Unchanged at 19px) */
         .shipping-text {
-            font-size: 19px; /* Slightly larger content size */
+            font-size: 19px; /* Content word size retained */
             color: #937A62;
             margin-bottom: 20px;
-            max-width: 1100px;
             text-align: left;
         }
 
@@ -263,15 +326,18 @@
             margin-top: 15px;
         }
 
-        /* 4. Footer (Left Most Alignment) */
+        /* 4. Footer */
         footer {
             margin-top: auto;
-            padding: 40px 50px 50px 50px;
-            width: 100%;
+            padding: 40px 20px 50px 20px;
+            width: 90%;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .footer-email {
-            font-size: 19px; /* Matches content font size */
+            font-size: 19px; 
             color: #937A62; 
             font-weight: 400;
             text-align: left;
@@ -291,17 +357,6 @@
                 height: 80px;
             }
 
-            .search-block-wrapper,
-            .shipping-container,
-            footer {
-                padding-left: 20px;
-                padding-right: 20px;
-            }
-
-            .search-icon-btn {
-                right: 20px;
-            }
-
             .nav-left, .nav-right .nav-link {
                 display: none;
             }
@@ -315,11 +370,11 @@
             }
 
             .page-title {
-                font-size: 32px;
+                font-size: 36px;
             }
 
             .section-title {
-                font-size: 24px;
+                font-size: 26px;
             }
 
             .shipping-text,
@@ -340,7 +395,14 @@
         </button>
 
         <nav class="nav-left">
-            <a href="index.html" class="nav-link">HOME <span class="dropdown-arrow">▾</span></a>
+            <div class="nav-item">
+                <a href="index.html" class="nav-link">HOME <span class="dropdown-arrow">▾</span></a>
+                <div class="dropdown-menu">
+                    <a href="index.html#featured">Featured</a>
+                    <a href="index.html#collections">Collections</a>
+                    <a href="index.html#best-sellers">Best Sellers</a>
+                </div>
+            </div>
             <a href="new-product.html" class="nav-link">NEW PRODUCT</a>
             <a href="about.html" class="nav-link">ABOUT US</a>
         </nav>
@@ -348,7 +410,14 @@
         <a href="index.html" class="logo">Le Trèfle</a>
         
         <div class="nav-right">
-            <a href="shipping.html" class="nav-link">SHIPPING & DELIVERY</a>
+            <div class="nav-item">
+                <a href="shipping.html" class="nav-link">SHIPPING & DELIVERY <span class="dropdown-arrow">▾</span></a>
+                <div class="dropdown-menu">
+                    <a href="shipping.html#local">Local Shipping</a>
+                    <a href="shipping.html#international">International</a>
+                    <a href="shipping.html#faq">Delivery FAQ</a>
+                </div>
+            </div>
             
             <a href="account.html" class="icon-btn" aria-label="User Account">
                 <svg class="icon-svg" viewBox="0 0 24 24">
@@ -368,10 +437,22 @@
     </header>
 
     <nav class="mobile-menu" id="mobile-menu">
-        <a href="index.html" class="nav-link">HOME</a>
+        <a class="nav-link" id="mobile-home-btn">HOME <span>▾</span></a>
+        <div class="mobile-sub-menu" id="mobile-home-sub">
+            <a href="index.html">Home Main</a>
+            <a href="index.html#featured">Featured</a>
+            <a href="index.html#collections">Collections</a>
+        </div>
+
         <a href="new-product.html" class="nav-link">NEW PRODUCT</a>
         <a href="about.html" class="nav-link">ABOUT US</a>
-        <a href="shipping.html" class="nav-link">SHIPPING & DELIVERY</a>
+
+        <a class="nav-link" id="mobile-shipping-btn">SHIPPING & DELIVERY <span>▾</span></a>
+        <div class="mobile-sub-menu" id="mobile-shipping-sub">
+            <a href="shipping.html">Shipping Overview</a>
+            <a href="shipping.html#local">Local Shipping</a>
+            <a href="shipping.html#international">International</a>
+        </div>
     </nav>
 
     <div class="search-banner">
@@ -424,11 +505,25 @@
     </footer>
 
     <script>
+        // Toggle mobile primary menu
         const hamburgerBtn = document.getElementById('hamburger-btn');
         const mobileMenu = document.getElementById('mobile-menu');
 
         hamburgerBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('active');
+        });
+
+        // Toggle mobile sub-menus
+        const mobileHomeBtn = document.getElementById('mobile-home-btn');
+        const mobileHomeSub = document.getElementById('mobile-home-sub');
+        mobileHomeBtn.addEventListener('click', () => {
+            mobileHomeSub.classList.toggle('open');
+        });
+
+        const mobileShippingBtn = document.getElementById('mobile-shipping-btn');
+        const mobileShippingSub = document.getElementById('mobile-shipping-sub');
+        mobileShippingBtn.addEventListener('click', () => {
+            mobileShippingSub.classList.toggle('open');
         });
     </script>
 
