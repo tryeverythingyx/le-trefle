@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shipping and Delivery - Le Trèfle</title>
+    <title>Shipping Policy - Le Trèfle</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* 1. Global Reset & Base (FDF9F2 Background) */
+        /* Global Reset & Base */
         * {
             margin: 0;
             padding: 0;
@@ -24,7 +24,7 @@
             overflow-x: hidden;
         }
 
-        /* 2. Header (The White Banner) - Exact Copy from Main Page */
+        /* Header Banner */
         header {
             display: flex;
             justify-content: space-between;
@@ -80,7 +80,7 @@
             stroke-width: 1.3;
         }
 
-        /* 3. Search Banner - Copy from Main Page */
+        /* Search Banner */
         .search-banner {
             width: 100%;
             background-color: #ffffff; 
@@ -106,25 +106,25 @@
             color: #3C2C19;
         }
 
-        /* 4. Shipping Content (Widened Layout) */
+        /* Main Container */
         .shipping-container {
-            width: 95%; /* Shifting to both sides */
+            width: 95%; 
             max-width: 1200px; 
             margin: 60px auto;
             padding: 0 20px;
         }
 
-        /* Main Page Title (Enlarged and Bold) */
+        /* Page Title */
         .page-title {
             font-family: 'Fraunces', serif;
             font-size: 42px;
             font-weight: 700;
             color: #3C2C19; /* Bold Title Color */
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             letter-spacing: -0.5px;
         }
 
-        /* Section Subtitles (Bold Title Color) */
+        /* Section Subtitles */
         .section-title {
             font-family: 'Fraunces', serif;
             font-size: 26px;
@@ -134,7 +134,7 @@
             margin-bottom: 15px;
         }
 
-        /* Paragraph Content (Lighter Color 937A62) */
+        /* Paragraph Content */
         .shipping-text {
             font-size: 17px;
             color: #937A62;
@@ -147,9 +147,9 @@
             color: #3C2C19;
         }
 
-        /* 5. Footer Email (Small, Bottom Left) */
+        /* Footer Email Styling */
         footer {
-            margin-top: 100px;
+            margin-top: 80px;
             padding: 40px 20px;
             width: 95%;
             max-width: 1200px;
@@ -158,23 +158,25 @@
         }
 
         .footer-email {
-            font-size: 12px;
-            color: #937A62;
+            font-size: 16px; /* Larger text size */
+            color: #3C2C19; /* Same color as "Shipping Policy" title */
+            font-weight: 700;
             text-align: left;
         }
 
         .footer-email a {
-            color: #937A62;
-            text-decoration: none;
+            color: #3C2C19;
+            text-decoration: underline;
             font-weight: 700;
         }
 
-        /* Responsive Desktop adjustments */
+        /* Responsive Styles */
         @media screen and (min-width: 768px) {
             header { height: 110px; padding: 0 50px; }
             .logo { font-size: 42px; }
             .page-title { font-size: 54px; }
             .section-title { font-size: 32px; }
+            .footer-email { font-size: 18px; }
         }
     </style>
 </head>
@@ -208,16 +210,15 @@
     </div>
 
     <main class="shipping-container">
-        <h1 class="page-title">Shipping and Delivery</h1>
+        <h1 class="page-title">Shipping Policy</h1>
 
-        <h2 class="section-title">Our delivery policy</h2>
         <p class="shipping-text">
-            Hey you! It’s important to us that your order reaches you, and we’ll do our best to ensure that it happens in the most efficient way. Please make sure that your preferred shipping address and contact details are clearly stated and completed at the check-out page to allow for a smooth delivery process from our end!
+            Hey! We are committed to delivering your order safely and efficiently. To help us process your shipment without delays, please ensure that your shipping address and contact information are accurate and complete when placing your order.
         </p>
 
         <h2 class="section-title">For Local Customers (Malaysia)</h2>
         <p class="shipping-text">
-            Free local shipping is available on orders of RM 100 or more. For orders below RM 100, shipping fees will be calculated at checkout. All local deliveries are dispatched within 3-5 working days from the day you receive your shipment email.
+            Free local shipping is available on orders of RM 100 or more. For orders below RM 100, shipping fees will be calculated at checkout.
         </p>
         <p class="shipping-text">
             Should the delivery fail and your package be returned to us, you would receive another email notifying you. Please note that <span class="brand-bold">Le Trèfle</span> would not be responsible in the event where a wrong or incomplete address has been provided by the customer.
@@ -225,10 +226,13 @@
 
         <h2 class="section-title">For International Customers</h2>
         <p class="shipping-text">
-            Shipping fees for international orders are the responsibility of the customer and will be calculated at checkout based on location. 
+            Shipping charges for international orders are calculated at checkout based on the destination.
         </p>
         <p class="shipping-text">
-            All taxes, customs and import duties and fees are the responsibility of the customer, and must be paid by you in order for your parcel to clear customs. Fees will be shown upon checkout when address has been given.
+            Any taxes, customs duties, import duties, brokerage fees, or other charges imposed by the destination country are the responsibility of the customer.
+        </p>
+        <p class="shipping-text">
+            Please note that <span class="brand-bold">Le Trèfle</span> would not be responsible for any delays or additional charges resulting from customs clearance.
         </p>
     </main>
 
