@@ -17,11 +17,14 @@
 
         body {
             background-color: #FDF9F2; 
-            color: #937A62; /* Content color */
+            color: #937A62; /* Lighter content color */
             font-family: 'Lato', sans-serif;
             -webkit-font-smoothing: antialiased;
             line-height: 1.6;
             overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         /* Header Banner */
@@ -110,16 +113,17 @@
         .shipping-container {
             width: 95%; 
             max-width: 1200px; 
-            margin: 60px auto;
+            margin: 60px auto 40px auto;
             padding: 0 20px;
+            flex: 1;
         }
 
-        /* Page Title */
+        /* Page Title (Bigger size) */
         .page-title {
             font-family: 'Fraunces', serif;
-            font-size: 42px;
+            font-size: 48px;
             font-weight: 700;
-            color: #3C2C19; /* Bold Title Color */
+            color: #3C2C19; /* Dark bold title color */
             margin-bottom: 30px;
             letter-spacing: -0.5px;
         }
@@ -129,7 +133,7 @@
             font-family: 'Fraunces', serif;
             font-size: 26px;
             font-weight: 700;
-            color: #3C2C19; /* Bold Title Color */
+            color: #3C2C19; /* Dark bold title color */
             margin-top: 40px;
             margin-bottom: 15px;
         }
@@ -142,15 +146,15 @@
             max-width: 1000px;
         }
 
-        .brand-bold {
+        .text-bold {
             font-weight: 700;
             color: #3C2C19;
         }
 
         /* Footer Email Styling */
         footer {
-            margin-top: 80px;
-            padding: 40px 20px;
+            margin-top: auto;
+            padding: 40px 20px 50px 20px;
             width: 95%;
             max-width: 1200px;
             margin-left: auto;
@@ -158,14 +162,15 @@
         }
 
         .footer-email {
-            font-size: 16px; /* Larger text size */
-            color: #3C2C19; /* Same color as "Shipping Policy" title */
+            font-size: 15px; 
+            color: #3C2C19; /* Color matched to Shipping Policy title */
             font-weight: 700;
             text-align: left;
         }
 
         .footer-email a {
-            color: #3C2C19;
+            color: #937A62; /* Color matched to body content */
+            font-size: 16px; /* Slightly bigger email size */
             text-decoration: underline;
             font-weight: 700;
         }
@@ -174,9 +179,10 @@
         @media screen and (min-width: 768px) {
             header { height: 110px; padding: 0 50px; }
             .logo { font-size: 42px; }
-            .page-title { font-size: 54px; }
+            .page-title { font-size: 60px; }
             .section-title { font-size: 32px; }
-            .footer-email { font-size: 18px; }
+            .footer-email { font-size: 16px; }
+            .footer-email a { font-size: 17px; }
         }
     </style>
 </head>
@@ -218,10 +224,10 @@
 
         <h2 class="section-title">For Local Customers (Malaysia)</h2>
         <p class="shipping-text">
-            Free local shipping is available on orders of RM 100 or more. For orders below RM 100, shipping fees will be calculated at checkout.
+            Free local shipping is available on orders of <span class="text-bold">RM 100 or more</span>. For orders below <span class="text-bold">RM 100</span>, shipping fees will be calculated at checkout.
         </p>
         <p class="shipping-text">
-            Should the delivery fail and your package be returned to us, you would receive another email notifying you. Please note that <span class="brand-bold">Le Trèfle</span> would not be responsible in the event where a wrong or incomplete address has been provided by the customer.
+            Should the delivery fail and your package be returned to us, you would receive another email notifying you. Please note that <span class="text-bold">Le Trèfle</span> would not be responsible in the event where a wrong or incomplete address has been provided by the customer.
         </p>
 
         <h2 class="section-title">For International Customers</h2>
@@ -232,7 +238,7 @@
             Any taxes, customs duties, import duties, brokerage fees, or other charges imposed by the destination country are the responsibility of the customer.
         </p>
         <p class="shipping-text">
-            Please note that <span class="brand-bold">Le Trèfle</span> would not be responsible for any delays or additional charges resulting from customs clearance.
+            Please note that <span class="text-bold">Le Trèfle</span> would not be responsible for any delays or additional charges resulting from customs clearance.
         </p>
     </main>
 
