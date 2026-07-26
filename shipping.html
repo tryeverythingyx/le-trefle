@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shipping Policy - Le Trèfle</title>
+    <title>Shipping and Delivery - Le Trèfle</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
@@ -17,7 +17,7 @@
 
         body {
             background-color: #FDF9F2; 
-            color: #937A62; /* Lighter content color */
+            color: #937A62; /* Base content color */
             font-family: 'Lato', sans-serif;
             -webkit-font-smoothing: antialiased;
             line-height: 1.6;
@@ -109,7 +109,7 @@
             color: #3C2C19;
         }
 
-        /* Main Container */
+        /* Main Content Layout */
         .shipping-container {
             width: 95%; 
             max-width: 1200px; 
@@ -118,7 +118,7 @@
             flex: 1;
         }
 
-        /* Page Title (Bigger size) */
+        /* Main Header: Shipping and Delivery */
         .page-title {
             font-family: 'Fraunces', serif;
             font-size: 48px;
@@ -128,13 +128,13 @@
             letter-spacing: -0.5px;
         }
 
-        /* Section Subtitles */
+        /* Section Titles */
         .section-title {
             font-family: 'Fraunces', serif;
             font-size: 26px;
             font-weight: 700;
             color: #3C2C19; /* Dark bold title color */
-            margin-top: 40px;
+            margin-top: 35px;
             margin-bottom: 15px;
         }
 
@@ -146,9 +146,10 @@
             max-width: 1000px;
         }
 
-        .text-bold {
+        /* All bolds inside content stay the same color as regular content */
+        .content-bold {
             font-weight: 700;
-            color: #3C2C19;
+            color: #937A62; 
         }
 
         /* Footer Email Styling */
@@ -163,26 +164,26 @@
 
         .footer-email {
             font-size: 15px; 
-            color: #3C2C19; /* Color matched to Shipping Policy title */
+            color: #3C2C19; /* Matched to dark title color */
             font-weight: 700;
             text-align: left;
         }
 
         .footer-email a {
-            color: #937A62; /* Color matched to body content */
-            font-size: 16px; /* Slightly bigger email size */
+            color: #937A62; /* Matched to content color */
+            font-size: 18px; /* Slightly bigger email size */
+            font-weight: 700; /* Only email is bolded */
             text-decoration: underline;
-            font-weight: 700;
         }
 
-        /* Responsive Styles */
+        /* Responsive Breakpoints */
         @media screen and (min-width: 768px) {
             header { height: 110px; padding: 0 50px; }
             .logo { font-size: 42px; }
             .page-title { font-size: 60px; }
             .section-title { font-size: 32px; }
             .footer-email { font-size: 16px; }
-            .footer-email a { font-size: 17px; }
+            .footer-email a { font-size: 19px; }
         }
     </style>
 </head>
@@ -216,18 +217,19 @@
     </div>
 
     <main class="shipping-container">
-        <h1 class="page-title">Shipping Policy</h1>
+        <h1 class="page-title">Shipping and Delivery</h1>
 
+        <h2 class="section-title">Shipping Policy</h2>
         <p class="shipping-text">
             Hey! We are committed to delivering your order safely and efficiently. To help us process your shipment without delays, please ensure that your shipping address and contact information are accurate and complete when placing your order.
         </p>
 
         <h2 class="section-title">For Local Customers (Malaysia)</h2>
         <p class="shipping-text">
-            Free local shipping is available on orders of <span class="text-bold">RM 100 or more</span>. For orders below <span class="text-bold">RM 100</span>, shipping fees will be calculated at checkout.
+            Free local shipping is available on orders of <span class="content-bold">RM 100 or more</span>. For orders below <span class="content-bold">RM 100</span>, shipping fees will be calculated at checkout.
         </p>
         <p class="shipping-text">
-            Should the delivery fail and your package be returned to us, you would receive another email notifying you. Please note that <span class="text-bold">Le Trèfle</span> would not be responsible in the event where a wrong or incomplete address has been provided by the customer.
+            Should the delivery fail and your package be returned to us, you would receive another email notifying you. Please note that <span class="content-bold">Le Trèfle</span> would not be responsible in the event where a wrong or incomplete address has been provided by the customer.
         </p>
 
         <h2 class="section-title">For International Customers</h2>
@@ -238,7 +240,7 @@
             Any taxes, customs duties, import duties, brokerage fees, or other charges imposed by the destination country are the responsibility of the customer.
         </p>
         <p class="shipping-text">
-            Please note that <span class="text-bold">Le Trèfle</span> would not be responsible for any delays or additional charges resulting from customs clearance.
+            Please note that <span class="content-bold">Le Trèfle</span> would not be responsible for any delays or additional charges resulting from customs clearance.
         </p>
     </main>
 
