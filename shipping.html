@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        /* 1. Global Reset & Base (FDF9F2 Background) */
         * {
             margin: 0;
             padding: 0;
@@ -16,12 +17,14 @@
 
         body {
             background-color: #FDF9F2; 
-            color: #937A62;
+            color: #937A62; /* Content color */
             font-family: 'Lato', sans-serif;
             -webkit-font-smoothing: antialiased;
-            line-height: 1.7;
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
+        /* 2. Header (The White Banner) - Exact Copy from Main Page */
         header {
             display: flex;
             justify-content: space-between;
@@ -29,8 +32,26 @@
             height: 95px; 
             padding: 0 24px;
             background-color: #ffffff; 
-            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
             position: relative;
+            z-index: 1001;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
+
+        .hamburger {
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            padding: 8px 5px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 22px;
+            height: 1.5px;
+            background-color: #3C2C19;
         }
 
         .logo {
@@ -42,115 +63,180 @@
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-        }
-
-        .back-link {
-            text-decoration: none;
-            color: #3C2C19;
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .back-link:hover {
-            color: #8C4726;
-        }
-
-        .shipping-container {
-            max-width: 850px;
-            margin: 50px auto;
-            padding: 0 25px;
-        }
-
-        /* Large Bold Title (#3C2C19) */
-        .page-title {
-            font-family: 'Fraunces', serif;
-            font-size: 36px;
-            font-weight: 700;
-            color: #3C2C19;
-            margin-bottom: 35px;
             letter-spacing: -0.5px;
         }
 
-        /* Enlarge Bold Section Headers (#3C2C19) */
-        .section-title {
-            font-family: 'Fraunces', serif;
-            font-size: 24px;
-            font-weight: 700;
-            color: #3C2C19;
-            margin-top: 30px;
-            margin-bottom: 12px;
+        .nav-icons {
+            display: flex;
+            gap: 16px; 
+            align-items: center;
         }
 
-        /* Lighter Body Content (#937A62) */
+        .icon-svg {
+            width: 22px;
+            height: 22px;
+            fill: none;
+            stroke: #3C2C19;
+            stroke-width: 1.3;
+        }
+
+        /* 3. Search Banner - Copy from Main Page */
+        .search-banner {
+            width: 100%;
+            background-color: #ffffff; 
+            padding: 18px 0;
+            display: flex;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .search-block-wrapper {
+            width: 90%; 
+            max-width: 1050px;
+        }
+
+        .inline-search-input {
+            width: 100%;
+            height: 40px; 
+            border: none;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.12); 
+            font-size: 15px;
+            outline: none;
+            color: #3C2C19;
+        }
+
+        /* 4. Shipping Content (Widened Layout) */
+        .shipping-container {
+            width: 95%; /* Shifting to both sides */
+            max-width: 1200px; 
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        /* Main Page Title (Enlarged and Bold) */
+        .page-title {
+            font-family: 'Fraunces', serif;
+            font-size: 42px;
+            font-weight: 700;
+            color: #3C2C19; /* Bold Title Color */
+            margin-bottom: 40px;
+            letter-spacing: -0.5px;
+        }
+
+        /* Section Subtitles (Bold Title Color) */
+        .section-title {
+            font-family: 'Fraunces', serif;
+            font-size: 26px;
+            font-weight: 700;
+            color: #3C2C19; /* Bold Title Color */
+            margin-top: 40px;
+            margin-bottom: 15px;
+        }
+
+        /* Paragraph Content (Lighter Color 937A62) */
         .shipping-text {
-            font-size: 16px;
+            font-size: 17px;
             color: #937A62;
-            margin-bottom: 16px;
+            margin-bottom: 20px;
+            max-width: 1000px;
         }
 
         .brand-bold {
+            font-weight: 700;
             color: #3C2C19;
+        }
+
+        /* 5. Footer Email (Small, Bottom Left) */
+        footer {
+            margin-top: 100px;
+            padding: 40px 20px;
+            width: 95%;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer-email {
+            font-size: 12px;
+            color: #937A62;
+            text-align: left;
+        }
+
+        .footer-email a {
+            color: #937A62;
+            text-decoration: none;
             font-weight: 700;
         }
 
+        /* Responsive Desktop adjustments */
         @media screen and (min-width: 768px) {
-            header {
-                height: 110px;
-                padding: 0 50px;
-            }
-
-            .logo {
-                font-size: 42px;
-            }
-
-            .shipping-container {
-                margin: 70px auto;
-            }
-
-            .page-title {
-                font-size: 44px;
-                margin-bottom: 45px;
-            }
-
-            .section-title {
-                font-size: 28px;
-            }
-
-            .shipping-text {
-                font-size: 17px;
-            }
+            header { height: 110px; padding: 0 50px; }
+            .logo { font-size: 42px; }
+            .page-title { font-size: 54px; }
+            .section-title { font-size: 32px; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <a href="index.html" class="back-link">&larr; Home</a>
+        <div class="hamburger-container">
+            <button class="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        
         <a href="index.html" class="logo">Le Trèfle</a>
-        <div></div>
+        
+        <div class="nav-icons">
+            <div class="icon-btn">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            </div>
+            <div class="icon-btn">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+            </div>
+        </div>
     </header>
+
+    <div class="search-banner">
+        <div class="search-block-wrapper">
+            <input type="text" class="inline-search-input" placeholder="Product Search">
+        </div>
+    </div>
 
     <main class="shipping-container">
         <h1 class="page-title">Shipping and Delivery</h1>
 
-        <h2 class="section-title">For local and international customers</h2>
+        <h2 class="section-title">Our delivery policy</h2>
         <p class="shipping-text">
-            Shipping fees for both local and international orders are the responsibility of the customer and will be calculated at checkout.
-        </p>
-        <p class="shipping-text">
-            For international orders, any applicable taxes, customs duties, import duties, and other fees are the responsibility of the customer and must be paid in order for the parcel to clear customs.
+            Hey you! It’s important to us that your order reaches you, and we’ll do our best to ensure that it happens in the most efficient way. Please make sure that your preferred shipping address and contact details are clearly stated and completed at the check-out page to allow for a smooth delivery process from our end!
         </p>
 
-        <h2 class="section-title">Free Local Shipping (Malaysia)</h2>
+        <h2 class="section-title">For Local Customers (Malaysia)</h2>
         <p class="shipping-text">
-            Free local shipping is available on orders of RM 100 or more.
+            Free local shipping is available on orders of RM 100 or more. For orders below RM 100, shipping fees will be calculated at checkout. All local deliveries are dispatched within 3-5 working days from the day you receive your shipment email.
         </p>
         <p class="shipping-text">
-            If a delivery attempt is unsuccessful and your parcel is returned to us, you will be notified via email. Please note that <span class="brand-bold">Le Trèfle</span> is not responsible for failed deliveries due to an incorrect or incomplete shipping address provided by the customer. Any additional shipping costs required for redelivery will be the responsibility of the customer.
+            Should the delivery fail and your package be returned to us, you would receive another email notifying you. Please note that <span class="brand-bold">Le Trèfle</span> would not be responsible in the event where a wrong or incomplete address has been provided by the customer.
+        </p>
+
+        <h2 class="section-title">For International Customers</h2>
+        <p class="shipping-text">
+            Shipping fees for international orders are the responsibility of the customer and will be calculated at checkout based on location. 
+        </p>
+        <p class="shipping-text">
+            All taxes, customs and import duties and fees are the responsibility of the customer, and must be paid by you in order for your parcel to clear customs. Fees will be shown upon checkout when address has been given.
         </p>
     </main>
+
+    <footer>
+        <div class="footer-email">
+            Questions about your order? Email <a href="mailto:letrefle.mail@gmail.com">letrefle.mail@gmail.com</a>
+        </div>
+    </footer>
 
 </body>
 </html>
