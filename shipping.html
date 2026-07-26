@@ -247,7 +247,13 @@
             color: #937A62; 
         }
 
-        /* Spacing adjustment for content separation */
+        .heart-icon {
+            display: inline-block;
+            font-size: 16px;
+            color: #937A62;
+            margin-left: 3px;
+        }
+
         .text-spacing {
             margin-top: 15px;
         }
@@ -283,12 +289,10 @@
                 height: 80px;
             }
 
-            /* Hide Desktop Nav Links on Mobile */
             .nav-left, .nav-right .nav-link {
                 display: none;
             }
 
-            /* Show Hamburger (3 Strips) */
             .hamburger {
                 display: flex;
             }
@@ -368,7 +372,7 @@
 
         <h2 class="section-title">Shipping Policy</h2>
         <p class="shipping-text">
-            Hey! We are committed to delivering your order safely and efficiently. To help us process your shipment without delays, please ensure that your shipping address and contact information are accurate and complete when placing your order.
+            Hey! We are committed to delivering your order safely and efficiently. Please ensure that your shipping address and contact information are accurate and complete when placing your order <span class="heart-icon">♥</span>
         </p>
 
         <h2 class="section-title">For Local Customers (Malaysia)</h2>
