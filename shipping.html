@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shipping and Delivery - Le Trèfle</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #FDF9F2; 
+            color: #937A62;
+            font-family: 'Lato', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.7;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 95px; 
+            padding: 0 24px;
+            background-color: #ffffff; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+            position: relative;
+        }
+
+        .logo {
+            font-family: 'Fraunces', serif;
+            font-size: 36px; 
+            font-weight: 600; 
+            color: #8C4726; 
+            text-decoration: none;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .back-link {
+            text-decoration: none;
+            color: #3C2C19;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .back-link:hover {
+            color: #8C4726;
+        }
+
+        .shipping-container {
+            max-width: 850px;
+            margin: 50px auto;
+            padding: 0 25px;
+        }
+
+        /* Large Bold Title (#3C2C19) */
+        .page-title {
+            font-family: 'Fraunces', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #3C2C19;
+            margin-bottom: 35px;
+            letter-spacing: -0.5px;
+        }
+
+        /* Enlarge Bold Section Headers (#3C2C19) */
+        .section-title {
+            font-family: 'Fraunces', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: #3C2C19;
+            margin-top: 30px;
+            margin-bottom: 12px;
+        }
+
+        /* Lighter Body Content (#937A62) */
+        .shipping-text {
+            font-size: 16px;
+            color: #937A62;
+            margin-bottom: 16px;
+        }
+
+        .brand-bold {
+            color: #3C2C19;
+            font-weight: 700;
+        }
+
+        @media screen and (min-width: 768px) {
+            header {
+                height: 110px;
+                padding: 0 50px;
+            }
+
+            .logo {
+                font-size: 42px;
+            }
+
+            .shipping-container {
+                margin: 70px auto;
+            }
+
+            .page-title {
+                font-size: 44px;
+                margin-bottom: 45px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .shipping-text {
+                font-size: 17px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="back-link">&larr; Home</a>
+        <a href="index.html" class="logo">Le Trèfle</a>
+        <div></div>
+    </header>
+
+    <main class="shipping-container">
+        <h1 class="page-title">Shipping and Delivery</h1>
+
+        <h2 class="section-title">For local and international customers</h2>
+        <p class="shipping-text">
+            Shipping fees for both local and international orders are the responsibility of the customer and will be calculated at checkout.
+        </p>
+        <p class="shipping-text">
+            For international orders, any applicable taxes, customs duties, import duties, and other fees are the responsibility of the customer and must be paid in order for the parcel to clear customs.
+        </p>
+
+        <h2 class="section-title">Free Local Shipping (Malaysia)</h2>
+        <p class="shipping-text">
+            Free local shipping is available on orders of RM 100 or more.
+        </p>
+        <p class="shipping-text">
+            If a delivery attempt is unsuccessful and your parcel is returned to us, you will be notified via email. Please note that <span class="brand-bold">Le Trèfle</span> is not responsible for failed deliveries due to an incorrect or incomplete shipping address provided by the customer. Any additional shipping costs required for redelivery will be the responsibility of the customer.
+        </p>
+    </main>
+
+</body>
+</html>
