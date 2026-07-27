@@ -6,13 +6,17 @@
     <title>Shipping and Delivery - Le Trèfle</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <style>
         /* Global Reset & Base */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -116,17 +120,36 @@
             transform: rotate(180deg);
         }
 
-        /* Center Logo */
-        .logo {
-            font-family: 'Fraunces', serif;
-            font-size: 42px; 
-            font-weight: 600; 
-            color: #8C4726; 
-            text-decoration: none;
+        /* Center Logo Container & Tagline */
+        .logo-wrapper {
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo {
+            font-family: 'Fraunces', serif;
+            font-size: 38px; 
+            font-weight: 600; 
+            color: #8C4726; 
+            line-height: 1;
             letter-spacing: -0.5px;
+        }
+
+        .logo-tagline {
+            font-family: 'Fraunces', serif;
+            font-size: 11px;
+            font-weight: 300;
+            font-style: italic;
+            color: #8C4726; /* Exact same color as brand name */
+            letter-spacing: 0.8px;
+            margin-top: 3px;
+            text-transform: lowercase;
+            white-space: nowrap;
         }
 
         /* Desktop Right Navigation & Icons */
@@ -271,7 +294,7 @@
             stroke-width: 1.5;
         }
 
-        /* 3. Main Content Layout (Titles Enlarged & Shifted to Middle) */
+        /* 3. Main Content Layout (Left-Aligned Titles & Content) */
         .shipping-container {
             width: 90%; 
             max-width: 1000px; 
@@ -280,34 +303,35 @@
             flex: 1;
         }
 
-        /* Enlarged and Centered Page Title */
+        /* Left-Aligned Page Title */
         .page-title {
             font-family: 'Fraunces', serif;
-            font-size: 52px; /* Enlarged title size */
+            font-size: 52px;
             font-weight: 700;
             color: #8C4726; 
             margin-bottom: 40px;
             letter-spacing: -0.5px;
-            text-align: center; /* Shifted/centered to middle */
+            text-align: left; /* Left Aligned */
         }
 
-        /* Enlarged and Centered Section Subtitles */
+        /* Left-Aligned Section Subtitles */
         .section-title {
             font-family: 'Fraunces', serif;
-            font-size: 34px; /* Enlarged sub-heading size */
+            font-size: 34px;
             font-weight: 700;
             color: #3C2C19; 
             margin-top: 45px;
             margin-bottom: 20px;
-            text-align: center; /* Shifted/centered to middle */
+            text-align: left; /* Left Aligned */
+            scroll-margin-top: 30px; /* Ensures clean scroll target positioning */
         }
 
-        /* Body Paragraph Content Size (Remains Unchanged at 19px) */
+        /* Left-Aligned Paragraph Content */
         .shipping-text {
-            font-size: 19px; /* Content word size retained */
+            font-size: 19px;
             color: #937A62;
             margin-bottom: 20px;
-            text-align: left;
+            text-align: left; /* Left Aligned */
         }
 
         .content-bold {
@@ -354,7 +378,7 @@
         @media screen and (max-width: 850px) {
             header {
                 padding: 0 20px;
-                height: 80px;
+                height: 85px;
             }
 
             .nav-left, .nav-right .nav-link {
@@ -366,21 +390,28 @@
             }
 
             .logo {
-                font-size: 30px;
+                font-size: 28px;
+            }
+
+            .logo-tagline {
+                font-size: 9.5px;
             }
 
             .page-title {
                 font-size: 36px;
+                text-align: left;
             }
 
             .section-title {
                 font-size: 26px;
+                text-align: left;
             }
 
             .shipping-text,
             .footer-email,
             .footer-email a {
                 font-size: 17px;
+                text-align: left;
             }
         }
     </style>
@@ -407,15 +438,18 @@
             <a href="about.html" class="nav-link">ABOUT US</a>
         </nav>
         
-        <a href="index.html" class="logo">Le Trèfle</a>
+        <a href="index.html" class="logo-wrapper">
+            <span class="logo">Le Trèfle</span>
+            <span class="logo-tagline">symbolizes you and your loved one</span>
+        </a>
         
         <div class="nav-right">
             <div class="nav-item">
                 <a href="shipping.html" class="nav-link">SHIPPING & DELIVERY <span class="dropdown-arrow">▾</span></a>
                 <div class="dropdown-menu">
-                    <a href="shipping.html#local">Local Shipping</a>
-                    <a href="shipping.html#international">International</a>
-                    <a href="shipping.html#faq">Delivery FAQ</a>
+                    <a href="#shipping-policy">Shipping Policy</a>
+                    <a href="#local-shipping">Local Shipping</a>
+                    <a href="#international-shipping">International</a>
                 </div>
             </div>
             
@@ -449,9 +483,9 @@
 
         <a class="nav-link" id="mobile-shipping-btn">SHIPPING & DELIVERY <span>▾</span></a>
         <div class="mobile-sub-menu" id="mobile-shipping-sub">
-            <a href="shipping.html">Shipping Overview</a>
-            <a href="shipping.html#local">Local Shipping</a>
-            <a href="shipping.html#international">International</a>
+            <a href="#shipping-policy">Shipping Policy</a>
+            <a href="#local-shipping">Local Shipping</a>
+            <a href="#international-shipping">International</a>
         </div>
     </nav>
 
@@ -470,12 +504,12 @@
     <main class="shipping-container">
         <h1 class="page-title">Shipping and Delivery</h1>
 
-        <h2 class="section-title">Shipping Policy</h2>
+        <h2 id="shipping-policy" class="section-title">Shipping Policy</h2>
         <p class="shipping-text">
             Hey! We are committed to delivering your order safely and efficiently. Please ensure that your shipping address and contact information are accurate and complete when placing your order <span class="heart-icon">♥</span>
         </p>
 
-        <h2 class="section-title">For Local Customers (Malaysia)</h2>
+        <h2 id="local-shipping" class="section-title">For Local Customers (Malaysia)</h2>
         <p class="shipping-text">
             Shipping fee will be charge for local orders at checkout. Free local shipping is available on orders of <span class="content-bold">RM 100 or more</span>.
         </p>
@@ -486,7 +520,7 @@
             Please note that <span class="content-bold">Le Trèfle</span> would not be responsible in the event where a wrong or incomplete address has been provided by the customer.
         </p>
 
-        <h2 class="section-title">For International Customers</h2>
+        <h2 id="international-shipping" class="section-title">For International Customers</h2>
         <p class="shipping-text">
             Shipping charges for international orders are calculated at checkout based on the destination.
         </p>
@@ -524,6 +558,14 @@
         const mobileShippingSub = document.getElementById('mobile-shipping-sub');
         mobileShippingBtn.addEventListener('click', () => {
             mobileShippingSub.classList.toggle('open');
+        });
+
+        // Auto close mobile menu on section link click
+        const mobileLinks = document.querySelectorAll('.mobile-sub-menu a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
         });
     </script>
 
