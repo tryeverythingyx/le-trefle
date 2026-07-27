@@ -620,74 +620,7 @@
 </head>
 <body>
 
-    <header>
-        <div class="hamburger-container">
-            <button class="hamburger" onclick="toggleLocalMenu(event)" aria-label="Toggle Menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <div class="local-menu" id="localMenu">
-                <div class="local-menu-inner">
-                    <a href="new-product.html">NEW PRODUCT</a>
-                    <a href="customize.html">CUSTOMIZE</a>
-                    <a href="necklaces.html">NECKLACES</a>
-                    <a href="bracelets.html">BRACELETS</a>
-                    <a href="pendants.html">PENDANTS</a>
-                    
-                    <hr class="menu-divider">
-                    
-                    <a href="shipping.html">SHIPPING & DELIVERY</a>
-                    
-                    <hr class="menu-divider">
-                    
-                    <a href="about-us.html">ABOUT US</a>
-                </div>
-            </div>
-        </div>
-
-        <nav class="desktop-nav">
-            <div class="nav-dropdown">
-                <a href="index.html" class="nav-link">HOME <span class="arrow-down">▼</span></a>
-                <div class="dropdown-menu">
-                    <a href="new-product.html">NEW PRODUCT</a>
-                    <a href="customize.html">CUSTOMIZE</a>
-                    <a href="necklaces.html">NECKLACES</a>
-                    <a href="bracelets.html">BRACELETS</a>
-                    <a href="pendants.html">PENDANTS</a>
-                    
-                    <hr class="menu-divider">
-                    
-                    <a href="shipping.html">SHIPPING & DELIVERY</a>
-                    
-                    <hr class="menu-divider">
-                    
-                    <a href="about-us.html">ABOUT US</a>
-                </div>
-            </div>
-            <a href="new-product.html" class="nav-link">NEW PRODUCT</a>
-            <a href="about-us.html" class="nav-link">ABOUT US</a>
-        </nav>
-        
-        <a href="index.html" class="logo">Le Trèfle</a>
-        
-        <div class="nav-icons">
-            <a href="shipping.html" class="nav-link-right">SHIPPING & DELIVERY</a>
-            <button class="icon-btn" id="openFormBtn" aria-label="Profile">
-                <svg class="icon-svg" viewBox="0 0 24 24">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="12" cy="7" r="4"></circle>
-                </svg>
-            </button>
-            <a href="cart.html" class="icon-btn" aria-label="Cart">
-                <svg class="icon-svg" viewBox="0 0 24 24">
-                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-                    <line x1="3" y1="6" x2="21" y2="6"></line>
-                    <path d="M16 10a4 4 0 0 1-8 0"></path>
-                </svg>
-            </a>
-        </div>
-    </header>
+    <div id="header-container"></div>
 
     <div class="modal-overlay" id="formModal">
         <div class="form-box">
@@ -781,36 +714,49 @@
     </div>
 
     <script>
+        // Dynamic fetch to integrate header.html
+        fetch('header.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('header-container').innerHTML = html;
+                initHeaderEvents();
+            })
+            .catch(err => console.error('Error loading header:', err));
+
         function toggleLocalMenu(e) {
             e.stopPropagation();
             const menu = document.getElementById('localMenu');
-            menu.classList.toggle('show');
+            if (menu) menu.classList.toggle('show');
         }
 
-        const modal = document.getElementById('formModal');
-        const openBtn = document.getElementById('openFormBtn');
-        const closeBtn = document.getElementById('closeFormBtn');
+        function initHeaderEvents() {
+            const modal = document.getElementById('formModal');
+            const openBtn = document.getElementById('openFormBtn');
+            const closeBtn = document.getElementById('closeFormBtn');
 
-        openBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            modal.style.display = 'flex'; 
-        });
-
-        closeBtn.addEventListener('click', () => { modal.style.display = 'none'; });
-
-        window.onclick = function(event) {
-            const menu = document.getElementById('localMenu');
-            if (!event.target.closest('.hamburger-container')) {
-                menu.classList.remove('show');
+            if (openBtn && modal) {
+                openBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    modal.style.display = 'flex'; 
+                });
             }
-            if (event.target === modal) {
-                modal.style.display = 'none';
+
+            if (closeBtn && modal) {
+                closeBtn.addEventListener('click', () => { modal.style.display = 'none'; });
             }
+
+            window.onclick = function(event) {
+                const menu = document.getElementById('localMenu');
+                if (menu && !event.target.closest('.hamburger-container')) {
+                    menu.classList.remove('show');
+                }
+                if (modal && event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            };
         }
 
-        // ==========================================================================
-        // 🌟 无缝循环(LOOP)无闪烁轮播引擎
-        // ==========================================================================
+        // Carousel Engine
         const track = document.getElementById('carouselTrack');
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
@@ -833,7 +779,7 @@
             slide.style.flex = `0 0 ${100 / (totalRealSlides + 2)}%`;
         });
         
-        track.style.transform = `translateX(-${currentIndex * (100 / (totalRealSlides + 2))}%);`;
+        track.style.transform = `translateX(-${currentIndex * (100 / (totalRealSlides + 2))}%)`;
         
         function moveCarousel(index, hasAnimation = true) {
             if (isTransitioning && hasAnimation) return;
@@ -878,7 +824,6 @@
             });
         });
 
-        // 触屏滑动与拖拽
         let startX = 0;
         let deltaX = 0;
         let isDragging = false;
@@ -926,9 +871,7 @@
 
         setTimeout(() => { moveCarousel(1, false); }, 50);
 
-        // ==========================================================================
-        // 核心数据发送代码
-        // ==========================================================================
+        // Form Submission
         document.getElementById('signupForm').addEventListener('submit', function(e) {
             e.preventDefault(); 
             
@@ -947,7 +890,7 @@
             .then(response => {
                 alert('Success!');
                 document.getElementById('signupForm').reset();
-                modal.style.display = 'none'; 
+                document.getElementById('formModal').style.display = 'none'; 
             })
             .catch(error => {
                 console.error('Error:', error);
