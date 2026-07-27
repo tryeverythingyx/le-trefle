@@ -194,21 +194,25 @@
         /* 内容主体区域 */
         .container {
             width: 100%;
-            padding: 25px 20px; 
+            padding: 0 20px 25px 20px; /* Top padding set to 0 so banner attaches to search header */
             margin: 0 auto;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        /* 横式两端无限轮播容器 (Mobile stays 280px width) */
+        /* 横式两端无限轮播容器 - MOBILE (Full Screen Width) */
         .carousel-wrapper {
-            width: 280px; 
-            height: 125px; 
+            width: 100vw;               /* Full screen width */
             position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;         /* Pull completely to left edge */
+            margin-right: -50vw;        /* Pull completely to right edge */
+            height: 220px;              /* Extended height for a wider look */
             overflow: hidden;
             margin-bottom: 25px; 
-            border-radius: 4px;
+            border-radius: 0;           /* Edge-to-edge flush edges */
             box-shadow: 0 4px 15px rgba(0,0,0,0.04);
         }
 
@@ -397,24 +401,26 @@
             }
 
             .container {
-                max-width: 1200px;
-                padding: 50px 40px;
+                max-width: 100%;        /* Allows container to support full width items */
+                padding: 0 40px 50px 40px;
             }
 
+            /* DESKTOP (Full Screen Width & Tall Hero Look) */
             .carousel-wrapper {
-                width: 990px;  
-                height: 300px; 
+                width: 100vw;           /* Extends to outer screen boundaries */
+                height: 450px;          /* Wider and taller hero display on desktop */
                 margin-bottom: 40px;
+                border-radius: 0;
             }
 
             .carousel-btn {
-                width: 36px;
-                height: 36px;
-                font-size: 16px;
+                width: 42px;
+                height: 42px;
+                font-size: 18px;
             }
             
-            .carousel-btn.prev { left: 15px; }
-            .carousel-btn.next { right: 15px; }
+            .carousel-btn.prev { left: 25px; }
+            .carousel-btn.next { right: 25px; }
 
             .grid-container {
                 flex-direction: row;
