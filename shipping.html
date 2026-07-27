@@ -87,7 +87,7 @@
             top: 100%;
             left: 0;
             background-color: #ffffff;
-            min-width: 200px;
+            min-width: 220px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.08);
             border: 1px solid rgba(0,0,0,0.05);
             padding: 10px 0;
@@ -397,4 +397,132 @@
                 font-size: 26px;
             }
 
-            .shipping-text
+            .shipping-text,
+            .footer-email,
+            .footer-email a {
+                font-size: 17px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav class="nav-left">
+            <a href="index.html" class="nav-link">HOME</a>
+            <a href="new-product.html" class="nav-link">NEW PRODUCT</a>
+            <a href="about.html" class="nav-link">ABOUT US</a>
+        </nav>
+        
+        <a href="index.html" class="logo-wrapper">
+            <span class="logo">Le Trèfle</span>
+            <span class="logo-tagline">finest jewelry</span>
+        </a>
+
+        <div class="nav-right">
+            <div class="nav-item">
+                <a href="shipping.html" class="nav-link">SHIPPING & DELIVERY <span class="dropdown-arrow">▾</span></a>
+                <div class="dropdown-menu">
+                    <a href="#shipping-policy">SHIPPING POLICY</a>
+                    <a href="#local-shipping">LOCAL SHIPPING</a>
+                    <a href="#international-shipping">INTERNATIONAL</a>
+                </div>
+            </div>
+            <a href="cart.html" class="icon-btn" aria-label="Cart">
+                <svg class="icon-svg" viewBox="0 0 24 24">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <path d="M16 10a4 4 0 0 1-8 0"></path>
+                </svg>
+            </a>
+        </div>
+    </header>
+
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="index.html" class="nav-link">HOME</a>
+        <a href="new-product.html" class="nav-link">NEW PRODUCT</a>
+        <a href="about.html" class="nav-link">ABOUT US</a>
+        <a href="#" class="nav-link" id="mobile-shipping-btn">SHIPPING & DELIVERY <span class="dropdown-arrow">▾</span></a>
+        <div class="mobile-sub-menu" id="mobile-shipping-sub">
+            <a href="#shipping-policy">SHIPPING POLICY</a>
+            <a href="#local-shipping">LOCAL SHIPPING</a>
+            <a href="#international-shipping">INTERNATIONAL</a>
+        </div>
+    </div>
+
+    <div class="search-banner">
+        <div class="search-block-wrapper">
+            <input type="text" class="inline-search-input" placeholder="Product Search">
+            <button class="search-icon-btn" aria-label="Search">
+                <svg class="search-icon-svg" viewBox="0 0 24 24">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <main class="shipping-container">
+        <h1 class="page-title">Shipping and Delivery</h1>
+
+        <h2 id="shipping-policy" class="section-title">Shipping Policy</h2>
+        <p class="shipping-text">
+            Hey! We are committed to delivering your order safely and efficiently. Please ensure that your shipping address and contact information are accurate and complete when placing your order <span class="heart-icon">♥</span>
+        </p>
+
+        <h2 id="local-shipping" class="section-title">For Local Customers (Malaysia)</h2>
+        <p class="shipping-text">
+            Shipping fee will be charge for local orders at checkout. Free local shipping is available on orders of <span class="content-bold">RM 100 or more</span>.
+        </p>
+        <p class="shipping-text">
+            Should the delivery fail and your package be returned to us, you would receive another email notifying you.
+        </p>
+        <p class="shipping-text text-spacing">
+            Please note that <span class="content-bold">Le Trèfle</span> would not be responsible in the event where a wrong or incomplete address has been provided by the customer.
+        </p>
+
+        <h2 id="international-shipping" class="section-title">For International Customers</h2>
+        <p class="shipping-text">
+            Shipping charges for international orders are calculated at checkout based on the destination.
+        </p>
+        <p class="shipping-text">
+            Any taxes, customs duties, import duties, brokerage fees, or other charges imposed by the destination country are the responsibility of the customer.
+        </p>
+        <p class="shipping-text">
+            Please note that <span class="content-bold">Le Trèfle</span> would not be responsible for any delays or additional charges resulting from customs clearance.
+        </p>
+    </main>
+
+    <footer>
+        <div class="footer-email">
+            Questions about your order? Email <a href="mailto:letrefle.mail@gmail.com">letrefle.mail@gmail.com</a>
+        </div>
+    </footer>
+
+    <script>
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileShippingBtn = document.getElementById('mobile-shipping-btn');
+        const mobileShippingSub = document.getElementById('mobile-shipping-sub');
+
+        if (hamburgerBtn && mobileMenu) {
+            hamburgerBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('active');
+            });
+        }
+
+        if (mobileShippingBtn && mobileShippingSub) {
+            mobileShippingBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                mobileShippingSub.classList.toggle('open');
+            });
+        }
+    </script>
+</body>
+</html>
