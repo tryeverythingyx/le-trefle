@@ -23,190 +23,6 @@
             overflow-x: hidden;
         }
 
-        /* Header Layout */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 95px; 
-            padding: 0 24px;
-            background-color: #ffffff; 
-            position: relative;
-            z-index: 1001;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
-        }
-
-        .hamburger-container {
-            position: relative; 
-        }
-
-        .hamburger {
-            background: none;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            padding: 8px 5px;
-        }
-
-        .hamburger span {
-            display: block;
-            width: 22px;
-            height: 1.5px;
-            background-color: #3C2C19;
-        }
-
-        /* Mobile Dropdown Menu */
-        .local-menu {
-            position: absolute;
-            top: 58px; 
-            left: -24px; 
-            width: 240px; 
-            background-color: rgba(255, 255, 255, 0.98); 
-            backdrop-filter: blur(12px); 
-            -webkit-backdrop-filter: blur(12px);
-            box-shadow: 4px 8px 20px rgba(0,0,0,0.08);
-            border: 1px solid rgba(0, 0, 0, 0.05); 
-            border-radius: 0 0 8px 0;
-            max-height: 0;
-            overflow: hidden;
-            visibility: hidden;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 1002;
-        }
-
-        .local-menu.show {
-            max-height: 450px;
-            visibility: visible;
-        }
-
-        .local-menu-inner {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .local-menu a {
-            font-size: 13px;
-            color: #3C2C19;
-            text-decoration: none;
-            font-weight: 700; 
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .local-menu a:hover {
-            color: #8C4726;
-        }
-
-        .menu-divider {
-            width: 100%;
-            height: 1px;
-            background-color: rgba(60, 44, 25, 0.2);
-            margin: 4px 0;
-        }
-
-        /* Desktop Navigation */
-        .desktop-nav {
-            display: none;
-            align-items: center;
-            gap: 24px;
-        }
-
-        .nav-item-dropdown {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-        }
-
-        .desktop-nav a, .desktop-shipping-link {
-            font-size: 13px; /* Matched to HOME size */
-            color: #3C2C19;
-            text-decoration: none;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            padding: 10px 0;
-            transition: color 0.2s;
-            display: inline-block;
-            line-height: 1;
-        }
-
-        .desktop-nav a:hover, .desktop-shipping-link:hover {
-            color: #8C4726; 
-        }
-
-        .desktop-dropdown {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background-color: #ffffff;
-            min-width: 180px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-            padding: 12px 0;
-            border-radius: 4px;
-            z-index: 1005;
-        }
-
-        .desktop-dropdown a {
-            display: block;
-            padding: 8px 20px;
-            font-size: 12px;
-            color: #3C2C19;
-        }
-
-        .desktop-dropdown a:hover {
-            background-color: #FDF9F2;
-            color: #8C4726;
-        }
-
-        .nav-item-dropdown:hover .desktop-dropdown {
-            display: block;
-        }
-
-        .logo {
-            font-family: 'Fraunces', serif;
-            font-size: 36px; 
-            font-weight: 600; 
-            color: #8C4726; 
-            text-decoration: none;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            letter-spacing: -0.5px;
-        }
-
-        .nav-icons {
-            display: flex;
-            gap: 20px; 
-            align-items: center;
-        }
-
-        .desktop-shipping-link {
-            display: none;
-        }
-
-        .icon-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 4px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .icon-svg {
-            width: 22px;
-            height: 22px;
-            fill: none;
-            stroke: #3C2C19;
-            stroke-width: 1.3;
-        }
-
         /* Search Banner */
         .search-banner {
             width: 100%;
@@ -409,31 +225,6 @@
 
         /* Responsive Styles */
         @media screen and (min-width: 768px) {
-            header {
-                height: 110px;
-                padding: 0 50px;
-            }
-
-            .hamburger-container {
-                display: none;
-            }
-
-            .desktop-nav {
-                display: flex;
-            }
-
-            .desktop-shipping-link {
-                display: inline-block;
-            }
-
-            .logo {
-                font-size: 42px;
-            }
-
-            .nav-icons {
-                gap: 24px;
-            }
-
             .search-banner {
                 padding: 22px 0;
             }
@@ -473,200 +264,11 @@
                 letter-spacing: 2px;
             }
         }
-
-        /* Modal Box Styles */
-        .modal-overlay {
-            display: none; 
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-        }
-
-        .form-box {
-            background: #FDF9F2;
-            padding: 30px;
-            border-radius: 8px;
-            width: 90%;
-            max-width: 380px;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(60, 44, 25, 0.15);
-            border: 1px solid rgba(140, 71, 38, 0.1);
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 15px; right: 20px;
-            font-size: 24px;
-            cursor: pointer;
-            color: #8C4726;
-        }
-
-        .form-box h2 {
-            font-family: 'Fraunces', serif;
-            text-align: center;
-            margin-bottom: 25px;
-            color: #6F371C;
-            font-size: 24px;
-            letter-spacing: 0.5px;
-        }
-
-        .input-group {
-            margin-bottom: 18px;
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 6px;
-            font-size: 13px;
-            font-weight: 700;
-            color: #3C2C19;
-            letter-spacing: 0.5px;
-        }
-
-        .input-group input, .input-group select {
-            width: 100%;
-            padding: 10px 12px;
-            box-sizing: border-box;
-            border: 1px solid rgba(60, 44, 25, 0.2);
-            border-radius: 4px;
-            background-color: #ffffff;
-            color: #3C2C19;
-            font-size: 14px;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        .input-group input:focus, .input-group select:focus {
-            border-color: #8C4726;
-        }
-
-        .phone-container {
-            display: flex;
-            gap: 10px;
-        }
-
-        .phone-container select {
-            width: 110px;
-            flex-shrink: 0;
-        }
-
-        button[type="submit"] {
-            width: 100%;
-            padding: 12px;
-            background: #8C4726;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            transition: background 0.2s;
-            margin-top: 5px;
-        }
-
-        button[type="submit"]:hover {
-            background: #6F371C;
-        }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="hamburger-container">
-            <button class="hamburger" onclick="toggleLocalMenu(event)" aria-label="Toggle Menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <div class="local-menu" id="localMenu">
-                <div class="local-menu-inner">
-                    <a href="index.html">HOME</a>
-                    <a href="new-product.html">New Product</a>
-                    <a href="customize.html">Customize</a>
-                    <a href="necklaces.html">Necklace</a>
-                    <a href="bracelets.html">Bracelet</a>
-                    <a href="pendants.html">Pendant</a>
-                    <a href="about.html">About Us</a>
-                    <div class="menu-divider"></div>
-                    <a href="shipping.html">Shipping & Delivery</a>
-                </div>
-            </div>
-        </div>
-
-        <nav class="desktop-nav">
-            <div class="nav-item-dropdown">
-                <a href="index.html">HOME ▾</a>
-                <div class="desktop-dropdown">
-                    <a href="customize.html">Customize</a>
-                    <a href="necklaces.html">Necklace</a>
-                    <a href="bracelets.html">Bracelet</a>
-                    <a href="pendants.html">Pendant</a>
-                </div>
-            </div>
-            <a href="new-product.html">NEW PRODUCT</a>
-            <a href="about.html">ABOUT US</a>
-        </nav>
-        
-        <a href="index.html" class="logo">Le Trèfle</a>
-        
-        <div class="nav-icons">
-            <a href="shipping.html" class="desktop-shipping-link">Shipping & Delivery</a>
-            <button class="icon-btn" id="openFormBtn" aria-label="Profile">
-                <svg class="icon-svg" viewBox="0 0 24 24">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="12" cy="7" r="4"></circle>
-                </svg>
-            </button>
-            <a href="cart.html" class="icon-btn" aria-label="Cart">
-                <svg class="icon-svg" viewBox="0 0 24 24">
-                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-                    <line x1="3" y1="6" x2="21" y2="6"></line>
-                    <path d="M16 10a4 4 0 0 1-8 0"></path>
-                </svg>
-            </a>
-        </div>
-    </header>
-
-    <div class="modal-overlay" id="formModal">
-        <div class="form-box">
-            <span class="close-btn" id="closeFormBtn">&times;</span>
-            <h2>Sign Up / Sign In</h2>
-            <form id="signupForm">
-                <div class="input-group">
-                    <label>Name</label>
-                    <input type="text" id="username" placeholder="Your Name" required>
-                </div>
-                <div class="input-group">
-                    <label>Email</label>
-                    <input type="email" id="useremail" placeholder="Your Email" required>
-                </div>
-                
-                <div class="input-group">
-                    <label>Phone Number</label>
-                    <div class="phone-container">
-                        <select id="countrycode" required>
-                            <option value="+60" selected>+60 (MY)</option>
-                            <option value="+65">+65 (SG)</option>
-                            <option value="+1">+1 (US)</option>
-                            <option value="+44">+44 (UK)</option>
-                            <option value="+86">+86 (CN)</option>
-                            <option value="+852">+852 (HK)</option>
-                        </select>
-                        <input type="tel" id="userphone" placeholder="Phone Number" required>
-                    </div>
-                </div>
-                <button type="submit">Submit</button>
-            </form>
-        </div>
-    </div>
+    <div id="header-container"></div>
 
     <div class="search-banner">
         <div class="search-block-wrapper">
@@ -726,34 +328,75 @@
     </div>
 
     <script>
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-container').innerHTML = data;
+
+                // Bind modal events after header loads
+                const modal = document.getElementById('formModal');
+                const openBtn = document.getElementById('openFormBtn');
+                const closeBtn = document.getElementById('closeFormBtn');
+
+                if (openBtn && modal && closeBtn) {
+                    openBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        modal.style.display = 'flex'; 
+                    });
+
+                    closeBtn.addEventListener('click', () => { modal.style.display = 'none'; });
+
+                    window.onclick = function(event) {
+                        const menu = document.getElementById('localMenu');
+                        if (menu && !event.target.closest('.hamburger-container')) {
+                            menu.classList.remove('show');
+                        }
+                        if (event.target === modal) {
+                            modal.style.display = 'none';
+                        }
+                    };
+                }
+
+                // Bind form submit event
+                const signupForm = document.getElementById('signupForm');
+                if (signupForm) {
+                    signupForm.addEventListener('submit', function(e) {
+                        e.preventDefault(); 
+                        
+                        const scriptUrl = "https://script.google.com/macros/s/AKfycbxyWVIHab_fdDACv2OOhOQPiihjPISijmxwZ0Huj9r8ORASq6rS-Z4JbXDtpo2qhIg8/exec"; 
+                        
+                        const name = document.getElementById('username').value;
+                        const email = document.getElementById('useremail').value;
+                        
+                        const countryCode = document.getElementById('countrycode').value;
+                        const rawPhone = document.getElementById('userphone').value;
+                        const fullPhone = `${countryCode} ${rawPhone}`; 
+
+                        const finalUrl = `${scriptUrl}?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&phone=${encodeURIComponent(fullPhone)}`;
+
+                        fetch(finalUrl, { method: 'POST' })
+                        .then(response => {
+                            alert('Success!');
+                            signupForm.reset();
+                            modal.style.display = 'none'; 
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            alert('Failed, please try again.');
+                        });
+                    });
+                }
+            })
+            .catch(error => console.error('Error loading header:', error));
+
         function toggleLocalMenu(e) {
             e.stopPropagation();
             const menu = document.getElementById('localMenu');
-            menu.classList.toggle('show');
+            if (menu) menu.classList.toggle('show');
         }
+    </script>
 
-        const modal = document.getElementById('formModal');
-        const openBtn = document.getElementById('openFormBtn');
-        const closeBtn = document.getElementById('closeFormBtn');
-
-        openBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            modal.style.display = 'flex'; 
-        });
-
-        closeBtn.addEventListener('click', () => { modal.style.display = 'none'; });
-
-        window.onclick = function(event) {
-            const menu = document.getElementById('localMenu');
-            if (!event.target.closest('.hamburger-container')) {
-                menu.classList.remove('show');
-            }
-            if (event.target === modal) {
-                modal.style.display = 'none';
-            }
-        }
-
-        // Carousel Engine
+    <script>
         const track = document.getElementById('carouselTrack');
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
@@ -867,33 +510,6 @@
         window.addEventListener('mouseup', handleDragEnd);
 
         setTimeout(() => { moveCarousel(1, false); }, 50);
-
-        // Form Submit Listener
-        document.getElementById('signupForm').addEventListener('submit', function(e) {
-            e.preventDefault(); 
-            
-            const scriptUrl = "https://script.google.com/macros/s/AKfycbxyWVIHab_fdDACv2OOhOQPiihjPISijmxwZ0Huj9r8ORASq6rS-Z4JbXDtpo2qhIg8/exec"; 
-            
-            const name = document.getElementById('username').value;
-            const email = document.getElementById('useremail').value;
-            
-            const countryCode = document.getElementById('countrycode').value;
-            const rawPhone = document.getElementById('userphone').value;
-            const fullPhone = `${countryCode} ${rawPhone}`; 
-
-            const finalUrl = `${scriptUrl}?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&phone=${encodeURIComponent(fullPhone)}`;
-
-            fetch(finalUrl, { method: 'POST' })
-            .then(response => {
-                alert('Success!');
-                document.getElementById('signupForm').reset();
-                modal.style.display = 'none'; 
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Failed, please try again.');
-            });
-        });
     </script>
 </body>
 </html>
