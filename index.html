@@ -39,6 +39,17 @@
             position: relative;
             z-index: 1001;
             box-shadow: 0 2px 10px rgba(0,0,0,0.01);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        /* Triangle beside HOME */
+        .arrow-down {
+            font-size: 8px;
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 4px;
+            color: #3C2C19;
+            transition: transform 0.2s ease;
         }
 
         .hamburger-container {
@@ -52,7 +63,7 @@
             display: flex;
             flex-direction: column;
             gap: 5px;
-            padding: 8px 5px;
+            padding: 8px 0;
         }
 
         .hamburger span {
@@ -62,17 +73,15 @@
             background-color: #3C2C19;
         }
 
-        /* 下拉菜单 */
+        /* White Dropdown aligned to far left */
         .local-menu {
             position: absolute;
             top: 53px; 
             left: -16px; 
-            width: 50vw; 
-            background-color: rgba(255, 255, 255, 0.2); 
-            backdrop-filter: blur(12px); 
-            -webkit-backdrop-filter: blur(12px);
-            box-shadow: 4px 8px 20px rgba(0,0,0,0.03);
-            border: 1px solid rgba(255, 255, 255, 0.15); 
+            width: 250px; 
+            background-color: #ffffff; 
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.06); 
             border-left: none;
             border-radius: 0 0 4px 0;
             max-height: 0;
@@ -83,7 +92,7 @@
         }
 
         .local-menu.show {
-            max-height: 300px;
+            max-height: 550px;
             visibility: visible;
         }
 
@@ -91,21 +100,35 @@
             padding: 20px;
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 14px;
         }
 
-        .local-menu a {
-            font-size: 14px;
-            color: #3C2C19;
-            text-decoration: none;
+        /* Shared Dropdown Item Styling */
+        .local-menu a,
+        .dropdown-menu a { 
+            font-size: 13px; 
+            color: #3C2C19; 
+            text-decoration: none; 
             font-weight: 700; 
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
+            text-transform: uppercase; 
+            display: block;
+            text-align: left; 
+            transition: color 0.2s ease;
         }
 
-        .local-menu .sub-link {
-            padding-left: 12px;
-            font-weight: 400;
-            font-size: 13px;
+        .local-menu a:hover,
+        .dropdown-menu a:hover { 
+            color: #8C4726; 
+        }
+
+        /* Full Divider Lines */
+        .menu-divider {
+            border: none;
+            height: 1px;
+            background-color: rgba(60, 44, 25, 0.15); 
+            width: 100%;
+            margin: 2px 0;
         }
 
         .desktop-nav {
@@ -204,21 +227,21 @@
         /* 内容主体区域 */
         .container {
             width: 100%;
-            padding: 0; /* Clear horizontal padding so carousel touches full ends */
+            padding: 0;
             margin: 0 auto;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        /* 横式两端无限轮播容器 - FULL EDGE TO EDGE LEFT/RIGHT */
+        /* 横式两端无限轮播容器 */
         .carousel-wrapper {
-            width: 100%;               /* Spans edge-to-edge horizontally */
+            width: 100%;
             position: relative;
             height: 220px;
             overflow: hidden;
             margin-bottom: 25px; 
-            border-radius: 0;          /* Flush sharp corners at screen edges */
+            border-radius: 0;
             box-shadow: 0 4px 15px rgba(0,0,0,0.04);
         }
 
@@ -310,7 +333,7 @@
             gap: 20px; 
             align-items: center;
             width: 100%;
-            padding: 0 20px 25px 20px; /* Restores inner margin for grid items below */
+            padding: 0 20px 25px 20px;
         }
 
         /* 手机端 280x135 比例格子 */
@@ -371,9 +394,10 @@
                 display: flex;
                 align-items: center;
                 gap: 30px;
+                height: 100%;
             }
 
-            .desktop-nav a,
+            .desktop-nav .nav-link,
             .nav-link-right {
                 font-size: 13px;
                 color: #3C2C19;
@@ -384,7 +408,7 @@
                 transition: color 0.2s;
             }
 
-            .desktop-nav a:hover,
+            .desktop-nav .nav-link:hover,
             .nav-link-right:hover {
                 color: #8C4726; 
             }
@@ -400,36 +424,25 @@
             .dropdown-menu {
                 display: none;
                 position: absolute;
-                top: 100%;
+                top: 80px;
                 left: 0;
                 background-color: #ffffff;
-                min-width: 180px;
-                box-shadow: 0 8px 16px rgba(0,0,0,0.08);
-                padding: 10px 0;
+                width: 240px;
+                box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+                padding: 20px;
                 z-index: 1005;
-                border: 1px solid rgba(0, 0, 0, 0.05);
+                border: 1px solid rgba(0, 0, 0, 0.06);
                 border-radius: 4px;
+                flex-direction: column;
+                gap: 14px;
             }
 
             .nav-dropdown:hover .dropdown-menu {
-                display: block;
+                display: flex;
             }
 
-            .dropdown-menu a {
-                color: #3C2C19;
-                padding: 10px 20px;
-                text-decoration: none;
-                display: block;
-                font-size: 12px;
-                font-weight: 700;
-                letter-spacing: 1px;
-                text-transform: uppercase;
-                transition: background 0.2s, color 0.2s;
-            }
-
-            .dropdown-menu a:hover {
-                background-color: #FDF9F2;
-                color: #8C4726;
+            .nav-dropdown:hover .arrow-down {
+                transform: rotate(180deg);
             }
 
             .logo {
@@ -442,7 +455,7 @@
 
             .nav-link-right {
                 display: inline-block;
-                margin-right: 4px;
+                margin-right: 8px;
             }
 
             .search-banner {
@@ -465,7 +478,7 @@
             /* FULL WIDTH DESKTOP CAROUSEL */
             .carousel-wrapper {
                 width: 100%;
-                height: 480px;          /* Extended height for wide screen prominence */
+                height: 480px; 
                 margin-bottom: 40px;
                 border-radius: 0;
             }
@@ -616,30 +629,44 @@
             </button>
             <div class="local-menu" id="localMenu">
                 <div class="local-menu-inner">
-                    <a href="index.html">HOME</a>
-                    <a href="customize.html" class="sub-link">- Customize</a>
-                    <a href="necklaces.html" class="sub-link">- Necklaces</a>
-                    <a href="bracelets.html" class="sub-link">- Bracelets</a>
-                    <a href="pendants.html" class="sub-link">- Pendants</a>
-                    <a href="new-product.html">New Product</a>
-                    <a href="shipping.html">Shipping & Delivery</a>
-                    <a href="about-us.html">About Us</a>
+                    <a href="new-product.html">NEW PRODUCT</a>
+                    <a href="customize.html">CUSTOMIZE</a>
+                    <a href="necklaces.html">NECKLACES</a>
+                    <a href="bracelets.html">BRACELETS</a>
+                    <a href="pendants.html">PENDANTS</a>
+                    
+                    <hr class="menu-divider">
+                    
+                    <a href="shipping.html">SHIPPING & DELIVERY</a>
+                    
+                    <hr class="menu-divider">
+                    
+                    <a href="about-us.html">ABOUT US</a>
                 </div>
             </div>
         </div>
 
         <nav class="desktop-nav">
             <div class="nav-dropdown">
-                <a href="index.html">HOME</a>
+                <a href="index.html" class="nav-link">HOME <span class="arrow-down">▼</span></a>
                 <div class="dropdown-menu">
-                    <a href="customize.html">Customize</a>
-                    <a href="necklaces.html">Necklaces</a>
-                    <a href="bracelets.html">Bracelets</a>
-                    <a href="pendants.html">Pendants</a>
+                    <a href="new-product.html">NEW PRODUCT</a>
+                    <a href="customize.html">CUSTOMIZE</a>
+                    <a href="necklaces.html">NECKLACES</a>
+                    <a href="bracelets.html">BRACELETS</a>
+                    <a href="pendants.html">PENDANTS</a>
+                    
+                    <hr class="menu-divider">
+                    
+                    <a href="shipping.html">SHIPPING & DELIVERY</a>
+                    
+                    <hr class="menu-divider">
+                    
+                    <a href="about-us.html">ABOUT US</a>
                 </div>
             </div>
-            <a href="new-product.html">NEW PRODUCT</a>
-            <a href="about-us.html">ABOUT US</a>
+            <a href="new-product.html" class="nav-link">NEW PRODUCT</a>
+            <a href="about-us.html" class="nav-link">ABOUT US</a>
         </nav>
         
         <a href="index.html" class="logo">Le Trèfle</a>
