@@ -1,899 +1,517 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Le Trèfle</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Lato:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background-color: #FDF9F2; 
-            color: #3C2C19;
-            -webkit-font-smoothing: antialiased;
-            font-family: 'Lato', sans-serif;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        /* Header Layout */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 95px; 
-            padding: 0 24px;
-            background-color: #ffffff; 
-            position: relative;
-            z-index: 1001;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
-        }
-
-        .hamburger-container {
-            position: relative; 
-        }
-
-        .hamburger {
-            background: none;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            padding: 8px 5px;
-        }
-
-        .hamburger span {
-            display: block;
-            width: 22px;
-            height: 1.5px;
-            background-color: #3C2C19;
-        }
-
-        /* Mobile Dropdown Menu */
-        .local-menu {
-            position: absolute;
-            top: 58px; 
-            left: -24px; 
-            width: 240px; 
-            background-color: rgba(255, 255, 255, 0.98); 
-            backdrop-filter: blur(12px); 
-            -webkit-backdrop-filter: blur(12px);
-            box-shadow: 4px 8px 20px rgba(0,0,0,0.08);
-            border: 1px solid rgba(0, 0, 0, 0.05); 
-            border-radius: 0 0 8px 0;
-            max-height: 0;
-            overflow: hidden;
-            visibility: hidden;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 1002;
-        }
-
-        .local-menu.show {
-            max-height: 450px;
-            visibility: visible;
-        }
-
-        .local-menu-inner {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .local-menu a {
-            font-size: 13px;
-            color: #3C2C19;
-            text-decoration: none;
-            font-weight: 700; 
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .local-menu a:hover {
-            color: #8C4726;
-        }
-
-        .menu-divider {
-            width: 100%;
-            height: 1px;
-            background-color: rgba(60, 44, 25, 0.2);
-            margin: 4px 0;
-        }
-
-        /* Desktop Navigation */
-        .desktop-nav {
-            display: none;
-            align-items: center;
-            gap: 24px;
-        }
-
-        .nav-item-dropdown {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-        }
-
-        .desktop-nav a, .desktop-shipping-link {
-            font-size: 13px; /* Matched to HOME size */
-            color: #3C2C19;
-            text-decoration: none;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            padding: 10px 0;
-            transition: color 0.2s;
-            display: inline-block;
-            line-height: 1;
-        }
-
-        .desktop-nav a:hover, .desktop-shipping-link:hover {
-            color: #8C4726; 
-        }
-
-        .desktop-dropdown {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background-color: #ffffff;
-            min-width: 180px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-            padding: 12px 0;
-            border-radius: 4px;
-            z-index: 1005;
-        }
-
-        .desktop-dropdown a {
-            display: block;
-            padding: 8px 20px;
-            font-size: 12px;
-            color: #3C2C19;
-        }
-
-        .desktop-dropdown a:hover {
-            background-color: #FDF9F2;
-            color: #8C4726;
-        }
-
-        .nav-item-dropdown:hover .desktop-dropdown {
-            display: block;
-        }
-
-        .logo {
-            font-family: 'Fraunces', serif;
-            font-size: 36px; 
-            font-weight: 600; 
-            color: #8C4726; 
-            text-decoration: none;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            letter-spacing: -0.5px;
-        }
-
-        .nav-icons {
-            display: flex;
-            gap: 20px; 
-            align-items: center;
-        }
-
-        .desktop-shipping-link {
-            display: none;
-        }
-
-        .icon-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 4px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .icon-svg {
-            width: 22px;
-            height: 22px;
-            fill: none;
-            stroke: #3C2C19;
-            stroke-width: 1.3;
-        }
-
-        /* Search Banner */
-        .search-banner {
-            width: 100%;
-            background-color: #ffffff; 
-            padding: 18px 0;
-            display: flex;
-            justify-content: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
-        }
-
-        .search-block-wrapper {
-            width: 90%; 
-            max-width: 1050px;
-        }
-
-        .inline-search-container {
-            position: relative;
-            width: 100%;
-            display: flex;
-            align-items: center;
-        }
-
-        .inline-search-input {
-            width: 100%;
-            height: 40px; 
-            padding: 0 35px 0 0; 
-            border: none;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.12); 
-            font-size: 15px;
-            outline: none;
-            background-color: transparent; 
-            color: #3C2C19;
-        }
-
-        .inline-search-input::placeholder {
-            color: #b0a496;
-        }
-
-        .search-inside-icon {
-            position: absolute;
-            right: 2px;
-            width: 20px;
-            height: 20px;
-            stroke: #3C2C19;
-            stroke-width: 1.2;
-            fill: none;
-        }
-
-        /* Banner Carousel */
-        .carousel-wrapper {
-            width: 100vw; 
-            height: 150px; 
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 25px; 
-            margin-left: calc(-50vw + 50%);
-        }
-
-        .carousel-track {
-            display: flex;
-            height: 100%;
-            width: 100%;
-            cursor: grab;
-        }
-
-        .carousel-track:active {
-            cursor: grabbing;
-        }
-
-        .carousel-slide {
-            flex: 0 0 100%;
-            width: 100%;
-            height: 100%;
-        }
-
-        .carousel-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .carousel-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-            border: none;
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-            color: #3C2C19;
-            font-weight: bold;
-            font-size: 12px;
-            transition: background 0.2s;
-            user-select: none;
-            -webkit-user-select: none;
-        }
-
-        .carousel-btn:hover {
-            background: rgba(255, 255, 255, 0.95);
-        }
-
-        .carousel-btn.prev { left: 12px; }
-        .carousel-btn.next { right: 12px; }
-
-        .carousel-dots {
-            position: absolute;
-            bottom: 8px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 6px;
-            z-index: 10;
-        }
-
-        .carousel-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            cursor: pointer;
-            transition: background 0.2s, transform 0.2s;
-        }
-
-        .carousel-dot.active {
-            background: #ffffff;
-            transform: scale(1.3);
-        }
-
-        /* Container */
-        .container {
-            width: 100%;
-            padding: 0 0 35px 0; 
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        /* Category Grid */
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(2, 160px);
-            gap: 18px; 
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            max-width: 990px;
-            padding: 0 15px;
-        }
-
-        .grid-item {
-            display: flex;
-            flex-direction: column;
-            text-decoration: none;
-            position: relative;
-            width: 160px; 
-            height: 160px; 
-            overflow: hidden;
-            border-radius: 6px;
-        }
-
-        .grid-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .grid-item::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.25); 
-            pointer-events: none;
-        }
-
-        .grid-item span {
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            color: #ffffff; 
-            font-size: 13px; 
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            z-index: 2;
-            text-align: center;
-            width: 90%;
-        }
-
-        /* Responsive Styles */
-        @media screen and (min-width: 768px) {
-            header {
-                height: 110px;
-                padding: 0 50px;
-            }
-
-            .hamburger-container {
-                display: none;
-            }
-
-            .desktop-nav {
-                display: flex;
-            }
-
-            .desktop-shipping-link {
-                display: inline-block;
-            }
-
-            .logo {
-                font-size: 42px;
-            }
-
-            .nav-icons {
-                gap: 24px;
-            }
-
-            .search-banner {
-                padding: 22px 0;
-            }
-
-            .inline-search-input {
-                font-size: 16px;
-                height: 44px;
-            }
-
-            .carousel-wrapper {
-                height: 280px; 
-                margin-bottom: 40px;
-            }
-
-            .carousel-btn {
-                width: 36px;
-                height: 36px;
-                font-size: 16px;
-            }
-            
-            .carousel-btn.prev { left: 25px; }
-            .carousel-btn.next { right: 25px; }
-
-            .grid-container {
-                grid-template-columns: repeat(4, 220px);
-                gap: 24px; 
-                padding: 0;
-            }
-
-            .grid-item {
-                width: 220px; 
-                height: 220px;
-            }
-
-            .grid-item span {
-                font-size: 15px; 
-                letter-spacing: 2px;
-            }
-        }
-
-        /* Modal Box Styles */
-        .modal-overlay {
-            display: none; 
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-        }
-
-        .form-box {
-            background: #FDF9F2;
-            padding: 30px;
-            border-radius: 8px;
-            width: 90%;
-            max-width: 380px;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(60, 44, 25, 0.15);
-            border: 1px solid rgba(140, 71, 38, 0.1);
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 15px; right: 20px;
-            font-size: 24px;
-            cursor: pointer;
-            color: #8C4726;
-        }
-
-        .form-box h2 {
-            font-family: 'Fraunces', serif;
-            text-align: center;
-            margin-bottom: 25px;
-            color: #6F371C;
-            font-size: 24px;
-            letter-spacing: 0.5px;
-        }
-
-        .input-group {
-            margin-bottom: 18px;
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 6px;
-            font-size: 13px;
-            font-weight: 700;
-            color: #3C2C19;
-            letter-spacing: 0.5px;
-        }
-
-        .input-group input, .input-group select {
-            width: 100%;
-            padding: 10px 12px;
-            box-sizing: border-box;
-            border: 1px solid rgba(60, 44, 25, 0.2);
-            border-radius: 4px;
-            background-color: #ffffff;
-            color: #3C2C19;
-            font-size: 14px;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        .input-group input:focus, .input-group select:focus {
-            border-color: #8C4726;
-        }
-
-        .phone-container {
-            display: flex;
-            gap: 10px;
-        }
-
-        .phone-container select {
-            width: 110px;
-            flex-shrink: 0;
-        }
-
-        button[type="submit"] {
-            width: 100%;
-            padding: 12px;
-            background: #8C4726;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            transition: background 0.2s;
-            margin-top: 5px;
-        }
-
-        button[type="submit"]:hover {
-            background: #6F371C;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Le Trèfle</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #FDF9F2; 
+            color: #3C2C19;
+            -webkit-font-smoothing: antialiased;
+            font-family: 'Lato', sans-serif;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Search Banner */
+        .search-banner {
+            width: 100%;
+            background-color: #ffffff; 
+            padding: 18px 0;
+            display: flex;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .search-block-wrapper {
+            width: 90%; 
+            max-width: 1050px;
+        }
+
+        .inline-search-container {
+            position: relative;
+            width: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .inline-search-input {
+            width: 100%;
+            height: 40px; 
+            padding: 0 35px 0 0; 
+            border: none;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.12); 
+            font-size: 15px;
+            outline: none;
+            background-color: transparent; 
+            color: #3C2C19;
+        }
+
+        .inline-search-input::placeholder {
+            color: #b0a496;
+        }
+
+        .search-inside-icon {
+            position: absolute;
+            right: 2px;
+            width: 20px;
+            height: 20px;
+            stroke: #3C2C19;
+            stroke-width: 1.2;
+            fill: none;
+        }
+
+        /* Banner Carousel */
+        .carousel-wrapper {
+            width: 100vw; 
+            height: 150px; 
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 25px; 
+            margin-left: calc(-50vw + 50%);
+        }
+
+        .carousel-track {
+            display: flex;
+            height: 100%;
+            width: 100%;
+            cursor: grab;
+        }
+
+        .carousel-track:active {
+            cursor: grabbing;
+        }
+
+        .carousel-slide {
+            flex: 0 0 100%;
+            width: 100%;
+            height: 100%;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            color: #3C2C19;
+            font-weight: bold;
+            font-size: 12px;
+            transition: background 0.2s;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .carousel-btn:hover {
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .carousel-btn.prev { left: 12px; }
+        .carousel-btn.next { right: 12px; }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 6px;
+            z-index: 10;
+        }
+
+        .carousel-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .carousel-dot.active {
+            background: #ffffff;
+            transform: scale(1.3);
+        }
+
+        /* Container */
+        .container {
+            width: 100%;
+            padding: 0 0 35px 0; 
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Category Grid */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 160px);
+            gap: 18px; 
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-width: 990px;
+            padding: 0 15px;
+        }
+
+        .grid-item {
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            position: relative;
+            width: 160px; 
+            height: 160px; 
+            overflow: hidden;
+            border-radius: 6px;
+        }
+
+        .grid-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .grid-item::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.25); 
+            pointer-events: none;
+        }
+
+        .grid-item span {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            color: #ffffff; 
+            font-size: 13px; 
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            z-index: 2;
+            text-align: center;
+            width: 90%;
+        }
+
+        /* Responsive Styles */
+        @media screen and (min-width: 768px) {
+            .search-banner {
+                padding: 22px 0;
+            }
+
+            .inline-search-input {
+                font-size: 16px;
+                height: 44px;
+            }
+
+            .carousel-wrapper {
+                height: 280px; 
+                margin-bottom: 40px;
+            }
+
+            .carousel-btn {
+                width: 36px;
+                height: 36px;
+                font-size: 16px;
+            }
+            
+            .carousel-btn.prev { left: 25px; }
+            .carousel-btn.next { right: 25px; }
+
+            .grid-container {
+                grid-template-columns: repeat(4, 220px);
+                gap: 24px; 
+                padding: 0;
+            }
+
+            .grid-item {
+                width: 220px; 
+                height: 220px;
+            }
+
+            .grid-item span {
+                font-size: 15px; 
+                letter-spacing: 2px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-    <header>
-        <div class="hamburger-container">
-            <button class="hamburger" onclick="toggleLocalMenu(event)" aria-label="Toggle Menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <div class="local-menu" id="localMenu">
-                <div class="local-menu-inner">
-                    <a href="index.html">HOME</a>
-                    <a href="new-product.html">New Product</a>
-                    <a href="customize.html">Customize</a>
-                    <a href="necklaces.html">Necklace</a>
-                    <a href="bracelets.html">Bracelet</a>
-                    <a href="pendants.html">Pendant</a>
-                    <a href="about.html">About Us</a>
-                    <div class="menu-divider"></div>
-                    <a href="shipping.html">Shipping & Delivery</a>
-                </div>
-            </div>
-        </div>
+    <div id="header-container"></div>
 
-        <nav class="desktop-nav">
-            <div class="nav-item-dropdown">
-                <a href="index.html">HOME ▾</a>
-                <div class="desktop-dropdown">
-                    <a href="customize.html">Customize</a>
-                    <a href="necklaces.html">Necklace</a>
-                    <a href="bracelets.html">Bracelet</a>
-                    <a href="pendants.html">Pendant</a>
-                </div>
-            </div>
-            <a href="new-product.html">NEW PRODUCT</a>
-            <a href="about.html">ABOUT US</a>
-        </nav>
-        
-        <a href="index.html" class="logo">Le Trèfle</a>
-        
-        <div class="nav-icons">
-            <a href="shipping.html" class="desktop-shipping-link">Shipping & Delivery</a>
-            <button class="icon-btn" id="openFormBtn" aria-label="Profile">
-                <svg class="icon-svg" viewBox="0 0 24 24">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="12" cy="7" r="4"></circle>
-                </svg>
-            </button>
-            <a href="cart.html" class="icon-btn" aria-label="Cart">
-                <svg class="icon-svg" viewBox="0 0 24 24">
-                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-                    <line x1="3" y1="6" x2="21" y2="6"></line>
-                    <path d="M16 10a4 4 0 0 1-8 0"></path>
-                </svg>
-            </a>
-        </div>
-    </header>
+    <div class="search-banner">
+        <div class="search-block-wrapper">
+            <div class="inline-search-container">
+                <input type="text" class="inline-search-input" placeholder="Product Search">
+                <svg class="search-inside-icon" viewBox="0 0 24 24">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </div>
+        </div>
+    </div>
 
-    <div class="modal-overlay" id="formModal">
-        <div class="form-box">
-            <span class="close-btn" id="closeFormBtn">&times;</span>
-            <h2>Sign Up / Sign In</h2>
-            <form id="signupForm">
-                <div class="input-group">
-                    <label>Name</label>
-                    <input type="text" id="username" placeholder="Your Name" required>
-                </div>
-                <div class="input-group">
-                    <label>Email</label>
-                    <input type="email" id="useremail" placeholder="Your Email" required>
-                </div>
-                
-                <div class="input-group">
-                    <label>Phone Number</label>
-                    <div class="phone-container">
-                        <select id="countrycode" required>
-                            <option value="+60" selected>+60 (MY)</option>
-                            <option value="+65">+65 (SG)</option>
-                            <option value="+1">+1 (US)</option>
-                            <option value="+44">+44 (UK)</option>
-                            <option value="+86">+86 (CN)</option>
-                            <option value="+852">+852 (HK)</option>
-                        </select>
-                        <input type="tel" id="userphone" placeholder="Phone Number" required>
-                    </div>
-                </div>
-                <button type="submit">Submit</button>
-            </form>
-        </div>
-    </div>
+    <div class="container">
+        
+        <div class="carousel-wrapper">
+            <button class="carousel-btn prev" id="prevBtn" aria-label="Previous Slide">&#10094;</button>
+            <button class="carousel-btn next" id="nextBtn" aria-label="Next Slide">&#10095;</button>
+            
+            <div class="carousel-track" id="carouselTrack">
+                <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=1200&auto=format&fit=crop" alt="Banner 1">
+                </div>
+                <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=1200&auto=format&fit=crop" alt="Banner 2">
+                </div>
+                <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?q=80&w=1200&auto=format&fit=crop" alt="Banner 3">
+                </div>
+            </div>
+            
+            <div class="carousel-dots" id="carouselDots">
+                <div class="carousel-dot active" data-index="0"></div>
+                <div class="carousel-dot" data-index="1"></div>
+                <div class="carousel-dot" data-index="2"></div>
+            </div>
+        </div>
 
-    <div class="search-banner">
-        <div class="search-block-wrapper">
-            <div class="inline-search-container">
-                <input type="text" class="inline-search-input" placeholder="Product Search">
-                <svg class="search-inside-icon" viewBox="0 0 24 24">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                </svg>
-            </div>
-        </div>
-    </div>
+        <div class="grid-container">
+            <a href="customize.html" class="grid-item">
+                <img src="https://images.unsplash.com/photo-1541123437800-1bb1317badc2?q=80&w=600&auto=format&fit=crop" alt="Customize">
+                <span>CUSTOMIZE &gt;</span>
+            </a>
+            <a href="necklaces.html" class="grid-item">
+                <img src="https://images.unsplash.com/photo-1541123437800-1bb1317badc2?q=80&w=600&auto=format&fit=crop" alt="Necklaces">
+                <span>NECKLACE &gt;</span>
+            </a>
+            <a href="bracelets.html" class="grid-item">
+                <img src="https://images.unsplash.com/photo-1541123437800-1bb1317badc2?q=80&w=600&auto=format&fit=crop" alt="Bracelets">
+                <span>BRACELET &gt;</span>
+            </a>
+            <a href="pendants.html" class="grid-item">
+                <img src="https://images.unsplash.com/photo-1541123437800-1bb1317badc2?q=80&w=600&auto=format&fit=crop" alt="Pendants">
+                <span>PENDANT &gt;</span>
+            </a>
+        </div>
+    </div>
 
-    <div class="container">
-        
-        <div class="carousel-wrapper">
-            <button class="carousel-btn prev" id="prevBtn" aria-label="Previous Slide">&#10094;</button>
-            <button class="carousel-btn next" id="nextBtn" aria-label="Next Slide">&#10095;</button>
-            
-            <div class="carousel-track" id="carouselTrack">
-                <div class="carousel-slide">
-                    <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=1200&auto=format&fit=crop" alt="Banner 1">
-                </div>
-                <div class="carousel-slide">
-                    <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=1200&auto=format&fit=crop" alt="Banner 2">
-                </div>
-                <div class="carousel-slide">
-                    <img src="https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?q=80&w=1200&auto=format&fit=crop" alt="Banner 3">
-                </div>
-            </div>
-            
-            <div class="carousel-dots" id="carouselDots">
-                <div class="carousel-dot active" data-index="0"></div>
-                <div class="carousel-dot" data-index="1"></div>
-                <div class="carousel-dot" data-index="2"></div>
-            </div>
-        </div>
+    <script>
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-container').innerHTML = data;
 
-        <div class="grid-container">
-            <a href="customize.html" class="grid-item">
-                <img src="https://images.unsplash.com/photo-1541123437800-1bb1317badc2?q=80&w=600&auto=format&fit=crop" alt="Customize">
-                <span>CUSTOMIZE &gt;</span>
-            </a>
-            <a href="necklaces.html" class="grid-item">
-                <img src="https://images.unsplash.com/photo-1541123437800-1bb1317badc2?q=80&w=600&auto=format&fit=crop" alt="Necklaces">
-                <span>NECKLACE &gt;</span>
-            </a>
-            <a href="bracelets.html" class="grid-item">
-                <img src="https://images.unsplash.com/photo-1541123437800-1bb1317badc2?q=80&w=600&auto=format&fit=crop" alt="Bracelets">
-                <span>BRACELET &gt;</span>
-            </a>
-            <a href="pendants.html" class="grid-item">
-                <img src="https://images.unsplash.com/photo-1541123437800-1bb1317badc2?q=80&w=600&auto=format&fit=crop" alt="Pendants">
-                <span>PENDANT &gt;</span>
-            </a>
-        </div>
-    </div>
+                // Event Listeners for Modal inside Header
+                const modal = document.getElementById('formModal');
+                const openBtn = document.getElementById('openFormBtn');
+                const closeBtn = document.getElementById('closeFormBtn');
 
-    <script>
-        function toggleLocalMenu(e) {
-            e.stopPropagation();
-            const menu = document.getElementById('localMenu');
-            menu.classList.toggle('show');
-        }
+                if (openBtn && modal && closeBtn) {
+                    openBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        modal.style.display = 'flex'; 
+                    });
 
-        const modal = document.getElementById('formModal');
-        const openBtn = document.getElementById('openFormBtn');
-        const closeBtn = document.getElementById('closeFormBtn');
+                    closeBtn.addEventListener('click', () => { 
+                        modal.style.display = 'none'; 
+                    });
 
-        openBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            modal.style.display = 'flex'; 
-        });
+                    window.onclick = function(event) {
+                        const menu = document.getElementById('localMenu');
+                        if (menu && !event.target.closest('.hamburger-container')) {
+                            menu.classList.remove('show');
+                        }
+                        if (event.target === modal) {
+                            modal.style.display = 'none';
+                        }
+                    };
+                }
 
-        closeBtn.addEventListener('click', () => { modal.style.display = 'none'; });
+                // Form submission logic
+                const signupForm = document.getElementById('signupForm');
+                if (signupForm) {
+                    signupForm.addEventListener('submit', function(e) {
+                        e.preventDefault(); 
+                        
+                        const scriptUrl = "https://script.google.com/macros/s/AKfycbxyWVIHab_fdDACv2OOhOQPiihjPISijmxwZ0Huj9r8ORASq6rS-Z4JbXDtpo2qhIg8/exec"; 
+                        
+                        const name = document.getElementById('username').value;
+                        const email = document.getElementById('useremail').value;
+                        
+                        const countryCode = document.getElementById('countrycode').value;
+                        const rawPhone = document.getElementById('userphone').value;
+                        const fullPhone = `${countryCode} ${rawPhone}`; 
 
-        window.onclick = function(event) {
-            const menu = document.getElementById('localMenu');
-            if (!event.target.closest('.hamburger-container')) {
-                menu.classList.remove('show');
-            }
-            if (event.target === modal) {
-                modal.style.display = 'none';
-            }
-        }
+                        const finalUrl = `${scriptUrl}?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&phone=${encodeURIComponent(fullPhone)}`;
 
-        // Carousel Engine
-        const track = document.getElementById('carouselTrack');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        const dots = document.querySelectorAll('.carousel-dot');
-        
-        const originalSlides = Array.from(track.children);
-        const totalRealSlides = originalSlides.length;
-        
-        const firstClone = originalSlides[0].cloneNode(true);
-        const lastClone = originalSlides[totalRealSlides - 1].cloneNode(true);
-        
-        track.appendChild(firstClone);
-        track.insertBefore(lastClone, originalSlides[0]);
-        
-        let currentIndex = 1; 
-        let isTransitioning = false;
+                        fetch(finalUrl, { method: 'POST' })
+                        .then(response => {
+                            alert('Success!');
+                            signupForm.reset();
+                            modal.style.display = 'none'; 
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            alert('Failed, please try again.');
+                        });
+                    });
+                }
+            })
+            .catch(error => console.error('Error loading header:', error));
 
-        track.style.width = `${(totalRealSlides + 2) * 100}%`;
-        Array.from(track.children).forEach(slide => {
-            slide.style.flex = `0 0 ${100 / (totalRealSlides + 2)}%`;
-        });
-        
-        track.style.transform = `translateX(-${currentIndex * (100 / (totalRealSlides + 2))}%);`;
-        
-        function moveCarousel(index, hasAnimation = true) {
-            if (isTransitioning && hasAnimation) return;
-            if (hasAnimation) isTransitioning = true;
-            
-            currentIndex = index;
-            const percentage = currentIndex * (100 / (totalRealSlides + 2));
-            
-            track.style.transition = hasAnimation ? 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)' : 'none';
-            track.style.transform = `translateX(-${percentage}%)`;
-            
-            let dotIndex = currentIndex - 1;
-            if (currentIndex === 0) dotIndex = totalRealSlides - 1;
-            if (currentIndex === totalRealSlides + 1) dotIndex = 0;
-            
-            dots.forEach(dot => dot.classList.remove('active'));
-            if (dots[dotIndex]) dots[dotIndex].classList.add('active');
-        }
+        function toggleLocalMenu(e) {
+            e.stopPropagation();
+            const menu = document.getElementById('localMenu');
+            if (menu) menu.classList.toggle('show');
+        }
+    </script>
 
-        track.addEventListener('transitionend', () => {
-            isTransitioning = false;
-            if (currentIndex === 0) {
-                moveCarousel(totalRealSlides, false);
-            } else if (currentIndex === totalRealSlides + 1) {
-                moveCarousel(1, false);
-            }
-        });
+    <script>
+        const track = document.getElementById('carouselTrack');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const dots = document.querySelectorAll('.carousel-dot');
+        
+        const originalSlides = Array.from(track.children);
+        const totalRealSlides = originalSlides.length;
+        
+        const firstClone = originalSlides[0].cloneNode(true);
+        const lastClone = originalSlides[totalRealSlides - 1].cloneNode(true);
+        
+        track.appendChild(firstClone);
+        track.insertBefore(lastClone, originalSlides[0]);
+        
+        let currentIndex = 1; 
+        let isTransitioning = false;
 
-        prevBtn.addEventListener('click', () => {
-            if (!isTransitioning) moveCarousel(currentIndex - 1);
-        });
-        
-        nextBtn.addEventListener('click', () => {
-            if (!isTransitioning) moveCarousel(currentIndex + 1);
-        });
+        track.style.width = `${(totalRealSlides + 2) * 100}%`;
+        Array.from(track.children).forEach(slide => {
+            slide.style.flex = `0 0 ${100 / (totalRealSlides + 2)}%`;
+        });
+        
+        track.style.transform = `translateX(-${currentIndex * (100 / (totalRealSlides + 2))}%);`;
+        
+        function moveCarousel(index, hasAnimation = true) {
+            if (isTransitioning && hasAnimation) return;
+            if (hasAnimation) isTransitioning = true;
+            
+            currentIndex = index;
+            const percentage = currentIndex * (100 / (totalRealSlides + 2));
+            
+            track.style.transition = hasAnimation ? 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)' : 'none';
+            track.style.transform = `translateX(-${percentage}%)`;
+            
+            let dotIndex = currentIndex - 1;
+            if (currentIndex === 0) dotIndex = totalRealSlides - 1;
+            if (currentIndex === totalRealSlides + 1) dotIndex = 0;
+            
+            dots.forEach(dot => dot.classList.remove('active'));
+            if (dots[dotIndex]) dots[dotIndex].classList.add('active');
+        }
 
-        dots.forEach(dot => {
-            dot.addEventListener('click', (e) => {
-                if (isTransitioning) return;
-                const index = parseInt(e.target.getAttribute('data-index')) + 1;
-                moveCarousel(index);
-            });
-        });
+        track.addEventListener('transitionend', () => {
+            isTransitioning = false;
+            if (currentIndex === 0) {
+                moveCarousel(totalRealSlides, false);
+            } else if (currentIndex === totalRealSlides + 1) {
+                moveCarousel(1, false);
+            }
+        });
 
-        let startX = 0;
-        let deltaX = 0;
-        let isDragging = false;
+        prevBtn.addEventListener('click', () => {
+            if (!isTransitioning) moveCarousel(currentIndex - 1);
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            if (!isTransitioning) moveCarousel(currentIndex + 1);
+        });
 
-        function handleDragStart(x) {
-            if (isTransitioning) return;
-            startX = x;
-            isDragging = true;
-            track.style.transition = 'none';
-        }
+        dots.forEach(dot => {
+            dot.addEventListener('click', (e) => {
+                if (isTransitioning) return;
+                const index = parseInt(e.target.getAttribute('data-index')) + 1;
+                moveCarousel(index);
+            });
+        });
 
-        function handleDragMove(x) {
-            if (!isDragging) return;
-            deltaX = x - startX;
-            const basePercent = currentIndex * (100 / (totalRealSlides + 2));
-            const containerWidth = track.parentElement.offsetWidth;
-            const movePercent = (deltaX / containerWidth) * (100 / (totalRealSlides + 2));
-            track.style.transform = `translateX(${-basePercent + movePercent}%)`;
-        }
+        let startX = 0;
+        let deltaX = 0;
+        let isDragging = false;
 
-        function handleDragEnd() {
-            if (!isDragging) return;
-            isDragging = false;
-            const containerWidth = track.parentElement.offsetWidth;
-            
-            if (Math.abs(deltaX) > containerWidth * 0.2) {
-                if (deltaX > 0) {
-                    moveCarousel(currentIndex - 1);
-                } else {
-                    moveCarousel(currentIndex + 1);
-                }
-            } else {
-                moveCarousel(currentIndex);
-            }
-            deltaX = 0;
-        }
+        function handleDragStart(x) {
+            if (isTransitioning) return;
+            startX = x;
+            isDragging = true;
+            track.style.transition = 'none';
+        }
 
-        track.addEventListener('touchstart', (e) => handleDragStart(e.touches[0].clientX), { passive: true });
-        track.addEventListener('touchmove', (e) => handleDragMove(e.touches[0].clientX), { passive: true });
-        track.addEventListener('touchend', handleDragEnd, { passive: true });
+        function handleDragMove(x) {
+            if (!isDragging) return;
+            deltaX = x - startX;
+            const basePercent = currentIndex * (100 / (totalRealSlides + 2));
+            const containerWidth = track.parentElement.offsetWidth;
+            const movePercent = (deltaX / containerWidth) * (100 / (totalRealSlides + 2));
+            track.style.transform = `translateX(${-basePercent + movePercent}%)`;
+        }
 
-        track.addEventListener('mousedown', (e) => { handleDragStart(e.clientX); e.preventDefault(); });
-        window.addEventListener('mousemove', (e) => handleDragMove(e.clientX));
-        window.addEventListener('mouseup', handleDragEnd);
+        function handleDragEnd() {
+            if (!isDragging) return;
+            isDragging = false;
+            const containerWidth = track.parentElement.offsetWidth;
+            
+            if (Math.abs(deltaX) > containerWidth * 0.2) {
+                if (deltaX > 0) {
+                    moveCarousel(currentIndex - 1);
+                } else {
+                    moveCarousel(currentIndex + 1);
+                }
+            } else {
+                moveCarousel(currentIndex);
+            }
+            deltaX = 0;
+        }
 
-        setTimeout(() => { moveCarousel(1, false); }, 50);
+        track.addEventListener('touchstart', (e) => handleDragStart(e.touches[0].clientX), { passive: true });
+        track.addEventListener('touchmove', (e) => handleDragMove(e.touches[0].clientX), { passive: true });
+        track.addEventListener('touchend', handleDragEnd, { passive: true });
 
-        // Form Submit Listener
-        document.getElementById('signupForm').addEventListener('submit', function(e) {
-            e.preventDefault(); 
-            
-            const scriptUrl = "https://script.google.com/macros/s/AKfycbxyWVIHab_fdDACv2OOhOQPiihjPISijmxwZ0Huj9r8ORASq6rS-Z4JbXDtpo2qhIg8/exec"; 
-            
-            const name = document.getElementById('username').value;
-            const email = document.getElementById('useremail').value;
-            
-            const countryCode = document.getElementById('countrycode').value;
-            const rawPhone = document.getElementById('userphone').value;
-            const fullPhone = `${countryCode} ${rawPhone}`; 
+        track.addEventListener('mousedown', (e) => { handleDragStart(e.clientX); e.preventDefault(); });
+        window.addEventListener('mousemove', (e) => handleDragMove(e.clientX));
+        window.addEventListener('mouseup', handleDragEnd);
 
-            const finalUrl = `${scriptUrl}?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&phone=${encodeURIComponent(fullPhone)}`;
-
-            fetch(finalUrl, { method: 'POST' })
-            .then(response => {
-                alert('Success!');
-                document.getElementById('signupForm').reset();
-                modal.style.display = 'none'; 
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Failed, please try again.');
-            });
-        });
-    </script>
+        setTimeout(() => { moveCarousel(1, false); }, 50);
+    </script>
 </body>
 </html>
