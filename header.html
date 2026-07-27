@@ -1,67 +1,250 @@
-<header>
-    <div class="hamburger-container">
-        <button class="hamburger" onclick="toggleLocalMenu(event)" aria-label="Toggle Menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <div class="local-menu" id="localMenu">
-            <div class="local-menu-inner">
-                <a href="index.html">HOME</a>
-                <a href="new-product.html">New Product</a>
-                <a href="customize.html">Customize</a>
-                <a href="necklaces.html">Necklace</a>
-                <a href="bracelets.html">Bracelet</a>
-                <a href="pendants.html">Pendant</a>
-                <a href="about.html">About Us</a>
-                <div class="menu-divider"></div>
-                <a href="shipping.html">Shipping Policy</a>
-                <a href="shipping.html#local">Local</a>
-                <a href="shipping.html#international">International</a>
-            </div>
-        </div>
-    </div>
+<style>
+    /* Header Container */
+    .site-header {
+        width: 100%;
+        background-color: #FDF9F2;
+        padding: 15px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+        border-bottom: 1px solid rgba(60, 44, 25, 0.1);
+        z-index: 100;
+    }
 
-    <nav class="desktop-nav">
-        <div class="nav-item-dropdown">
-            <a href="index.html">HOME ▾</a>
-            <div class="desktop-dropdown">
+    /* Logo */
+    .brand-logo {
+        font-family: 'Fraunces', serif;
+        font-size: 24px;
+        font-weight: 600;
+        color: #3C2C19;
+        text-decoration: none;
+        letter-spacing: 1px;
+    }
+
+    /* Actions Right Side */
+    .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .join-btn {
+        background-color: #3C2C19;
+        color: #FDF9F2;
+        border: none;
+        padding: 8px 16px;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        border-radius: 4px;
+        cursor: pointer;
+        text-transform: uppercase;
+        transition: background-color 0.2s;
+    }
+
+    .join-btn:hover {
+        background-color: #553f25;
+    }
+
+    /* Hamburger Menu Button */
+    .hamburger-container {
+        position: relative;
+        cursor: pointer;
+    }
+
+    .hamburger-icon {
+        width: 24px;
+        height: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .hamburger-icon span {
+        display: block;
+        width: 100%;
+        height: 2px;
+        background-color: #3C2C19;
+        border-radius: 2px;
+    }
+
+    /* Dropdown Menu */
+    .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 35px;
+        right: 0;
+        background-color: #ffffff;
+        min-width: 160px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        border-radius: 6px;
+        padding: 10px 0;
+        z-index: 200;
+    }
+
+    .dropdown-menu.show {
+        display: block;
+    }
+
+    .dropdown-menu a {
+        display: block;
+        padding: 10px 16px;
+        color: #3C2C19;
+        text-decoration: none;
+        font-size: 14px;
+        transition: background-color 0.2s;
+    }
+
+    .dropdown-menu a:hover {
+        background-color: #FDF9F2;
+    }
+
+    /* Modal Styling */
+    .modal-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+
+    .modal-content {
+        background-color: #FDF9F2;
+        padding: 30px;
+        border-radius: 8px;
+        width: 90%;
+        max-width: 400px;
+        position: relative;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+
+    .modal-close {
+        position: absolute;
+        top: 12px;
+        right: 15px;
+        font-size: 20px;
+        font-weight: bold;
+        color: #3C2C19;
+        cursor: pointer;
+        border: none;
+        background: none;
+    }
+
+    .modal-title {
+        font-family: 'Fraunces', serif;
+        font-size: 20px;
+        margin-bottom: 20px;
+        text-align: center;
+        color: #3C2C19;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-group label {
+        display: block;
+        font-size: 12px;
+        font-weight: 700;
+        margin-bottom: 5px;
+        text-transform: uppercase;
+        color: #3C2C19;
+    }
+
+    .form-group input, .form-group select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 14px;
+        outline: none;
+    }
+
+    .phone-input-group {
+        display: flex;
+        gap: 8px;
+    }
+
+    .phone-input-group select {
+        width: 35%;
+    }
+
+    .phone-input-group input {
+        width: 65%;
+    }
+
+    .submit-btn {
+        width: 100%;
+        padding: 12px;
+        background-color: #3C2C19;
+        color: #ffffff;
+        border: none;
+        border-radius: 4px;
+        font-weight: 700;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    .submit-btn:hover {
+        background-color: #553f25;
+    }
+</style>
+
+<header class="site-header">
+    <a href="index.html" class="brand-logo">Le Trèfle</a>
+
+    <div class="header-actions">
+        <button class="join-btn" id="openFormBtn">Join Us</button>
+
+        <div class="hamburger-container" onclick="toggleLocalMenu(event)">
+            <div class="hamburger-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="dropdown-menu" id="localMenu">
+                <a href="index.html">Home</a>
                 <a href="customize.html">Customize</a>
-                <a href="necklaces.html">Necklace</a>
-                <a href="bracelets.html">Bracelet</a>
-                <a href="pendants.html">Pendant</a>
+                <a href="necklaces.html">Necklaces</a>
+                <a href="bracelets.html">Bracelets</a>
+                <a href="pendants.html">Pendants</a>
             </div>
         </div>
-        <a href="new-product.html">NEW PRODUCT</a>
-        <a href="about.html">ABOUT US</a>
-    </nav>
-    
-    <a href="index.html" class="logo-wrapper">
-        <span class="logo">Le Trèfle</span>
-        <span class="logo-tagline">symbolizes you and your loved one</span>
-    </a>
-    
-    <div class="nav-icons">
-        <div class="nav-item-dropdown desktop-shipping-wrapper">
-            <a href="shipping.html" class="desktop-shipping-link">Shipping & Delivery ▾</a>
-            <div class="desktop-dropdown">
-                <a href="shipping.html#shipping-policy">Shipping Policy</a>
-                <a href="shipping.html#local">Local</a>
-                <a href="shipping.html#international">International</a>
-            </div>
-        </div>
-        <button class="icon-btn" id="openFormBtn" aria-label="Profile">
-            <svg class="icon-svg" viewBox="0 0 24 24">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                <circle cx="12" cy="7" r="4"></circle>
-            </svg>
-        </button>
-        <a href="cart.html" class="icon-btn" aria-label="Cart">
-            <svg class="icon-svg" viewBox="0 0 24 24">
-                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-                <line x1="3" y1="6" x2="21" y2="6"></line>
-                <path d="M16 10a4 4 0 0 1-8 0"></path>
-            </svg>
-        </a>
     </div>
 </header>
+
+<div class="modal-overlay" id="formModal">
+    <div class="modal-content">
+        <button class="modal-close" id="closeFormBtn">&times;</button>
+        <h2 class="modal-title">Become a Member</h2>
+        <form id="signupForm">
+            <div class="form-group">
+                <label for="username">Full Name</label>
+                <input type="text" id="username" required placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label for="useremail">Email Address</label>
+                <input type="email" id="useremail" required placeholder="Enter your email">
+            </div>
+            <div class="form-group">
+                <label for="userphone">Phone Number</label>
+                <div class="phone-input-group">
+                    <select id="countrycode">
+                        <option value="+1">+1 (US)</option>
+                        <option value="+44">+44 (UK)</option>
+                        <option value="+33">+33 (FR)</option>
+                        <option value="+60">+60 (MY)</option>
+                    </select>
+                    <input type="tel" id="userphone" required placeholder="Phone number">
+                </div>
+            </div>
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+    </div>
+</div>
