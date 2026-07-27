@@ -83,7 +83,7 @@
         }
 
         .local-menu.show {
-            max-height: 220px;
+            max-height: 300px;
             visibility: visible;
         }
 
@@ -100,6 +100,12 @@
             text-decoration: none;
             font-weight: 700; 
             letter-spacing: 0.5px;
+        }
+
+        .local-menu .sub-link {
+            padding-left: 12px;
+            font-weight: 400;
+            font-size: 13px;
         }
 
         .desktop-nav {
@@ -123,6 +129,10 @@
             display: flex;
             gap: 12px; 
             align-items: center;
+        }
+
+        .nav-link-right {
+            display: none; /* Hidden on mobile */
         }
 
         .icon-btn {
@@ -194,25 +204,21 @@
         /* 内容主体区域 */
         .container {
             width: 100%;
-            padding: 0 20px 25px 20px; /* Top padding set to 0 so banner attaches to search header */
+            padding: 0; /* Clear horizontal padding so carousel touches full ends */
             margin: 0 auto;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        /* 横式两端无限轮播容器 - MOBILE (Full Screen Width) */
+        /* 横式两端无限轮播容器 - FULL EDGE TO EDGE LEFT/RIGHT */
         .carousel-wrapper {
-            width: 100vw;               /* Full screen width */
+            width: 100%;               /* Spans edge-to-edge horizontally */
             position: relative;
-            left: 50%;
-            right: 50%;
-            margin-left: -50vw;         /* Pull completely to left edge */
-            margin-right: -50vw;        /* Pull completely to right edge */
-            height: 220px;              /* Extended height for a wider look */
+            height: 220px;
             overflow: hidden;
             margin-bottom: 25px; 
-            border-radius: 0;           /* Edge-to-edge flush edges */
+            border-radius: 0;          /* Flush sharp corners at screen edges */
             box-shadow: 0 4px 15px rgba(0,0,0,0.04);
         }
 
@@ -269,8 +275,8 @@
             background: rgba(255, 255, 255, 0.9);
         }
 
-        .carousel-btn.prev { left: 8px; }
-        .carousel-btn.next { right: 8px; }
+        .carousel-btn.prev { left: 12px; }
+        .carousel-btn.next { right: 12px; }
 
         /* 指示圆点 */
         .carousel-dots {
@@ -304,6 +310,7 @@
             gap: 20px; 
             align-items: center;
             width: 100%;
+            padding: 0 20px 25px 20px; /* Restores inner margin for grid items below */
         }
 
         /* 手机端 280x135 比例格子 */
@@ -362,10 +369,12 @@
 
             .desktop-nav {
                 display: flex;
+                align-items: center;
                 gap: 30px;
             }
 
-            .desktop-nav a {
+            .desktop-nav a,
+            .nav-link-right {
                 font-size: 13px;
                 color: #3C2C19;
                 text-decoration: none;
@@ -375,8 +384,52 @@
                 transition: color 0.2s;
             }
 
-            .desktop-nav a:hover {
+            .desktop-nav a:hover,
+            .nav-link-right:hover {
                 color: #8C4726; 
+            }
+
+            /* Dropdown Menu Styles for Home */
+            .nav-dropdown {
+                position: relative;
+                display: flex;
+                align-items: center;
+                height: 100%;
+            }
+
+            .dropdown-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background-color: #ffffff;
+                min-width: 180px;
+                box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+                padding: 10px 0;
+                z-index: 1005;
+                border: 1px solid rgba(0, 0, 0, 0.05);
+                border-radius: 4px;
+            }
+
+            .nav-dropdown:hover .dropdown-menu {
+                display: block;
+            }
+
+            .dropdown-menu a {
+                color: #3C2C19;
+                padding: 10px 20px;
+                text-decoration: none;
+                display: block;
+                font-size: 12px;
+                font-weight: 700;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                transition: background 0.2s, color 0.2s;
+            }
+
+            .dropdown-menu a:hover {
+                background-color: #FDF9F2;
+                color: #8C4726;
             }
 
             .logo {
@@ -384,7 +437,12 @@
             }
 
             .nav-icons {
-                gap: 24px;
+                gap: 20px;
+            }
+
+            .nav-link-right {
+                display: inline-block;
+                margin-right: 4px;
             }
 
             .search-banner {
@@ -401,14 +459,13 @@
             }
 
             .container {
-                max-width: 100%;        /* Allows container to support full width items */
-                padding: 0 40px 50px 40px;
+                padding: 0;
             }
 
-            /* DESKTOP (Full Screen Width & Tall Hero Look) */
+            /* FULL WIDTH DESKTOP CAROUSEL */
             .carousel-wrapper {
-                width: 100vw;           /* Extends to outer screen boundaries */
-                height: 450px;          /* Wider and taller hero display on desktop */
+                width: 100%;
+                height: 480px;          /* Extended height for wide screen prominence */
                 margin-bottom: 40px;
                 border-radius: 0;
             }
@@ -428,6 +485,7 @@
                 justify-content: center;
                 gap: 30px; 
                 width: 990px;
+                padding: 0 0 50px 0;
             }
 
             .grid-item {
@@ -559,23 +617,35 @@
             <div class="local-menu" id="localMenu">
                 <div class="local-menu-inner">
                     <a href="index.html">HOME</a>
+                    <a href="customize.html" class="sub-link">- Customize</a>
+                    <a href="necklaces.html" class="sub-link">- Necklaces</a>
+                    <a href="bracelets.html" class="sub-link">- Bracelets</a>
+                    <a href="pendants.html" class="sub-link">- Pendants</a>
                     <a href="new-product.html">New Product</a>
-                    <a href="shop-signature.html">Shop Signature</a>
+                    <a href="shipping.html">Shipping & Delivery</a>
                     <a href="about-us.html">About Us</a>
                 </div>
             </div>
         </div>
 
         <nav class="desktop-nav">
-            <a href="index.html">HOME</a>
+            <div class="nav-dropdown">
+                <a href="index.html">HOME</a>
+                <div class="dropdown-menu">
+                    <a href="customize.html">Customize</a>
+                    <a href="necklaces.html">Necklaces</a>
+                    <a href="bracelets.html">Bracelets</a>
+                    <a href="pendants.html">Pendants</a>
+                </div>
+            </div>
             <a href="new-product.html">NEW PRODUCT</a>
-            <a href="shop-signature.html">SIGNATURE</a>
             <a href="about-us.html">ABOUT US</a>
         </nav>
         
         <a href="index.html" class="logo">Le Trèfle</a>
         
         <div class="nav-icons">
+            <a href="shipping.html" class="nav-link-right">SHIPPING & DELIVERY</a>
             <button class="icon-btn" id="openFormBtn" aria-label="Profile">
                 <svg class="icon-svg" viewBox="0 0 24 24">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
