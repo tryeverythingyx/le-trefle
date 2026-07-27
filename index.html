@@ -8,6 +8,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        /* ==========================================================================
+           1. 全局基础样式（指定高级底色 EDE5DB）
+           ========================================================================== */
         * {
             margin: 0;
             padding: 0;
@@ -23,11 +26,128 @@
             overflow-x: hidden;
         }
 
-        /* Search Banner */
+        /* ==========================================================================
+           2. 📱 手机端样式布局 (Mobile Views)
+           ========================================================================== */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 85px; 
+            padding: 0 16px;
+            background-color: #ffffff; 
+            position: relative;
+            z-index: 1001;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.01);
+        }
+
+        .hamburger-container {
+            position: relative; 
+        }
+
+        .hamburger {
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            padding: 8px 5px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 22px;
+            height: 1.5px;
+            background-color: #3C2C19;
+        }
+
+        /* 下拉菜单 */
+        .local-menu {
+            position: absolute;
+            top: 53px; 
+            left: -16px; 
+            width: 50vw; 
+            background-color: rgba(255, 255, 255, 0.2); 
+            backdrop-filter: blur(12px); 
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 4px 8px 20px rgba(0,0,0,0.03);
+            border: 1px solid rgba(255, 255, 255, 0.15); 
+            border-left: none;
+            border-radius: 0 0 4px 0;
+            max-height: 0;
+            overflow: hidden;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1002;
+        }
+
+        .local-menu.show {
+            max-height: 220px;
+            visibility: visible;
+        }
+
+        .local-menu-inner {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .local-menu a {
+            font-size: 14px;
+            color: #3C2C19;
+            text-decoration: none;
+            font-weight: 700; 
+            letter-spacing: 0.5px;
+        }
+
+        .desktop-nav {
+            display: none;
+        }
+
+        /* 大 Logo */
+        .logo {
+            font-family: 'Fraunces', serif;
+            font-size: 36px; 
+            font-weight: 600; 
+            color: #8C4726; 
+            text-decoration: none;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            letter-spacing: -0.5px;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 12px; 
+            align-items: center;
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-svg {
+            width: 22px;
+            height: 22px;
+            fill: none;
+            stroke: #3C2C19;
+            stroke-width: 1.3;
+        }
+
+        /* 独立通栏纯白搜索 Banner */
         .search-banner {
             width: 100%;
             background-color: #ffffff; 
-            padding: 18px 0;
+            padding: 12px 0;
             display: flex;
             justify-content: center;
             box-shadow: 0 2px 8px rgba(0,0,0,0.02);
@@ -35,8 +155,7 @@
         }
 
         .search-block-wrapper {
-            width: 90%; 
-            max-width: 1050px;
+            width: 280px; 
         }
 
         .inline-search-container {
@@ -48,11 +167,11 @@
 
         .inline-search-input {
             width: 100%;
-            height: 40px; 
+            height: 35px; 
             padding: 0 35px 0 0; 
             border: none;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.12); 
-            font-size: 15px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08); 
+            font-size: 14px;
             outline: none;
             background-color: transparent; 
             color: #3C2C19;
@@ -65,21 +184,32 @@
         .search-inside-icon {
             position: absolute;
             right: 2px;
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             stroke: #3C2C19;
             stroke-width: 1.2;
             fill: none;
         }
 
-        /* Banner Carousel */
+        /* 内容主体区域 */
+        .container {
+            width: 100%;
+            padding: 25px 20px; 
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* 横式两端无限轮播容器 (Mobile stays 280px width) */
         .carousel-wrapper {
-            width: 100vw; 
-            height: 150px; 
+            width: 280px; 
+            height: 125px; 
             position: relative;
             overflow: hidden;
             margin-bottom: 25px; 
-            margin-left: calc(-50vw + 50%);
+            border-radius: 4px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
         }
 
         .carousel-track {
@@ -106,6 +236,7 @@
             display: block;
         }
 
+        /* 左右切换按钮 */
         .carousel-btn {
             position: absolute;
             top: 50%;
@@ -131,12 +262,13 @@
         }
 
         .carousel-btn:hover {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.9);
         }
 
-        .carousel-btn.prev { left: 12px; }
-        .carousel-btn.next { right: 12px; }
+        .carousel-btn.prev { left: 8px; }
+        .carousel-btn.next { right: 8px; }
 
+        /* 指示圆点 */
         .carousel-dots {
             position: absolute;
             bottom: 8px;
@@ -148,50 +280,38 @@
         }
 
         .carousel-dot {
-            width: 6px;
-            height: 6px;
+            width: 5px;
+            height: 5px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.4);
             cursor: pointer;
             transition: background 0.2s, transform 0.2s;
         }
 
         .carousel-dot.active {
             background: #ffffff;
-            transform: scale(1.3);
+            transform: scale(1.2);
         }
 
-        /* Container */
-        .container {
-            width: 100%;
-            padding: 0 0 35px 0; 
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        /* Category Grid */
+        /* 手机端纵向格子容器 */
         .grid-container {
-            display: grid;
-            grid-template-columns: repeat(2, 160px);
-            gap: 18px; 
-            justify-content: center;
+            display: flex;
+            flex-direction: column; 
+            gap: 20px; 
             align-items: center;
             width: 100%;
-            max-width: 990px;
-            padding: 0 15px;
         }
 
+        /* 手机端 280x135 比例格子 */
         .grid-item {
             display: flex;
             flex-direction: column;
             text-decoration: none;
             position: relative;
-            width: 160px; 
-            height: 160px; 
+            width: 280px;  
+            height: 135px; 
             overflow: hidden;
-            border-radius: 6px;
+            border-radius: 3px;
         }
 
         .grid-item img {
@@ -205,7 +325,7 @@
             content: '';
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.25); 
+            background-color: rgba(0, 0, 0, 0.16); 
             pointer-events: none;
         }
 
@@ -214,28 +334,103 @@
             top: 50%; left: 50%;
             transform: translate(-50%, -50%);
             color: #ffffff; 
-            font-size: 13px; 
-            font-weight: 700;
-            letter-spacing: 1.5px;
+            font-size: 14px; 
+            font-weight: 600;
+            letter-spacing: 2px;
             text-transform: uppercase;
             z-index: 2;
             text-align: center;
             width: 90%;
         }
 
-        /* Responsive Styles */
+        /* About Us 样式 */
+        .about-section {
+            margin-top: 10px;
+            text-align: left;
+            border-top: 1px solid rgba(111, 55, 28, 0.15);
+            padding-top: 35px;
+            width: 280px; 
+        }
+
+        .about-section h2 {
+            font-family: 'Fraunces', serif;
+            font-size: 22px;
+            color: #6F371C; 
+            margin-bottom: 18px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .about-section p {
+            font-size: 14px;
+            line-height: 1.7;
+            color: #3C2C19; 
+            margin-bottom: 18px;
+            text-align: justify;
+        }
+
+        /* ==========================================================================
+           3. 💻 电脑端样式布局 (Laptop / Desktop)
+           ========================================================================== */
         @media screen and (min-width: 768px) {
+            header {
+                height: 100px;
+                padding: 0 40px;
+            }
+
+            .hamburger-container {
+                display: none;
+            }
+
+            .desktop-nav {
+                display: flex;
+                gap: 30px;
+            }
+
+            .desktop-nav a {
+                font-size: 13px;
+                color: #3C2C19;
+                text-decoration: none;
+                font-weight: 700;
+                letter-spacing: 1.5px;
+                text-transform: uppercase;
+                transition: color 0.2s;
+            }
+
+            .desktop-nav a:hover {
+                color: #8C4726; 
+            }
+
+            .logo {
+                font-size: 42px;
+            }
+
+            .nav-icons {
+                gap: 24px;
+            }
+
             .search-banner {
-                padding: 22px 0;
+                padding: 20px 0;
+            }
+
+            .search-block-wrapper {
+                width: 990px; /* Aligned with grid total width */
             }
 
             .inline-search-input {
                 font-size: 16px;
-                height: 44px;
+                height: 40px;
             }
 
+            .container {
+                max-width: 1200px;
+                padding: 50px 40px;
+            }
+
+            /* 电脑端长幅轮播图样式 - Width matches total grid width (480*2 + 30 = 990px) */
             .carousel-wrapper {
-                height: 280px; 
+                width: 990px;  
+                height: 300px; 
                 margin-bottom: 40px;
             }
 
@@ -245,30 +440,226 @@
                 font-size: 16px;
             }
             
-            .carousel-btn.prev { left: 25px; }
-            .carousel-btn.next { right: 25px; }
+            .carousel-btn.prev { left: 15px; }
+            .carousel-btn.next { right: 15px; }
 
+            /* 格子布局在电脑端 - 2 Boxes per row configuration */
             .grid-container {
-                grid-template-columns: repeat(4, 220px);
-                gap: 24px; 
-                padding: 0;
+                flex-direction: row;
+                flex-wrap: wrap; 
+                justify-content: center;
+                gap: 30px; 
+                width: 990px;
             }
 
             .grid-item {
-                width: 220px; 
-                height: 220px;
+                width: 480px; /* Two items + gap equals 990px total width */
+                height: 260px;
+                border-radius: 4px;
             }
 
             .grid-item span {
-                font-size: 15px; 
-                letter-spacing: 2px;
+                font-size: 18px; 
+                letter-spacing: 4px;
             }
+
+            /* 电脑端 About Us */
+            .about-section {
+                width: 990px; 
+                margin-top: 30px;
+                padding-top: 50px;
+                text-align: left; 
+            }
+
+            .about-section h2 {
+                font-size: 28px;
+                text-align: left; 
+                margin-bottom: 25px;
+            }
+        }
+
+        /* ==========================================================================
+           4. 🌟 Sign Up / Sign In 弹窗样式
+           ========================================================================== */
+        .modal-overlay {
+            display: none; 
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .form-box {
+            background: #FDF9F2;
+            padding: 30px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 380px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(60, 44, 25, 0.15);
+            border: 1px solid rgba(140, 71, 38, 0.1);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px; right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #8C4726;
+        }
+
+        .form-box h2 {
+            font-family: 'Fraunces', serif;
+            text-align: center;
+            margin-bottom: 25px;
+            color: #6F371C;
+            font-size: 24px;
+            letter-spacing: 0.5px;
+        }
+
+        .input-group {
+            margin-bottom: 18px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #3C2C19;
+            letter-spacing: 0.5px;
+        }
+
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 10px 12px;
+            box-sizing: border-box;
+            border: 1px solid rgba(60, 44, 25, 0.2);
+            border-radius: 4px;
+            background-color: #ffffff;
+            color: #3C2C19;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .input-group input:focus, .input-group select:focus {
+            border-color: #8C4726;
+        }
+
+        .phone-container {
+            display: flex;
+            gap: 10px;
+        }
+
+        .phone-container select {
+            width: 110px;
+            flex-shrink: 0;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background: #8C4726;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: background 0.2s;
+            margin-top: 5px;
+        }
+
+        button[type="submit"]:hover {
+            background: #6F371C;
         }
     </style>
 </head>
 <body>
 
-    <div id="header-container"></div>
+    <header>
+        <div class="hamburger-container">
+            <button class="hamburger" onclick="toggleLocalMenu(event)" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="local-menu" id="localMenu">
+                <div class="local-menu-inner">
+                    <a href="index.html">HOME</a>
+                    <a href="new-product.html">New Product</a>
+                    <a href="shop-signature.html">Shop Signature</a>
+                    <a href="#about-us" onclick="toggleLocalMenu(event)">About Us</a>
+                </div>
+            </div>
+        </div>
+
+        <nav class="desktop-nav">
+            <a href="index.html">HOME</a>
+            <a href="new-product.html">NEW PRODUCT</a>
+            <a href="shop-signature.html">SIGNATURE</a>
+            <a href="#about-us">ABOUT US</a>
+        </nav>
+        
+        <a href="index.html" class="logo">Le Trèfle</a>
+        
+        <div class="nav-icons">
+            <button class="icon-btn" id="openFormBtn" aria-label="Profile">
+                <svg class="icon-svg" viewBox="0 0 24 24">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+            </button>
+            <a href="cart.html" class="icon-btn" aria-label="Cart">
+                <svg class="icon-svg" viewBox="0 0 24 24">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <path d="M16 10a4 4 0 0 1-8 0"></path>
+                </svg>
+            </a>
+        </div>
+    </header>
+
+    <div class="modal-overlay" id="formModal">
+        <div class="form-box">
+            <span class="close-btn" id="closeFormBtn">&times;</span>
+            <h2>Sign Up / Sign In</h2>
+            <form id="signupForm">
+                <div class="input-group">
+                    <label>Name</label>
+                    <input type="text" id="username" placeholder="Your Name" required>
+                </div>
+                <div class="input-group">
+                    <label>Email</label>
+                    <input type="email" id="useremail" placeholder="Your Email" required>
+                </div>
+                
+                <div class="input-group">
+                    <label>Phone Number</label>
+                    <div class="phone-container">
+                        <select id="countrycode" required>
+                            <option value="+60" selected>+60 (MY)</option>
+                            <option value="+65">+65 (SG)</option>
+                            <option value="+1">+1 (US)</option>
+                            <option value="+44">+44 (UK)</option>
+                            <option value="+86">+86 (CN)</option>
+                            <option value="+852">+852 (HK)</option>
+                        </select>
+                        <input type="tel" id="userphone" placeholder="Phone Number" required>
+                    </div>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
 
     <div class="search-banner">
         <div class="search-block-wrapper">
@@ -312,93 +703,60 @@
                 <img src="https://images.unsplash.com/photo-1541123437800-1bb1317badc2?q=80&w=600&auto=format&fit=crop" alt="Customize">
                 <span>CUSTOMIZE &gt;</span>
             </a>
-            <a href="necklaces.html" class="grid-item">
-                <img src="https://images.unsplash.com/photo-1541123437800-1bb1317badc2?q=80&w=600&auto=format&fit=crop" alt="Necklaces">
-                <span>NECKLACE &gt;</span>
-            </a>
             <a href="bracelets.html" class="grid-item">
                 <img src="https://images.unsplash.com/photo-1541123437800-1bb1317badc2?q=80&w=600&auto=format&fit=crop" alt="Bracelets">
                 <span>BRACELET &gt;</span>
+            </a>
+            <a href="necklaces.html" class="grid-item">
+                <img src="https://images.unsplash.com/photo-1541123437800-1bb1317badc2?q=80&w=600&auto=format&fit=crop" alt="Necklaces">
+                <span>NECKLACE &gt;</span>
             </a>
             <a href="pendants.html" class="grid-item">
                 <img src="https://images.unsplash.com/photo-1541123437800-1bb1317badc2?q=80&w=600&auto=format&fit=crop" alt="Pendants">
                 <span>PENDANT &gt;</span>
             </a>
         </div>
+
+        <div class="about-section" id="about-us">
+            <h2>ABOUT US</h2>
+            <p>At Le Trèfle, we believe jewelry is far more than a mere accessory—it is an intimate form of self-expression, a tangible celebration of individuality, and an enduring reflection of personal confidence. Each curation in our gallery is chosen with intent, transforming raw elegance into a statement that speaks directly to the soul of modern style.</p>
+            <p>Deeply rooted in the classic lore and organic symbolism of the rare three-leaf clover, our name carries a timeless philosophy. Each leaf represents an essential element of a meaningful journey: the unwavering strength of Faith, the boundless horizon of Hope, and the transformative power of genuine Love. We infuse these ideals into every curve, link, and gemstone we display.</p>
+            <p>We work passionately to source and design exceptional fine jewelry that blends effortlessly into the texture of your daily routine while adding brilliant illumination to your most unforgettable milestones. From the sleek minimalist lines preferred in contemporary metropolitan life to the rich ornate heritage details that anchor your formal gatherings, our collection is meticulously built to withstand changing trends.</p>
+            <p>Thank you sincerely for making our story a small part of your own. We are profoundly honored to share our deep love for authentic craftsmanship, and we remain dedicated to helping you discover beautiful treasures that frame your rarest moments and help your true presence shine.</p>
+        </div>
     </div>
 
     <script>
-        fetch('header.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('header-container').innerHTML = data;
-
-                // Event Listeners for Modal inside Header
-                const modal = document.getElementById('formModal');
-                const openBtn = document.getElementById('openFormBtn');
-                const closeBtn = document.getElementById('closeFormBtn');
-
-                if (openBtn && modal && closeBtn) {
-                    openBtn.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        modal.style.display = 'flex'; 
-                    });
-
-                    closeBtn.addEventListener('click', () => { 
-                        modal.style.display = 'none'; 
-                    });
-
-                    window.onclick = function(event) {
-                        const menu = document.getElementById('localMenu');
-                        if (menu && !event.target.closest('.hamburger-container')) {
-                            menu.classList.remove('show');
-                        }
-                        if (event.target === modal) {
-                            modal.style.display = 'none';
-                        }
-                    };
-                }
-
-                // Form submission logic
-                const signupForm = document.getElementById('signupForm');
-                if (signupForm) {
-                    signupForm.addEventListener('submit', function(e) {
-                        e.preventDefault(); 
-                        
-                        const scriptUrl = "https://script.google.com/macros/s/AKfycbxyWVIHab_fdDACv2OOhOQPiihjPISijmxwZ0Huj9r8ORASq6rS-Z4JbXDtpo2qhIg8/exec"; 
-                        
-                        const name = document.getElementById('username').value;
-                        const email = document.getElementById('useremail').value;
-                        
-                        const countryCode = document.getElementById('countrycode').value;
-                        const rawPhone = document.getElementById('userphone').value;
-                        const fullPhone = `${countryCode} ${rawPhone}`; 
-
-                        const finalUrl = `${scriptUrl}?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&phone=${encodeURIComponent(fullPhone)}`;
-
-                        fetch(finalUrl, { method: 'POST' })
-                        .then(response => {
-                            alert('Success!');
-                            signupForm.reset();
-                            modal.style.display = 'none'; 
-                        })
-                        .catch(error => {
-                            console.error('Error:', error);
-                            alert('Failed, please try again.');
-                        });
-                    });
-                }
-            })
-            .catch(error => console.error('Error loading header:', error));
-
         function toggleLocalMenu(e) {
             e.stopPropagation();
             const menu = document.getElementById('localMenu');
-            if (menu) menu.classList.toggle('show');
+            menu.classList.toggle('show');
         }
-    </script>
 
-    <script>
+        const modal = document.getElementById('formModal');
+        const openBtn = document.getElementById('openFormBtn');
+        const closeBtn = document.getElementById('closeFormBtn');
+
+        openBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            modal.style.display = 'flex'; 
+        });
+
+        closeBtn.addEventListener('click', () => { modal.style.display = 'none'; });
+
+        window.onclick = function(event) {
+            const menu = document.getElementById('localMenu');
+            if (!event.target.closest('.hamburger-container')) {
+                menu.classList.remove('show');
+            }
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // ==========================================================================
+        // 🌟 无缝循环(LOOP)无闪烁轮播引擎
+        // ==========================================================================
         const track = document.getElementById('carouselTrack');
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
@@ -466,6 +824,7 @@
             });
         });
 
+        // 触屏滑动与拖拽
         let startX = 0;
         let deltaX = 0;
         let isDragging = false;
@@ -512,6 +871,35 @@
         window.addEventListener('mouseup', handleDragEnd);
 
         setTimeout(() => { moveCarousel(1, false); }, 50);
+
+        // ==========================================================================
+        // 核心数据发送代码
+        // ==========================================================================
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault(); 
+            
+            const scriptUrl = "https://script.google.com/macros/s/AKfycbzD1UnQiPCE4MWHlHWmo6z2vPwnZUIGkx9DI_H6pzapKkFIUxANnaUVoaGjD5lu0DyF/exec"; 
+            
+            const name = document.getElementById('username').value;
+            const email = document.getElementById('useremail').value;
+            
+            const countryCode = document.getElementById('countrycode').value;
+            const rawPhone = document.getElementById('userphone').value;
+            const fullPhone = `${countryCode} ${rawPhone}`; 
+
+            const finalUrl = `${scriptUrl}?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&phone=${encodeURIComponent(fullPhone)}`;
+
+            fetch(finalUrl, { method: 'POST' })
+            .then(response => {
+                alert('Success!');
+                document.getElementById('signupForm').reset();
+                modal.style.display = 'none'; 
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed, please try again.');
+            });
+        });
     </script>
 </body>
 </html>
