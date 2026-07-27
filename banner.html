@@ -1,0 +1,67 @@
+<header>
+    <div class="hamburger-container">
+        <button class="hamburger" onclick="toggleLocalMenu(event)" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="local-menu" id="localMenu">
+            <div class="local-menu-inner">
+                <a href="index.html">HOME</a>
+                <a href="new-product.html">New Product</a>
+                <a href="customize.html">Customize</a>
+                <a href="necklaces.html">Necklace</a>
+                <a href="bracelets.html">Bracelet</a>
+                <a href="pendants.html">Pendant</a>
+                <a href="about.html">About Us</a>
+                <div class="menu-divider"></div>
+                <a href="shipping.html">Shipping Policy</a>
+                <a href="shipping.html#local">Local</a>
+                <a href="shipping.html#international">International</a>
+            </div>
+        </div>
+    </div>
+
+    <nav class="desktop-nav">
+        <div class="nav-item-dropdown">
+            <a href="index.html">HOME ▾</a>
+            <div class="desktop-dropdown">
+                <a href="customize.html">Customize</a>
+                <a href="necklaces.html">Necklace</a>
+                <a href="bracelets.html">Bracelet</a>
+                <a href="pendants.html">Pendant</a>
+            </div>
+        </div>
+        <a href="new-product.html">NEW PRODUCT</a>
+        <a href="about.html">ABOUT US</a>
+    </nav>
+    
+    <a href="index.html" class="logo-wrapper">
+        <span class="logo">Le Trèfle</span>
+        <span class="logo-tagline">symbolizes you and your loved one</span>
+    </a>
+    
+    <div class="nav-icons">
+        <div class="nav-item-dropdown desktop-shipping-wrapper">
+            <a href="shipping.html" class="desktop-shipping-link">Shipping & Delivery ▾</a>
+            <div class="desktop-dropdown">
+                <a href="shipping.html#shipping-policy">Shipping Policy</a>
+                <a href="shipping.html#local">Local</a>
+                <a href="shipping.html#international">International</a>
+            </div>
+        </div>
+        <button class="icon-btn" id="openFormBtn" aria-label="Profile">
+            <svg class="icon-svg" viewBox="0 0 24 24">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+        </button>
+        <a href="cart.html" class="icon-btn" aria-label="Cart">
+            <svg class="icon-svg" viewBox="0 0 24 24">
+                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+        </a>
+    </div>
+</header>
