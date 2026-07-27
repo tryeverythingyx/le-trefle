@@ -31,7 +31,7 @@
             min-height: 100vh;
         }
 
-        /* Search Banner */
+        /* 2. Search Banner */
         .search-banner {
             width: 100%;
             background-color: #ffffff; 
@@ -86,7 +86,7 @@
             stroke-width: 1.5;
         }
 
-        /* Main Content Layout */
+        /* 3. Main Content Layout (Left-Aligned Titles & Content) */
         .shipping-container {
             width: 90%; 
             max-width: 1000px; 
@@ -95,6 +95,7 @@
             flex: 1;
         }
 
+        /* Left-Aligned Page Title */
         .page-title {
             font-family: 'Fraunces', serif;
             font-size: 52px;
@@ -102,9 +103,10 @@
             color: #8C4726; 
             margin-bottom: 40px;
             letter-spacing: -0.5px;
-            text-align: left;
+            text-align: left; /* Left Aligned */
         }
 
+        /* Left-Aligned Section Subtitles */
         .section-title {
             font-family: 'Fraunces', serif;
             font-size: 34px;
@@ -112,15 +114,16 @@
             color: #3C2C19; 
             margin-top: 45px;
             margin-bottom: 20px;
-            text-align: left;
-            scroll-margin-top: 30px; 
+            text-align: left; /* Left Aligned */
+            scroll-margin-top: 30px; /* Ensures clean scroll target positioning */
         }
 
+        /* Left-Aligned Paragraph Content */
         .shipping-text {
             font-size: 19px;
             color: #937A62;
             margin-bottom: 20px;
-            text-align: left;
+            text-align: left; /* Left Aligned */
         }
 
         .content-bold {
@@ -139,7 +142,7 @@
             margin-top: 15px;
         }
 
-        /* Footer */
+        /* 4. Footer */
         footer {
             margin-top: auto;
             padding: 40px 20px 50px 20px;
@@ -163,6 +166,7 @@
             text-decoration: underline;
         }
 
+        /* Responsive Mobile Breakpoints */
         @media screen and (max-width: 850px) {
             .page-title {
                 font-size: 36px;
@@ -237,65 +241,43 @@
     </footer>
 
     <script>
-        // Inject header.html into the page
+        // Fetch and insert header.html
         fetch('header.html')
             .then(response => response.text())
-            .then(html => {
-                document.getElementById('header-container').innerHTML = html;
-                setupShippingDropdowns();
+            .then(data => {
+                document.getElementById('header-container').innerHTML = data;
+                initHeaderEvents();
             })
-            .catch(error => console.error('Error fetching header:', error));
+            .catch(error => console.error('Error loading header:', error));
 
-        function setupShippingDropdowns() {
-            // Find desktop right navigation or dropdown elements
-            const shippingLinks = document.querySelectorAll('a[href*="shipping"]');
+        function initHeaderEvents() {
+            const hamburgerBtn = document.getElementById('hamburger-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
 
-            // Find or configure desktop dropdown menu
-            shippingLinks.forEach(link => {
-                if (link.textContent.toUpperCase().includes('SHIPPING')) {
-                    const parentItem = link.closest('.nav-item') || link.parentElement;
-                    if (parentItem) {
-                        // Check if dropdown already exists, otherwise build it
-                        let dropdown = parentItem.querySelector('.dropdown-menu');
-                        if (!dropdown) {
-                            dropdown = document.createElement('div');
-                            dropdown.className = 'dropdown-menu';
-                            parentItem.appendChild(dropdown);
-                        }
-                        
-                        // Populate with requested ALL CAPS links pointing to page sections
-                        dropdown.innerHTML = `
-                            <a href="#shipping-policy">SHIPPING POLICY</a>
-                            <a href="#local-shipping">LOCAL SHIPPING</a>
-                            <a href="#international-shipping">INTERNATIONAL</a>
-                        `;
-                    }
-                }
-            });
-
-            // Configure Mobile Submenu if loaded from header.html
-            const mobileShippingBtn = document.getElementById('mobile-shipping-btn');
-            const mobileShippingSub = document.getElementById('mobile-shipping-sub');
-
-            if (mobileShippingSub) {
-                mobileShippingSub.innerHTML = `
-                    <a href="#shipping-policy">SHIPPING POLICY</a>
-                    <a href="#local-shipping">LOCAL SHIPPING</a>
-                    <a href="#international-shipping">INTERNATIONAL</a>
-                `;
+            if (hamburgerBtn && mobileMenu) {
+                hamburgerBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('active');
+                });
             }
 
+            const mobileHomeBtn = document.getElementById('mobile-home-btn');
+            const mobileHomeSub = document.getElementById('mobile-home-sub');
+            if (mobileHomeBtn && mobileHomeSub) {
+                mobileHomeBtn.addEventListener('click', () => {
+                    mobileHomeSub.classList.toggle('open');
+                });
+            }
+
+            const mobileShippingBtn = document.getElementById('mobile-shipping-btn');
+            const mobileShippingSub = document.getElementById('mobile-shipping-sub');
             if (mobileShippingBtn && mobileShippingSub) {
-                mobileShippingBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
+                mobileShippingBtn.addEventListener('click', () => {
                     mobileShippingSub.classList.toggle('open');
                 });
             }
 
-            // Close mobile menu upon clicking any section link
-            const subLinks = document.querySelectorAll('.mobile-sub-menu a, .dropdown-menu a');
-            const mobileMenu = document.getElementById('mobile-menu');
-            subLinks.forEach(link => {
+            const mobileLinks = document.querySelectorAll('.mobile-sub-menu a');
+            mobileLinks.forEach(link => {
                 link.addEventListener('click', () => {
                     if (mobileMenu) {
                         mobileMenu.classList.remove('active');
