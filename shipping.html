@@ -31,7 +31,211 @@
             min-height: 100vh;
         }
 
-        /* 2. Search Banner */
+        /* Top White Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 95px; 
+            padding: 0 50px;
+            background-color: #ffffff; 
+            position: relative;
+            z-index: 1001;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        /* Desktop Navigation */
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-item {
+            position: relative;
+            display: inline-block;
+        }
+
+        .nav-link {
+            font-size: 13px;
+            font-weight: 700;
+            color: #3C2C19;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 10px 0;
+            transition: opacity 0.2s ease;
+            cursor: pointer;
+        }
+
+        .nav-link:hover {
+            opacity: 0.7;
+        }
+
+        .dropdown-arrow {
+            font-size: 10px;
+            margin-left: 2px;
+            transition: transform 0.2s ease;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #ffffff;
+            min-width: 200px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0,0,0,0.05);
+            padding: 10px 0;
+            z-index: 1002;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 10px 20px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #3C2C19;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: background 0.2s ease;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #FDF9F2;
+        }
+
+        .nav-item:hover .dropdown-menu {
+            display: block;
+        }
+
+        .nav-item:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        /* Center Logo */
+        .logo-wrapper {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo {
+            font-family: 'Fraunces', serif;
+            font-size: 38px; 
+            font-weight: 600; 
+            color: #8C4726; 
+            line-height: 1;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-tagline {
+            font-family: 'Fraunces', serif;
+            font-size: 11px;
+            font-weight: 300;
+            font-style: italic;
+            color: #8C4726;
+            letter-spacing: 0.8px;
+            margin-top: 3px;
+            text-transform: lowercase;
+            white-space: nowrap;
+        }
+
+        /* Right Nav & Icons */
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .icon-btn {
+            display: flex;
+            align-items: center;
+            color: #3C2C19;
+            text-decoration: none;
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+        }
+
+        .icon-btn:hover {
+            opacity: 0.7;
+        }
+
+        .icon-svg {
+            width: 22px;
+            height: 22px;
+            fill: none;
+            stroke: #3C2C19;
+            stroke-width: 1.3;
+        }
+
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+            padding: 8px 0;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 22px;
+            height: 1.5px;
+            background-color: #3C2C19;
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            background-color: #ffffff;
+            width: 100%;
+            padding: 10px 24px 20px 24px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu .nav-link {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            font-size: 14px;
+            justify-content: space-between;
+        }
+
+        .mobile-sub-menu {
+            display: none;
+            flex-direction: column;
+            background-color: #FDF9F2;
+            padding: 5px 15px;
+        }
+
+        .mobile-sub-menu.open {
+            display: flex;
+        }
+
+        .mobile-sub-menu a {
+            padding: 10px 0;
+            font-size: 13px;
+            color: #3C2C19;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        /* Search Banner */
         .search-banner {
             width: 100%;
             background-color: #ffffff; 
@@ -86,7 +290,7 @@
             stroke-width: 1.5;
         }
 
-        /* 3. Main Content Layout (Left-Aligned Titles & Content) */
+        /* Main Content */
         .shipping-container {
             width: 90%; 
             max-width: 1000px; 
@@ -95,7 +299,6 @@
             flex: 1;
         }
 
-        /* Left-Aligned Page Title */
         .page-title {
             font-family: 'Fraunces', serif;
             font-size: 52px;
@@ -103,10 +306,9 @@
             color: #8C4726; 
             margin-bottom: 40px;
             letter-spacing: -0.5px;
-            text-align: left; /* Left Aligned */
+            text-align: left;
         }
 
-        /* Left-Aligned Section Subtitles */
         .section-title {
             font-family: 'Fraunces', serif;
             font-size: 34px;
@@ -114,16 +316,15 @@
             color: #3C2C19; 
             margin-top: 45px;
             margin-bottom: 20px;
-            text-align: left; /* Left Aligned */
-            scroll-margin-top: 30px; /* Ensures clean scroll target positioning */
+            text-align: left;
+            scroll-margin-top: 30px;
         }
 
-        /* Left-Aligned Paragraph Content */
         .shipping-text {
             font-size: 19px;
             color: #937A62;
             margin-bottom: 20px;
-            text-align: left; /* Left Aligned */
+            text-align: left;
         }
 
         .content-bold {
@@ -142,7 +343,7 @@
             margin-top: 15px;
         }
 
-        /* 4. Footer */
+        /* Footer */
         footer {
             margin-top: auto;
             padding: 40px 20px 50px 20px;
@@ -166,126 +367,34 @@
             text-decoration: underline;
         }
 
-        /* Responsive Mobile Breakpoints */
         @media screen and (max-width: 850px) {
+            header {
+                padding: 0 20px;
+                height: 85px;
+            }
+
+            .nav-left, .nav-right .nav-link {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .logo {
+                font-size: 28px;
+            }
+
+            .logo-tagline {
+                font-size: 9.5px;
+            }
+
             .page-title {
                 font-size: 36px;
-                text-align: left;
             }
 
             .section-title {
                 font-size: 26px;
-                text-align: left;
             }
 
-            .shipping-text,
-            .footer-email,
-            .footer-email a {
-                font-size: 17px;
-                text-align: left;
-            }
-        }
-    </style>
-</head>
-<body>
-
-    <div id="header-container"></div>
-
-    <div class="search-banner">
-        <div class="search-block-wrapper">
-            <input type="text" class="inline-search-input" placeholder="Product Search">
-            <button class="search-icon-btn" aria-label="Search">
-                <svg class="search-icon-svg" viewBox="0 0 24 24">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                </svg>
-            </button>
-        </div>
-    </div>
-
-    <main class="shipping-container">
-        <h1 class="page-title">Shipping and Delivery</h1>
-
-        <h2 id="shipping-policy" class="section-title">Shipping Policy</h2>
-        <p class="shipping-text">
-            Hey! We are committed to delivering your order safely and efficiently. Please ensure that your shipping address and contact information are accurate and complete when placing your order <span class="heart-icon">♥</span>
-        </p>
-
-        <h2 id="local-shipping" class="section-title">For Local Customers (Malaysia)</h2>
-        <p class="shipping-text">
-            Shipping fee will be charge for local orders at checkout. Free local shipping is available on orders of <span class="content-bold">RM 100 or more</span>.
-        </p>
-        <p class="shipping-text">
-            Should the delivery fail and your package be returned to us, you would receive another email notifying you.
-        </p>
-        <p class="shipping-text text-spacing">
-            Please note that <span class="content-bold">Le Trèfle</span> would not be responsible in the event where a wrong or incomplete address has been provided by the customer.
-        </p>
-
-        <h2 id="international-shipping" class="section-title">For International Customers</h2>
-        <p class="shipping-text">
-            Shipping charges for international orders are calculated at checkout based on the destination.
-        </p>
-        <p class="shipping-text">
-            Any taxes, customs duties, import duties, brokerage fees, or other charges imposed by the destination country are the responsibility of the customer.
-        </p>
-        <p class="shipping-text">
-            Please note that <span class="content-bold">Le Trèfle</span> would not be responsible for any delays or additional charges resulting from customs clearance.
-        </p>
-    </main>
-
-    <footer>
-        <div class="footer-email">
-            Questions about your order? Email <a href="mailto:letrefle.mail@gmail.com">letrefle.mail@gmail.com</a>
-        </div>
-    </footer>
-
-    <script>
-        // Fetch and insert header.html
-        fetch('header.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('header-container').innerHTML = data;
-                initHeaderEvents();
-            })
-            .catch(error => console.error('Error loading header:', error));
-
-        function initHeaderEvents() {
-            const hamburgerBtn = document.getElementById('hamburger-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
-
-            if (hamburgerBtn && mobileMenu) {
-                hamburgerBtn.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('active');
-                });
-            }
-
-            const mobileHomeBtn = document.getElementById('mobile-home-btn');
-            const mobileHomeSub = document.getElementById('mobile-home-sub');
-            if (mobileHomeBtn && mobileHomeSub) {
-                mobileHomeBtn.addEventListener('click', () => {
-                    mobileHomeSub.classList.toggle('open');
-                });
-            }
-
-            const mobileShippingBtn = document.getElementById('mobile-shipping-btn');
-            const mobileShippingSub = document.getElementById('mobile-shipping-sub');
-            if (mobileShippingBtn && mobileShippingSub) {
-                mobileShippingBtn.addEventListener('click', () => {
-                    mobileShippingSub.classList.toggle('open');
-                });
-            }
-
-            const mobileLinks = document.querySelectorAll('.mobile-sub-menu a');
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    if (mobileMenu) {
-                        mobileMenu.classList.remove('active');
-                    }
-                });
-            });
-        }
-    </script>
-
-</body>
-</html>
+            .shipping-text
